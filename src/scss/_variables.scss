@@ -1,0 +1,169 @@
+// Variable overrides
+
+.email-app {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  background: #fff;
+  border: 1px solid #c8ced3;
+}
+.email-app main {
+  -ms-flex: 1;
+  flex: 1;
+  min-width: 0;
+  padding: 1rem;
+}
+.email-app .inbox .toolbar {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #c8ced3;
+}
+.mb-4, .my-4 {
+  margin-bottom: 1.5rem!important;
+}
+.email-app .inbox .messages {
+  padding: 0;
+  list-style: none;
+}
+.email-app .inbox .message:hover {
+  background: #f0f3f5;
+}
+.email-app .inbox .message {
+  position: relative;
+  padding: 0.5rem 1rem 0.5rem 2rem;
+  cursor: pointer;
+  border-bottom: 1px solid #c8ced3;
+}
+.email-app .inbox .messages {
+  padding: 0;
+  list-style: none;
+}
+.email-app .inbox .message a {
+  color: #000;
+  text-decoration: none;
+  background-color: transparent;
+}
+.email-app .inbox .message .actions {
+  position: absolute;
+  left: 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.email-app .inbox .message .actions .action {
+  width: 2rem;
+  margin-bottom: .5rem;
+  color: #c8ced3;
+  text-align: center;
+}
+.email-app .inbox .message.unread .header, .email-app .inbox .message.unread .title {
+  font-weight: 700;
+}
+.email-app .inbox .message .header .date {
+  margin-left: auto;
+}
+.email-app .inbox .message .description {
+  font-size: 12px;
+}
+.email-app .inbox .message .header {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  margin-bottom: .5rem;
+}
+.email-app .inbox .message.unread .header, .email-app .inbox .message.unread .title {
+  font-weight: 700;
+}
+.email-app .inbox .message .title {
+  margin-bottom: .5rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.email-app .message .details .header .avatar {
+  width: 40px;
+  height: 40px;
+  margin-right: 1rem;
+}
+.avatar {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+}
+
+.CMSVideoItemAvatarWrapper {
+  display: inline-block;
+  float: left;
+  position: relative;
+  width: 155px
+}
+.CMSVideoItem_Avatar {
+  width: 100%;
+  float: left;
+  max-height: 100px;
+}
+
+.CMSVideoItemInfoWrapper{
+  display: inline-block;
+  width: 400px;
+  margin-left: 10px;
+}
+.CMSVideoItemInfoWrapper h3 {
+  color: #256CDE;
+  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.CMSVideoItemInfoWrapper label {
+  font-weight: bold;
+  width: 100px;
+  display: inline-block;
+  color: #444;
+  font-size: 13px;
+  margin: 0;
+}
+.CMSVideoItemInfoDetail * {
+  line-height: 18px;
+  height: 18px;
+}
+.CMSVideoItemInfoDetail span {
+  color: #666;
+  font-size: 13px;
+}
+.CMSVideoEditBoxContent{
+  padding: 10px
+}
+.CMSVideoUploadLoading {
+  width: 100%;
+  min-height: 120px;
+  border: solid 1px #ddd;
+  padding: 2px;
+  background: #eee;
+  position: relative;
+}
+.CMSUploadHtml5Wrapper {
+  position: relative;
+}
+
+.CMSHtml5UploadInputWrapperV3 {
+  margin-left: 15px;
+  margin-top: 10px;
+  width: 550px;
+}
+.CMSHtml5UploadInputWrapperV3 .ims-video-upload-control-wrapper {
+  width: 100%;
+}
+.CMSHtml5UploadInputWrapperV3 .ims-video-upload-control-wrapper label {
+  background-color: #d3394c;
+  color: #fff;
+  font-size: 15px;
+  padding: 8px 20px!important;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+}

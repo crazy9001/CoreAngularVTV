@@ -52,10 +52,10 @@
                     </div>
                 </div>
                 <div class="btn-group float-right">
-                    <button class="btn btn-light" type="button">
+                    <button class="btn btn-light" type="button" (click)="prevPage()" [disabled]="videos && !videos.prev_page_url">
                         <span class="fa fa-chevron-left"></span>
                     </button>
-                    <button class="btn btn-light" type="button">
+                    <button class="btn btn-light" type="button" (click)="nextPage()" [disabled]="videos && !videos.next_page_url">
                         <span class="fa fa-chevron-right"></span>
                     </button>
                 </div>
@@ -74,9 +74,9 @@
                         <img class="CMSVideoItem_Avatar" [src]="video.thumbnails ? environment.storage_url + video.thumbnails : ''" alt="{{ video.title }}">
                     </div>
                     <div class="CMSVideoItemInfoWrapper">
-                        <h3 original-title="Chuyển động 24h trưa - 27/6/2016">
+                        <a [routerLink]="['../edit', video.id]">
                             {{ video ? video.title : '' }}
-                        </h3>
+                        </a>
                         <div class="CMSVideoItemInfoDetail">
                             <label>
                                 Ngày tạo

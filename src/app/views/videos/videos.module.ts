@@ -15,6 +15,9 @@ import {MediaVideoDetailComponent} from '../media/media-video-detail.component';
 import { PreviewVideoComponent } from './preview-video.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { VideoEditorComponent } from './video-editor.component';
+import { VideoPublishComponent } from './video-publish.component';
+import { VideoPublishedComponent } from './video-published.component';
+import { VideoEditComponent } from './video-edit.component';
 
 const token = localStorage.getItem('token');
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -35,7 +38,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalMediaVideoComponent,
         MediaVideoDetailComponent,
         PreviewVideoComponent,
-        VideoEditorComponent
+        VideoEditorComponent,
+        VideoPublishComponent,
+        VideoPublishedComponent,
+        VideoEditComponent
     ],
     imports: [
         CommonModule,

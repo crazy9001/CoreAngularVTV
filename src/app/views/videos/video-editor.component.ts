@@ -25,5 +25,11 @@ export class VideoEditorComponent implements OnInit {
             this.videos = videos;
         });
     }
+    prevPage() {
+      this.videoService.getVideosAtUrl(this.videos.prev_page_url).then(videos => this.videos = videos);
+    }
 
+    nextPage() {
+      this.videoService.getVideosAtUrl(this.videos.next_page_url).then(videos => this.videos = videos);
+    }
 }

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment.prod';
 import {IVideoForm} from '../model/type';
 import {VideoPaginate} from '../model/video-paginate.model';
+import {Video} from '../model/video.model';
 @Injectable({
     providedIn: 'root'
 })
@@ -27,6 +28,33 @@ export class VideoService {
             .toPromise()
             .then((response) => {
                 return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+    getVideoPublish(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/video/waiting/publish')
+            .toPromise()
+            .then((response) => {
+              return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+    getVideoPublished(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/video/published')
+            .toPromise()
+            .then((response) => {
+              return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+    getDetailVideoById(id: number) {
+        return this.httpClient.get(`${environment.api_url}` + '/video/' + id)
+            .toPromise()
+            .then((response) => {
+                return response as Video;
             })
             .catch(this.handleError);
     }

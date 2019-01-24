@@ -61,12 +61,12 @@ export const navItems: NavData[] = [
             },
             {
                 name: 'Chờ xuất bản',
-                url: '/videos/draft',
+                url: '/videos/publish',
                 icon: 'fa fa-folder-open-o fa-lg'
             },
             {
                 name: 'Đã xuất bản',
-                url: '/videos/draft',
+                url: '/videos/published',
                 icon: 'icon-bell'
             },
         ]

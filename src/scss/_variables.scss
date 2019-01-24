@@ -114,7 +114,12 @@
 }
 .CMSVideoItemInfoWrapper h3 {
   color: #256CDE;
-  margin-bottom: 0px;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 0;
+}
+.CMSVideoItemInfoWrapper a {
+  color: #256CDE !important;
   font-size: 14px;
   font-weight: bold;
   margin: 0;

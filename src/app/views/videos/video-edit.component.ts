@@ -1,11 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import {VideoService} from '../../services/video.service';
-import {Video} from '../../model/video.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ICategory} from '../../model/type';
 import {CategoryService} from '../../services/category.service';
 import {environment} from '../../../environments/environment.prod';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
   selector: 'app-video-edit',
@@ -15,6 +15,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   environment: any;
   id: number;
   video = {
+    id: '',
     content: '',
     title: '',
     description: '',
@@ -25,6 +26,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     seo_keywords: '',
     seo_description: '',
     thumbnails: '',
+    category_id: '',
     storage_id: ''
   };
   editVideoForm: FormGroup;
@@ -36,11 +38,13 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     private videoService: VideoService,
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
+    private notificationService: NotificationService
   ) {
     this.environment = environment;
   }
 
   ngOnInit() {
+    this.getCategory();
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
     });
@@ -49,8 +53,9 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   }
   getDetailVideo() {
     this.videoService.getDetailVideoById(this.id).then(video => {
-      console.log(video);
+      this.video.id = video.id;
       this.video.content = video.content.content;
+      this.video.category_id = video.category.id;
       this.video.title = video.title;
       this.video.description = video.description;
       this.video.publish_at = video.element.publish_at;
@@ -66,6 +71,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
   }
   createForm() {
     this.editVideoForm = this.formBuilder.group({
+      id: [null, [Validators.required]],
       title: [null, [Validators.required]],
       description: [null, [Validators.required]],
       publish_at: [null, null],
@@ -82,13 +88,22 @@ export class VideoEditComponent implements OnInit, OnDestroy {
       category_id: [null, null]
     });
   }
-
+  getCategory() {
+    this.categoryService.getVideoCategoryByUser().then(category => {
+      this.categories = category;
+    });
+  }
   eventReceiveVideoInsert($event) {
     this.video.content = $event.path;
     this.video.storage_id = $event.id;
     this.thumbnails = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));
   }
-
+  eventUpdateVideo() {
+    console.log(this.editVideoForm.value);
+    this.videoService.update(this.editVideoForm.value).subscribe(res => {
+      this.notificationService.showSuccess('Đã cập nhật dữ liệu', 'Success');
+    });
+  }
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

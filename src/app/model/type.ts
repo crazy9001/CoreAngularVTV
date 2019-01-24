@@ -4,6 +4,7 @@ interface ICategory {
 }
 
 interface IVideoForm {
+    id: number;
     title: string;
     description: string;
     publish_at: string;

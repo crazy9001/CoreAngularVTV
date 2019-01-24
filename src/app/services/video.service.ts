@@ -75,6 +75,13 @@ export class VideoService {
             });
     }
 
+    update( video: IVideoForm) {
+      return this.httpClient.put<any>(`${environment.api_url}/video/${video.id}`, video)
+        .do(data => {
+          return data;
+        });
+    }
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);

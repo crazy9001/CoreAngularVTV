@@ -32,6 +32,11 @@ import {
     AppSidebarModule,
 } from '@coreui/angular';
 
+// Import toastr
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 // Import routing module
 import {AppRoutingModule} from './app.routing';
 
@@ -61,7 +66,9 @@ import {AuthGuard} from './guards/auth.guard';
         ChartsModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule, // required animations module
+        ToastrModule.forRoot() // ToastrModule added
     ],
     declarations: [
         AppComponent,

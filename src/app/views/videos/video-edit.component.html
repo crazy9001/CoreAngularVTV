@@ -14,6 +14,7 @@
                     <label class="ims-video-upload-label" id="InputTypeFileTxt" (click)="mediaVideoModal.show()">+ Chèn Video</label>
                     <input type="hidden" formControlName="content" [(ngModel)]="video.content" class="form-control" autocomplete="off">
                     <input type="hidden" formControlName="storage_id" [(ngModel)]="video.storage_id" class="form-control" autocomplete="off">
+                    <input type="hidden" formControlName="id" *ngIf="video" [(ngModel)]="video.id" required="" class="form-control">
                   </div>
                 </div>
               </div>
@@ -34,8 +35,8 @@
                   <label for="VMVideoEditItemAvatarChoose0">
                     <img src="{{ environment.storage_url + thumb.value }}">
                   </label>
-                  <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0" autocomplete="off"
-                         [checked]="idx === 0"
+                  <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0" autocomplete="off" [(ngModel)]="video.thumbnails"
+                         [checked]="thumb.value === video.thumbnails"
                          [value]="thumb.value">
                 </li>
               </ul>
@@ -64,16 +65,15 @@
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="CMSVideoDatePublish">Ngày xuất bản</label>
               <div class="col-md-9">
-                <input class="form-control" id="CMSVideoDatePublish" type="date" formControlName="publish_at" [(ngModel)]="video.publish_at">
+                <input class="form-control" id="CMSVideoDatePublish" type="date" formControlName="publish_at" [ngModel]="video.publish_at | date:'yyyy-MM-dd'">
               </div>
             </div>
             <div class="form-group row">
               <label class="col-md-3 col-form-label" for="select1">Chuyên mục chính</label>
               <div class="col-md-9">
-                <select id="select1" formControlName="category_id" class="form-control">
-                  <option value="0"></option>
+                <select id="select1" formControlName="category_id" class="form-control" [(ngModel)]="video.category_id">
                   <option [ngValue]="null">Chọn giá trị...</option>
-                  <option *ngFor="let category of categories" [ngValue]="category.id">
+                  <option *ngFor="let category of categories" [ngValue]="category.id" [selected]="category.id === video.category_id">
                     {{ category?.text }}
                   </option>
                 </select>
@@ -126,7 +126,7 @@
             </div>
           </div>
           <div class="card-footer">
-            <button (click)="onSubmit()" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+            <button (click)="eventUpdateVideo()" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
               <i class="fa fa-dot-circle-o"></i> Lưu Thông Tin
             </button>
           </div>

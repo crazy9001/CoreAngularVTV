@@ -17,7 +17,6 @@ export class MediaService {
         return this.httpClient.get(`${environment.api_url}` + '/media/gallery?action=video')
             .toPromise()
             .then((response) => {
-                console.log(response);
                 return response as MediaPaginateModel;
             })
             .catch(this.handleError);

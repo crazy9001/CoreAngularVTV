@@ -3,10 +3,11 @@ import {environment} from '../../../environments/environment.prod';
 import {VideoService} from '../../services/video.service';
 import {VideoPaginate} from '../../model/video-paginate.model';
 @Component({
-    selector: 'app-video-draft',
-    templateUrl: './video-draft.component.html',
+    selector: 'app-video-editor',
+    templateUrl: './video-editor.component.html',
 })
-export class VideoDraftComponent implements OnInit {
+export class VideoEditorComponent implements OnInit {
+
     environment: any;
     videos: VideoPaginate;
     constructor(
@@ -16,12 +17,13 @@ export class VideoDraftComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getDraftVideo();
+        this.getEditorVideo();
     }
 
-    getDraftVideo() {
-        this.videoService.getVideoDraft().then(videos => {
+    getEditorVideo() {
+        this.videoService.getVideoEditor().then(videos => {
             this.videos = videos;
         });
     }
+
 }

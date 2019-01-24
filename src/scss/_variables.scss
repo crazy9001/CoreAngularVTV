@@ -117,6 +117,7 @@
   margin-bottom: 0px;
   font-size: 14px;
   font-weight: bold;
+  margin: 0;
 }
 .CMSVideoItemInfoWrapper label {
   font-weight: bold;
@@ -167,4 +168,28 @@
   display: inline-block;
   cursor: pointer;
 }
-
+#CMSVideoEditItemAvatarChoose label {
+  display: table-cell;
+  vertical-align: middle;
+  height: 110px;
+  overflow: hidden;
+  width: 132px;
+  border: solid 1px #ccc;
+}
+#CMSVideoEditItemAvatarChoose img {
+  width: 100%;
+  margin-bottom: 5px;
+}
+#CMSVideoEditItemAvatarChoose input[type=radio] {
+  border-radius: 50% !important;
+}
+#CMSVideoEditItemAvatarChoose li {
+  list-style-type: none;
+  float: left;
+  text-align: center;
+  padding: 5px;
+  vertical-align: top;
+}
+#CMSVideoEditItemAvatarChoose ul:after {
+  clear: both;
+}

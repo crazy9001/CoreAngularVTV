@@ -11,6 +11,10 @@ import {TabsModule} from 'ngx-bootstrap/tabs';
 import {environment} from './../../../environments/environment.prod';
 import {DROPZONE_CONFIG, DropzoneConfigInterface} from 'ngx-dropzone-wrapper';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
+import {MediaVideoDetailComponent} from '../media/media-video-detail.component';
+import { PreviewVideoComponent } from './preview-video.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { VideoEditorComponent } from './video-editor.component';
 
 const token = localStorage.getItem('token');
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -28,10 +32,15 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     declarations: [
         VideoDraftComponent,
         VideoCreateComponent,
-        ModalMediaVideoComponent
+        ModalMediaVideoComponent,
+        MediaVideoDetailComponent,
+        PreviewVideoComponent,
+        VideoEditorComponent
     ],
     imports: [
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         VideosRoutingModule,
         ModalModule.forRoot(),
         TabsModule,

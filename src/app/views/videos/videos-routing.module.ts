@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {VideoDraftComponent} from './video-draft.component';
 import {VideoCreateComponent} from './video-create.component';
+import {VideoEditorComponent} from './video-editor.component';
 
 const routes: Routes = [{
     path: '',
@@ -25,6 +26,13 @@ const routes: Routes = [{
             component: VideoDraftComponent,
             data: {
                 title: 'Lưu tạm'
+            }
+        },
+        {
+            path: 'editor',
+            component: VideoEditorComponent,
+            data: {
+                title: 'Chờ biên tập'
             }
         }
     ]

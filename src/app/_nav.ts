@@ -56,7 +56,7 @@ export const navItems: NavData[] = [
             },
             {
                 name: 'Chờ biên tập',
-                url: '/videos/draft',
+                url: '/videos/editor',
                 icon: 'fa fa-folder-open-o fa-lg'
             },
             {

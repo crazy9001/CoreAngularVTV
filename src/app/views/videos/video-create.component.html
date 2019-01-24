@@ -1,138 +1,143 @@
-<div class="animated fadeIn">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Video</strong>
-                </div>
-                <div class="CMSVideoEditBoxContent">
-                    <div class="card-body CMSVideoUploadLoading">
-                        <div class="CMSUploadHtml5Wrapper">
-                            <div class="CMSHtml5UploadInputWrapperV3">
-                                <div class="ims-video-upload-control-wrapper">
-                                    <label class="ims-video-upload-label" id="InputTypeFileTxt" (click)="mediaVideoModal.show()">+ Chèn Video</label>
+<form [formGroup]="createVideoForm">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Video</strong>
+                    </div>
+                    <div class="CMSVideoEditBoxContent">
+                        <div class="card-body CMSVideoUploadLoading">
+                            <div class="CMSUploadHtml5Wrapper">
+                                <div class="CMSHtml5UploadInputWrapperV3">
+                                    <div class="ims-video-upload-control-wrapper">
+                                        <label class="ims-video-upload-label" id="InputTypeFileTxt" (click)="mediaVideoModal.show()">+ Chèn Video</label>
+                                        <input type="hidden" formControlName="content" [ngModel]="urlVideoInsert" class="form-control" autocomplete="off">
+                                        <input type="hidden" formControlName="storage_id" [ngModel]="idStorage" class="form-control" autocomplete="off">
+                                    </div>
                                 </div>
+                            </div>
+                            <div *ngIf="urlVideoInsert">
+                                <app-preview-video [urlVideoInsert]="urlVideoInsert"></app-preview-video>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <strong>Normal</strong> Form
-                </div>
-                <div class="card-body">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="nf-email">Email</label>
-                            <input type="email" id="nf-email" name="nf-email" class="form-control"
-                                   placeholder="Enter Email.." autocomplete="email">
-                            <span class="help-block">Please enter your email</span>
+
+
+                <div class="card" *ngIf="urlVideoInsert">
+                    <div class="card-header">
+                        <strong>Ảnh đại diện</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="CMSCreateBoxContent">
+                            <ul id="CMSVideoEditItemAvatarChoose">
+                                <li *ngFor="let thumb of listThumbs;  let idx = index">
+                                    <label for="VMVideoEditItemAvatarChoose0">
+                                        <img src="{{ environment.storage_url + thumb.value }}">
+                                    </label>
+                                    <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0" autocomplete="off"
+                                           [checked]="idx === 0"
+                                           [value]="thumb.value">
+                                </li>
+                            </ul>
                         </div>
-                        <div class="form-group">
-                            <label for="nf-password">Password</label>
-                            <input type="password" id="nf-password" name="nf-password" class="form-control"
-                                   placeholder="Enter Password.." autocomplete="current-password">
-                            <span class="help-block">Please enter your password</span>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-                </div>
-            </div>
-        </div><!--/.col-->
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Thông tin video</strong>
-                </div>
-                <div class="card-body">
-                    <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+            </div><!--/.col-->
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Thông tin video</strong>
+                    </div>
+                    <div class="card-body">
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="CMSVideoTitle">Tiêu đề</label>
                             <div class="col-md-9">
-                                <input type="text" id="CMSVideoTitle" name="text-input" class="form-control">
+                                <input type="text" id="CMSVideoTitle" formControlName="title" class="form-control">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="CMSVideoDescription">Tóm tắt</label>
                             <div class="col-md-9">
-                                <textarea id="CMSVideoDescription" name="textarea-input" rows="5" class="form-control"></textarea>
+                                <textarea id="CMSVideoDescription" formControlName="description" rows="5" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="CMSVideoDatePublish">Ngày xuất bản</label>
                             <div class="col-md-9">
-                                <input class="form-control" id="CMSVideoDatePublish" type="date" name="date-input">
+                                <input class="form-control" id="CMSVideoDatePublish" type="date" formControlName="publish_at">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="select1">Chuyên mục chính</label>
                             <div class="col-md-9">
-                                <select id="select1" name="select1" class="form-control">
-                                    <option value="0">Chọn giá trị...</option>
-                                    <option value="1">Option #1</option>
-                                    <option value="2">Option #2</option>
-                                    <option value="3">Option #3</option>
+                                <select id="select1" formControlName="category_id" class="form-control">
+                                    <option value="0"></option>
+                                    <option [ngValue]="null">Chọn giá trị...</option>
+                                    <option *ngFor="let category of categories" [ngValue]="category.id">
+                                        {{ category?.text }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="CMSVideoTags">Tags liên quan</label>
                             <div class="col-md-9">
-                                <input type="text" id="CMSVideoTags" name="email-input" class="form-control" autocomplete="off">
+                                <input type="text" id="CMSVideoTags" formControlName="tags" class="form-control" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="CMSVideoSource">Nguồn</label>
                             <div class="col-md-9">
-                                <input type="text" id="CMSVideoSource" name="email-input" class="form-control" autocomplete="off">
+                                <input type="text" id="CMSVideoSource" formControlName="source" class="form-control" autocomplete="off">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label">Video nổi bật</label>
                             <div class="col-md-9 col-form-label">
                                 <div class="form-check form-check-inline mr-1">
-                                    <input class="form-check-input" type="checkbox" id="inline-checkbox1"
-                                           value="option1">
+                                    <input class="form-check-input" type="checkbox" id="inline-checkbox1"  formControlName="highlight">
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>Thông tin SEO</strong>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="CMSVideoMetaTitle">Meta Title</label>
+                            <div class="col-md-9">
+                                <input type="text" id="CMSVideoMetaTitle" formControlName="seo_title" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="CMSVideoMetaKeyWord">Meta Keyword</label>
+                            <div class="col-md-9">
+                                <input type="text" id="CMSVideoMetaKeyWord" formControlName="seo_keywords" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-md-3 col-form-label" for="CMSVideoMetaDescription">Meta Description</label>
+                            <div class="col-md-9">
+                                <textarea id="CMSVideoMetaDescription" formControlName="seo_description" rows="2" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button (click)="onSubmit()" type="button" class="btn btn-sm btn-primary" [disabled]="createVideoForm.invalid">
+                            <i class="fa fa-dot-circle-o"></i> Lưu Thông Tin
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">
-                    <strong>Thông tin SEO</strong>
-                </div>
-                <div class="card-body">
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="CMSVideoMetaTitle">Meta Title</label>
-                        <div class="col-md-9">
-                            <input type="text" id="CMSVideoMetaTitle" name="text-input" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="CMSVideoMetaKeyWord">Meta Keyword</label>
-                        <div class="col-md-9">
-                            <input type="text" id="CMSVideoMetaKeyWord" name="text-input" class="form-control">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-md-3 col-form-label" for="CMSVideoMetaDescription">Meta Description</label>
-                        <div class="col-md-9">
-                            <textarea id="CMSVideoMetaDescription" name="textarea-input" rows="2" class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
-
     </div>
-</div>
 
-<app-modal-media-video #mediaVideoModal></app-modal-media-video>
+    <app-modal-media-video #mediaVideoModal (messageEventInsertVideo)="eventReceiveVideoInsert($event)"></app-modal-media-video>
+</form>
 

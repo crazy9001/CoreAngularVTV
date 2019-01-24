@@ -26,4 +26,8 @@ export class AuthService {
     check(): boolean {
         return localStorage.getItem('user') ? true : false;
     }
+
+    getRoleUser() {
+      return localStorage.getItem('role') ? localStorage.getItem('role') : null;
+    }
 }

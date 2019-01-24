@@ -82,6 +82,33 @@ export class VideoService {
         });
     }
 
+    /* change video to editor */
+    changeVideoToEditor(id: number) {
+      return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/editor', {id: id})
+        .toPromise()
+        .then((response) => {
+          return response;
+        });
+    }
+
+    /* change video to publish */
+    changeVideoToPublish(id: number) {
+      return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/publish', {id: id})
+        .toPromise()
+        .then((response) => {
+          return response;
+        });
+    }
+
+    /* change video to published */
+    publishVideo(id: number) {
+      return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/published', {id: id})
+        .toPromise()
+        .then((response) => {
+          return response;
+        });
+    }
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);

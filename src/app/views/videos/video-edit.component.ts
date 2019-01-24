@@ -6,6 +6,8 @@ import {ICategory} from '../../model/type';
 import {CategoryService} from '../../services/category.service';
 import {environment} from '../../../environments/environment.prod';
 import {NotificationService} from '../../services/notification.service';
+import {AuthService} from '../../services/auth-service.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-video-edit',
@@ -14,6 +16,7 @@ import {NotificationService} from '../../services/notification.service';
 export class VideoEditComponent implements OnInit, OnDestroy {
   environment: any;
   id: number;
+  role: string;
   video = {
     id: '',
     content: '',
@@ -27,7 +30,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     seo_description: '',
     thumbnails: '',
     category_id: '',
-    storage_id: ''
+    storage_id: '',
+    status: ''
   };
   editVideoForm: FormGroup;
   categories: Array<ICategory>;
@@ -38,12 +42,14 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     private videoService: VideoService,
     private categoryService: CategoryService,
     private formBuilder: FormBuilder,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private authService: AuthService
   ) {
     this.environment = environment;
   }
 
   ngOnInit() {
+    this.role = this.authService.getRoleUser();
     this.getCategory();
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -67,6 +73,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
       this.video.thumbnails = video.thumbnails;
       this.video.storage_id = video.storage[0].pivot.storage_id;
       this.thumbnails = Object.keys(video.storage[0].thumbnails).map(key => ({type: key, value: video.storage[0].thumbnails[key]}));
+      this.video.status = video.status;
     });
   }
   createForm() {
@@ -85,7 +92,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
       seo_keywords: ['', null],
       seo_description: ['', null],
       highlight: ['', null],
-      category_id: [null, null]
+      category_id: [null, [Validators.required]]
     });
   }
   getCategory() {
@@ -104,6 +111,27 @@ export class VideoEditComponent implements OnInit, OnDestroy {
       this.notificationService.showSuccess('Đã cập nhật dữ liệu', 'Success');
     });
   }
+  eventVideoToEditor(id: number) {
+    this.videoService.changeVideoToEditor(id).then(res => {
+      this.notificationService.showSuccess('Gửi biên tập', 'Success');
+    }, (errorRes: HttpErrorResponse) => {
+    });
+  }
+  /* Update video to publish */
+  eventVideoToPublish(id: number) {
+    this.videoService.changeVideoToPublish(id).then(res => {
+      this.notificationService.showSuccess('Gửi xuất bản', 'Success');
+    }, (errorRes: HttpErrorResponse) => {
+    });
+  }
+
+  eventPublishVideo(id: number) {
+    this.videoService.publishVideo(id).then(res => {
+      this.notificationService.showSuccess('Đã xuất bản', 'Success');
+    }, (errorRes: HttpErrorResponse) => {
+    });
+  }
+
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

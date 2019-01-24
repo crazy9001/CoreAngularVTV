@@ -129,6 +129,40 @@
             <button (click)="eventUpdateVideo()" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
               <i class="fa fa-dot-circle-o"></i> Lưu Thông Tin
             </button>
+
+            <div class="CMSButtonBar" *ngIf="video.status === 'DRAFT'">
+              <button *ngIf="role === 'Reporter'" (click)="eventVideoToEditor(video.id)" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Gửi biên tập
+              </button>
+              <button *ngIf="role === 'Secretary' || role === 'Editor'" (click)="eventVideoToPublish(video.id)" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Gửi xuất bản
+              </button>
+              <button *ngIf="role === 'Secretary'" (click)="eventPublishVideo(video.id)" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Xuất bản
+              </button>
+            </div>
+
+            <div class="CMSButtonBar" *ngIf="video.status === 'WAITING_EDITOR'">
+              <button *ngIf="role === 'Secretary' || role === 'Editor'" (click)="eventVideoToPublish(video.id)" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Gửi xuất bản
+              </button>
+              <button *ngIf="role === 'Secretary' || role === 'Editor'" (click)="eventUpdateVideo()" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Trả lại
+              </button>
+              <button *ngIf="role === 'Secretary'" (click)="eventPublishVideo(video.id)" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Xuất bản
+              </button>
+            </div>
+
+            <div class="CMSButtonBar" *ngIf="video.status === 'WAITING_PUBLISH'">
+              <button *ngIf="role === 'Secretary'" (click)="eventPublishVideo(video.id)" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Xuất bản
+              </button>
+              <button *ngIf="role === 'Secretary'" (click)="eventUpdateVideo()" type="button" class="btn btn-sm btn-primary" [disabled]="editVideoForm.invalid">
+                <i class="fa fa-dot-circle-o"></i> Trả lại
+              </button>
+            </div>
+
           </div>
         </div>
       </div>

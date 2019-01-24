@@ -1,15 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+import {ModalMediaVideoComponent} from '../media/modal-media-video.component';
 
 @Component({
-  selector: 'app-video-create',
-  templateUrl: './video-create.component.html',
-  styleUrls: ['./video-create.component.scss']
+    selector: 'app-video-create',
+    templateUrl: './video-create.component.html',
+    styleUrls: ['./video-create.component.scss']
 })
 export class VideoCreateComponent implements OnInit {
 
-  constructor() { }
+    @ViewChild('mediaVideoModal') mediaVideoModal: ModalMediaVideoComponent;
 
-  ngOnInit() {
-  }
+    constructor(
+        private viewContainerRef: ViewContainerRef
+    ) {
+    }
+
+    ngOnInit() {
+    }
 
 }

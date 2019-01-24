@@ -73,6 +73,15 @@ export const navItems: NavData[] = [
     },
     {
         title: true,
+        name: 'Quản lý media'
+    },
+    {
+        name: 'Media',
+        url: '/media',
+        icon: 'fa fa-film fa-lg',
+    },
+    {
+        title: true,
         name: 'Components'
     },
     {

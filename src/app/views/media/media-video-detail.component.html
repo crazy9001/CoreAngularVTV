@@ -1,0 +1,91 @@
+<div id="attachment-details">
+    <div tabindex="0" data-id="184" class="attachment-details save-ready">
+        <h2>
+            Chi tiết đính kèm <span class="settings-save-status">
+        </span>
+        </h2>
+        <div class="attachment-info">
+            <div class="thumbnail thumbnail-video">
+                <div *ngIf="!playVideo">
+                    <img [src]="environment.storage_url  + video.thumbnails[0]">
+                    <a class="media-play-button" (click)="eventPlayPreview()"></a>
+                </div>
+                <div *ngIf="playVideo">
+                    <video #videoPreview id="video_player_id_{{ id }}"
+                           class="video-js vjs-big-play-centered"
+                           width="319"
+                           height="179">
+                    </video>
+                </div>
+                <div class="hidden-video-player"></div>
+            </div>
+            <div class="details">
+                <div class="file-size media-view-info"><i class="fa fa-info"></i>12MB</div>
+                <div class="uploaded media-view-info"><i class="fa fa-clock-o"></i>  {{ video.created_at }}</div>
+                <div class="uploaded media-view-info"><i class="fa fa-file"></i> {{ video.mime_type }}</div>
+            </div>
+            <div class="MediaVideoFunction">
+                <div id="MediaEditThumbVideo" class="MediaBtn BtnMedium"><i class="fa fa-photo"></i> Thay avatar</div>
+                <div id="MediaCutVideo" class="MediaBtn BtnMedium"><i class="fa fa-cut"></i> Cắt</div>
+                <div id="MediaVideoDownload" class="MediaBtn BtnMedium"><i class="fa fa-download"></i>
+                    Tải xuống
+                </div>
+            </div>
+        </div>
+        <div class="setting" data-setting="url">
+            <span class="name">URL</span>
+            <input type="text" value="{{ video.path }}" readonly=""/>
+        </div>
+        <div class="setting" data-setting="title">
+            <span class="name">Tiêu đề</span>
+            <input type="text" value="  {{ video.name }}">
+        </div>
+        <div class="setting" data-setting="caption">
+            <span class="name">Chú thích</span>
+            <textarea></textarea>
+        </div>
+    </div>
+
+    <div class="attachment-display-settings">
+        <h2>Tùy chọn hiển thị nội dung đính kèm</h2>
+        <div class="setting">
+            <span>Căn chỉnh</span>
+            <select class="alignment" data-setting="align" data-user-setting="align">
+
+                <option value="left">
+                    Trái
+                </option>
+                <option value="center">
+                    Chính giữa
+                </option>
+                <option value="right">
+                    Phải
+                </option>
+                <option value="none" selected="">
+                    Trống
+                </option>
+            </select>
+        </div>
+
+        <div class="setting">
+            <div>
+                <span>Liên kết tới</span>
+                <select class="link-to" data-setting="link" data-user-setting="urlbutton">
+                    <option value="none" selected=""> Trống</option>
+                    <option value="file"> Tập tin đa phương tiện</option>
+                    <option value="post"> Trang nội dung đính kèm</option>
+                    <option value="custom"> URL tùy chỉnh</option>
+                </select>
+            </div>
+            <input type="text" class="link-to-custom hidden" data-setting="linkUrl">
+        </div>
+        <div class="setting">
+            <span>Kích cỡ</span>
+            <select class="size" name="size" data-setting="size" data-user-setting="imgsize">
+                <option value="full" selected="selected">
+                    Kích thước đầy đủ – 960 × 1280
+                </option>
+            </select>
+        </div>
+    </div>
+</div>

@@ -3,6 +3,50 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
+                    <strong>Video</strong>
+                </div>
+                <div class="CMSVideoEditBoxContent">
+                    <div class="card-body CMSVideoUploadLoading">
+                        <div class="CMSUploadHtml5Wrapper">
+                            <div class="CMSHtml5UploadInputWrapperV3">
+                                <div class="ims-video-upload-control-wrapper">
+                                    <label class="ims-video-upload-label" id="InputTypeFileTxt" (click)="mediaVideoModal.show()">+ Chèn Video</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header">
+                    <strong>Normal</strong> Form
+                </div>
+                <div class="card-body">
+                    <form action="" method="post">
+                        <div class="form-group">
+                            <label for="nf-email">Email</label>
+                            <input type="email" id="nf-email" name="nf-email" class="form-control"
+                                   placeholder="Enter Email.." autocomplete="email">
+                            <span class="help-block">Please enter your email</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="nf-password">Password</label>
+                            <input type="password" id="nf-password" name="nf-password" class="form-control"
+                                   placeholder="Enter Password.." autocomplete="current-password">
+                            <span class="help-block">Please enter your password</span>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit
+                    </button>
+                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+                </div>
+            </div>
+        </div><!--/.col-->
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
                     <strong>Thông tin video</strong>
                 </div>
                 <div class="card-body">
@@ -86,49 +130,9 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <strong>Video</strong>
-                </div>
-                <div class="CMSVideoEditBoxContent">
-                    <div class="card-body CMSVideoUploadLoading">
-                        <div class="CMSUploadHtml5Wrapper">
-                            <div class="CMSHtml5UploadInputWrapperV3">
-                                <div class="ims-video-upload-control-wrapper">
-                                    <label class="ims-video-upload-label" id="InputTypeFileTxt">+ Chèn Video</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header">
-                    <strong>Normal</strong> Form
-                </div>
-                <div class="card-body">
-                    <form action="" method="post">
-                        <div class="form-group">
-                            <label for="nf-email">Email</label>
-                            <input type="email" id="nf-email" name="nf-email" class="form-control"
-                                   placeholder="Enter Email.." autocomplete="email">
-                            <span class="help-block">Please enter your email</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="nf-password">Password</label>
-                            <input type="password" id="nf-password" name="nf-password" class="form-control"
-                                   placeholder="Enter Password.." autocomplete="current-password">
-                            <span class="help-block">Please enter your password</span>
-                        </div>
-                    </form>
-                </div>
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit
-                    </button>
-                    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-                </div>
-            </div>
-        </div><!--/.col-->
+
     </div>
 </div>
+
+<app-modal-media-video #mediaVideoModal></app-modal-media-video>
+

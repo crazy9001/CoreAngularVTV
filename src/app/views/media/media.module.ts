@@ -1,17 +1,15 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
-
-import {VideosRoutingModule} from './videos-routing.module';
-import {VideoDraftComponent} from './video-draft.component';
-import { VideoCreateComponent } from './video-create.component';
+import {MediaVideoComponent} from './media-video.component';
 import {ModalModule} from 'ngx-bootstrap';
-import {ModalMediaVideoComponent} from '../media/modal-media-video.component';
+import {MediaRoutingModule} from './media-routing.module';
+import {ModalMediaVideoComponent} from './modal-media-video.component';
 import {TabsModule} from 'ngx-bootstrap/tabs';
-
-import {environment} from './../../../environments/environment.prod';
-import {DROPZONE_CONFIG, DropzoneConfigInterface} from 'ngx-dropzone-wrapper';
+import { MediaVideoDetailComponent } from './media-video-detail.component';
 import { DropzoneModule } from 'ngx-dropzone-wrapper';
-
+import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
+import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
+import {environment} from './../../../environments/environment.prod';
 const token = localStorage.getItem('token');
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
@@ -26,16 +24,16 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
 
 @NgModule({
     declarations: [
-        VideoDraftComponent,
-        VideoCreateComponent,
-        ModalMediaVideoComponent
+        MediaVideoComponent,
+        ModalMediaVideoComponent,
+        MediaVideoDetailComponent
     ],
     imports: [
         CommonModule,
-        VideosRoutingModule,
+        DropzoneModule,
+        MediaRoutingModule,
         ModalModule.forRoot(),
         TabsModule,
-        DropzoneModule
     ],
     providers: [
         {
@@ -43,6 +41,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
             useValue: DEFAULT_DROPZONE_CONFIG
         }
     ],
+    exports: []
 })
-export class VideosModule {
+export class MediaModule {
 }

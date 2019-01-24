@@ -88,6 +88,10 @@ export const routes: Routes = [
             {
                 path: 'videos',
                 loadChildren: './views/videos/videos.module#VideosModule'
+            },
+            {
+                path: 'media',
+                loadChildren: './views/media/media.module#MediaModule'
             }
         ]
     },

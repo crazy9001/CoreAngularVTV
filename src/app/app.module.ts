@@ -50,7 +50,9 @@ import {HTTP_INTERCEPTORS } from '@angular/common/http';
 import {TokenInterceptor} from './guards/intercreptors/token.intercreptor';
 import {RefreshTokenInterceptor} from './guards/intercreptors/refreshToken.intercreptor';
 import {AuthGuard} from './guards/auth.guard';
-
+import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
+import {ConfirmationDialogService} from './views/confirmation-dialog/confirmation-dialog.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
     imports: [
         BrowserModule,
@@ -68,7 +70,8 @@ import {AuthGuard} from './guards/auth.guard';
         ReactiveFormsModule,
         HttpClientModule,
         BrowserAnimationsModule, // required animations module
-        ToastrModule.forRoot() // ToastrModule added
+        ToastrModule.forRoot(), // ToastrModule added,
+        NgbModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -76,7 +79,8 @@ import {AuthGuard} from './guards/auth.guard';
         P404Component,
         P500Component,
         LoginComponent,
-        RegisterComponent
+        RegisterComponent,
+        ConfirmationDialogComponent
     ],
     providers: [
         {
@@ -90,8 +94,10 @@ import {AuthGuard} from './guards/auth.guard';
             provide: HTTP_INTERCEPTORS, useClass: RefreshTokenInterceptor,
             multi: true
         },
-        AuthGuard
+        AuthGuard,
+        ConfirmationDialogService
     ],
+    entryComponents: [ ConfirmationDialogComponent ],
     bootstrap: [AppComponent]
 })
 export class AppModule {

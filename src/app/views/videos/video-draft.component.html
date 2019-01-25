@@ -63,12 +63,14 @@
             <ul class="messages" *ngIf="videos">
                 <li class="message unread" *ngFor="let video of videos.data">
                     <div class="actions">
-                            <span class="action">
-                            <i class="fa fa-square-o"></i>
-                            </span>
                         <span class="action">
-                            <i class="fa fa-star-o"></i>
-                            </span>
+                            <i class="fa fa-square-o"></i>
+                        </span>
+                        <span class="action" id="CMSHighlightVideo">
+                            <button class="btn btn-ratting">
+                                <span [ngClass]="(video.highlight === 1) ? 'fa fa-star' : 'fa fa-star-o'"></span>
+                            </button>
+                        </span>
                     </div>
                     <div class="CMSVideoItemAvatarWrapper">
                         <img class="CMSVideoItem_Avatar" [src]="video.thumbnails ? environment.storage_url + video.thumbnails : ''" alt="{{ video.title }}">

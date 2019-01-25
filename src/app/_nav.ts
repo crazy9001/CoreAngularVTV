@@ -82,6 +82,15 @@ export const navItems: NavData[] = [
     },
     {
         title: true,
+        name: 'Quản lý hệ thống'
+    },
+    {
+        name: 'Quản lý',
+        url: '/media',
+        icon: 'fa fa-film fa-lg',
+    },
+    {
+        title: true,
         name: 'Components'
     },
     {

@@ -28,7 +28,13 @@ export class PlayerService {
 
     initPlayer(element?: string, url?: string) {
         this.player = videojs(element, this.controls);
-        const sources = [{'src': `${environment.storage_url}${url}`}];
+        let source = '';
+        if ( environment.hls ) {
+            source = environment.server_hls + url + '/playlist.m3u8';
+        } else {
+            source = environment.storage_url + url ;
+        }
+        const sources = [{'src': source}];
         this.player.src(sources);
         this.player.play();
     }

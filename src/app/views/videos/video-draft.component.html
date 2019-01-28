@@ -76,7 +76,7 @@
                         <img class="CMSVideoItem_Avatar" [src]="video.thumbnails ? environment.storage_url + video.thumbnails : ''" alt="{{ video.title }}">
                     </div>
                     <div class="CMSVideoItemInfoWrapper">
-                        <a [routerLink]="['../edit', video.id]">
+                        <a (click)="eventViewDetailVideo(video.id)">
                             {{ video ? video.title : '' }}
                         </a>
                         <div class="CMSVideoItemInfoDetail">

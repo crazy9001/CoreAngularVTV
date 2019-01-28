@@ -20,6 +20,8 @@ import { VideoPublishedComponent } from './video-published.component';
 import { VideoEditComponent } from './video-edit.component';
 import { VideoTrashedComponent } from './video-trashed.component';
 
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+
 const token = localStorage.getItem('token');
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
@@ -51,6 +53,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ReactiveFormsModule,
         VideosRoutingModule,
         ModalModule.forRoot(),
+        TooltipModule.forRoot(),
         TabsModule,
         DropzoneModule
     ],

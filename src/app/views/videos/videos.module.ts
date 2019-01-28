@@ -18,6 +18,7 @@ import { VideoEditorComponent } from './video-editor.component';
 import { VideoPublishComponent } from './video-publish.component';
 import { VideoPublishedComponent } from './video-published.component';
 import { VideoEditComponent } from './video-edit.component';
+import { VideoTrashedComponent } from './video-trashed.component';
 
 const token = localStorage.getItem('token');
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -41,7 +42,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         VideoEditorComponent,
         VideoPublishComponent,
         VideoPublishedComponent,
-        VideoEditComponent
+        VideoEditComponent,
+        VideoTrashedComponent
     ],
     imports: [
         CommonModule,

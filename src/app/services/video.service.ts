@@ -51,6 +51,15 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    getVideoTrashed(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/video/trashed')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
     getDetailVideoById(id: number) {
         return this.httpClient.get(`${environment.api_url}` + '/video/' + id)
             .toPromise()
@@ -112,7 +121,7 @@ export class VideoService {
 
     /* remove video */
     removeVideo(id: number) {
-        return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/published', {id: id})
+        return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/trash', {id: id})
             .toPromise()
             .then((response) => {
                 return response;

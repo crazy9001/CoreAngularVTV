@@ -6,6 +6,7 @@ import {VideoEditorComponent} from './video-editor.component';
 import {VideoPublishComponent} from './video-publish.component';
 import {VideoPublishedComponent} from './video-published.component';
 import {VideoEditComponent} from './video-edit.component';
+import {VideoTrashedComponent} from './video-trashed.component';
 
 const routes: Routes = [{
     path: '',
@@ -50,6 +51,13 @@ const routes: Routes = [{
             component: VideoPublishedComponent,
             data: {
                 title: 'Đã xuất bản'
+            }
+        },
+        {
+            path: 'trashed',
+            component: VideoTrashedComponent,
+            data: {
+                title: 'Bị gỡ xuống'
             }
         },
         {

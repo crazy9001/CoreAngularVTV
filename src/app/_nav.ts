@@ -23,20 +23,6 @@ export const navItems: NavData[] = [
     },
     {
         title: true,
-        name: 'Theme'
-    },
-    {
-        name: 'Colors',
-        url: '/theme/colors',
-        icon: 'icon-drop'
-    },
-    {
-        name: 'Typography',
-        url: '/theme/typography',
-        icon: 'icon-pencil'
-    },
-    {
-        title: true,
         name: 'Quản lý video'
     },
     {
@@ -69,25 +55,21 @@ export const navItems: NavData[] = [
                 url: '/videos/published',
                 icon: 'icon-bell'
             },
+            {
+                name: 'Bị gỡ xuống',
+                url: '/videos/trashed',
+                icon: 'fa fa-trash-o fa-lg'
+            },
         ]
-    },
-    {
-        title: true,
-        name: 'Quản lý media'
-    },
-    {
-        name: 'Media',
-        url: '/media',
-        icon: 'fa fa-film fa-lg',
     },
     {
         title: true,
         name: 'Quản lý hệ thống'
     },
     {
-        name: 'Quản lý',
-        url: '/media',
-        icon: 'fa fa-film fa-lg',
+        name: 'Chương trình',
+        url: '/manager/program',
+        icon: 'fa fa-th-list fa-lg',
     },
     {
         title: true,
@@ -292,19 +274,4 @@ export const navItems: NavData[] = [
         },
         attributes: {disabled: true},
     },
-    {
-        name: 'Download CoreUI',
-        url: 'http://coreui.io/angular/',
-        icon: 'icon-cloud-download',
-        class: 'mt-auto',
-        variant: 'success',
-        attributes: {target: '_blank', rel: 'noopener'}
-    },
-    {
-        name: 'Try CoreUI PRO',
-        url: 'http://coreui.io/pro/angular/',
-        icon: 'icon-layers',
-        variant: 'danger',
-        attributes: {target: '_blank', rel: 'noopener'}
-    }
 ];

@@ -177,6 +177,22 @@ export class VideoEditComponent implements OnInit, OnDestroy {
             });
     }
 
+    /* Remove video */
+    eventRemoveVideo(id: number) {
+        this.confirmationDialogService.confirm('Xác nhận', 'Gỡ video xuống ?')
+            .then((confirmed) => {
+                if (confirmed) {
+                    this.videoService.removeVideo(id).then(res => {
+                        this.notificationService.showSuccess('Đã gỡ video', 'Success');
+                        this.backRoute();
+                    }, (errorRes: HttpErrorResponse) => {
+                    });
+                }
+            })
+            .catch(() => {
+            });
+    }
+
     backRoute() {
         this._location.back();
     }

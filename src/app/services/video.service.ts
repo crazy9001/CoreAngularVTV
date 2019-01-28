@@ -4,6 +4,7 @@ import {environment} from '../../environments/environment.prod';
 import {IVideoForm} from '../model/type';
 import {VideoPaginate} from '../model/video-paginate.model';
 import {Video} from '../model/video.model';
+
 @Injectable({
     providedIn: 'root'
 })
@@ -36,7 +37,7 @@ export class VideoService {
         return this.httpClient.get(`${environment.api_url}` + '/video/waiting/publish')
             .toPromise()
             .then((response) => {
-              return response as VideoPaginate;
+                return response as VideoPaginate;
             })
             .catch(this.handleError);
     }
@@ -45,7 +46,7 @@ export class VideoService {
         return this.httpClient.get(`${environment.api_url}` + '/video/published')
             .toPromise()
             .then((response) => {
-              return response as VideoPaginate;
+                return response as VideoPaginate;
             })
             .catch(this.handleError);
     }
@@ -75,38 +76,47 @@ export class VideoService {
             });
     }
 
-    update( video: IVideoForm) {
-      return this.httpClient.put<any>(`${environment.api_url}/video/${video.id}`, video)
-        .do(data => {
-          return data;
-        });
+    update(video: IVideoForm) {
+        return this.httpClient.put<any>(`${environment.api_url}/video/${video.id}`, video)
+            .do(data => {
+                return data;
+            });
     }
 
     /* change video to editor */
     changeVideoToEditor(id: number) {
-      return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/editor', {id: id})
-        .toPromise()
-        .then((response) => {
-          return response;
-        });
+        return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/editor', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
     }
 
     /* change video to publish */
     changeVideoToPublish(id: number) {
-      return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/publish', {id: id})
-        .toPromise()
-        .then((response) => {
-          return response;
-        });
+        return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/publish', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
     }
 
     /* change video to published */
     publishVideo(id: number) {
-      return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/published', {id: id})
-        .toPromise()
-        .then((response) => {
-          return response;
-        });
+        return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/published', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
+    /* remove video */
+    removeVideo(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/published', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
     }
 
     private handleError(error: any): Promise<any> {

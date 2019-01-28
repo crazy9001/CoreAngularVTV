@@ -1,0 +1,152 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Danh sách menu
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Date registered</th>
+                            <th>Role</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>Samppa Nori</td>
+                            <td>2012/01/01</td>
+                            <td>Member</td>
+                            <td>
+                                <span class="badge badge-success">Active</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Estavan Lykos</td>
+                            <td>2012/02/01</td>
+                            <td>Staff</td>
+                            <td>
+                                <span class="badge badge-danger">Banned</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Chetan Mohamed</td>
+                            <td>2012/02/01</td>
+                            <td>Admin</td>
+                            <td>
+                                <span class="badge badge-secondary">Inactive</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Derick Maximinus</td>
+                            <td>2012/03/01</td>
+                            <td>Member</td>
+                            <td>
+                                <span class="badge badge-warning">Pending</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Friderik Dávid</td>
+                            <td>2012/01/21</td>
+                            <td>Staff</td>
+                            <td>
+                                <span class="badge badge-success">Active</span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <ul class="pagination">
+                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
+                        <li class="page-item active">
+                            <a class="page-link" href="#">1</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item"><a class="page-link" href="#">4</a></li>
+                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <form [formGroup]="createFormMenu">
+            <div class="card">
+                <div class="card-header">
+                    Thêm mới
+                </div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="CMSNameMenu">Tên menu</label>
+                        <div class="col-md-9">
+                            <input type="text" id="CMSNameMenu" formControlName="name" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="CMSSelectLinkType">Loại menu</label>
+                        <div class="col-md-9">
+                            <select id="CMSSelectLinkType" formControlName="link_type" class="form-control" #menuType (change)="menuTypeChange(menuType.value)">
+                                <option [ngValue]="null">Chọn giá trị...</option>
+                                <option [value]="'in'">Vào chuyên mục</option>
+                                <option [value]="'out'">Ra ngoài trang</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="typeIn">
+                        <label class="col-md-3 col-form-label" for="CMSCategoryMenu">Chuyên mục</label>
+                        <div class="col-md-9">
+                            <select id="CMSCategoryMenu" formControlName="category" class="form-control">
+                                <option [ngValue]="null">Chọn giá trị...</option>
+                                <option *ngFor="let category of categories" [ngValue]="category.id">
+                                    {{ category?.text }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row" *ngIf="!typeIn">
+                        <label class="col-md-3 col-form-label" for="CMSMenuLink">Địa chỉ đến</label>
+                        <div class="col-md-9">
+                            <input type="text" id="CMSMenuLink" formControlName="link" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Trạng thái</label>
+                        <div class="col-md-9 col-form-label">
+                            <div class="form-check form-check-inline mr-1">
+                                <input class="form-check-input" type="checkbox" id="inline-checkbox1" formControlName="status">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label">Blank site</label>
+                        <div class="col-md-9 col-form-label">
+                            <div class="form-check form-check-inline mr-1">
+                                <input class="form-check-input" type="checkbox" formControlName="blank_type">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-md-3 col-form-label" for="CMSMenuPosition">Vị trí menu</label>
+                        <div class="col-md-9">
+                            <select id="CMSMenuPosition" formControlName="position" class="form-control">
+                                <option [ngValue]="null">Chọn giá trị...</option>
+                                <option value="top">Top</option>
+                                <option value="right">Right</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="button" (click)="onSubmit()" class="btn btn-sm btn-primary" [disabled]="createFormMenu.invalid">
+                        <i class="fa fa-dot-circle-o"></i> Lưu lại
+                    </button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+</div>

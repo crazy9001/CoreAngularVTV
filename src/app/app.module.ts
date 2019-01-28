@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
+import {NgModule, LOCALE_ID} from '@angular/core';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';

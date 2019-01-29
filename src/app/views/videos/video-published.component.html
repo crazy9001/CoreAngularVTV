@@ -4,51 +4,10 @@
         <main class="inbox">
             <div class="toolbar">
                 <div class="btn-group">
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-envelope"></span>
-                    </button>
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-star"></span>
-                    </button>
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-star-o"></span>
-                    </button>
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-bookmark-o"></span>
-                    </button>
-                </div>
-                <div class="btn-group">
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-mail-reply"></span>
-                    </button>
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-mail-reply-all"></span>
-                    </button>
-                    <button class="btn btn-light" type="button">
-                        <span class="fa fa-mail-forward"></span>
-                    </button>
-                </div>
-                <button class="btn btn-light" type="button">
-                    <span class="fa fa-trash-o"></span>
-                </button>
-                <div class="btn-group">
-                    <button class="btn btn-light dropdown-toggle" type="button" data-toggle="dropdown">
-                        <span class="fa fa-tags"></span>
-                        <span class="caret"></span>
-                    </button>
-                    <div class="dropdown-menu">
-                        <a class="dropdown-item" href="#">add label
-                            <span class="badge badge-danger"> Home</span>
-                        </a>
-                        <a class="dropdown-item" href="#">add label
-                            <span class="badge badge-info"> Job</span>
-                        </a>
-                        <a class="dropdown-item" href="#">add label
-                            <span class="badge badge-success"> Clients</span>
-                        </a>
-                        <a class="dropdown-item" href="#">add label
-                            <span class="badge badge-warning"> News</span>
-                        </a>
+                    <div *ngIf="selectItem">
+                        <button *ngIf="role === 'Secretary'" class="btn btn-square btn-danger" type="button" (click)="eventDeleteItem()">
+                            <span class="fa fa-trash-o"></span> Gỡ video
+                        </button>
                     </div>
                 </div>
                 <div class="btn-group float-right">
@@ -63,10 +22,10 @@
                 </div>
             </div>
             <ul class="messages" *ngIf="videos">
-                <li class="message unread" *ngFor="let video of videos.data">
+                <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}" (click)="selectVideo(video)">
                     <div class="actions">
                         <span class="action">
-                            <i class="fa fa-square-o"></i>
+                            <input type="checkbox" [checked]=" selected?.id === video.id">
                         </span>
                         <span class="action" id="CMSHighlightVideo">
                             <button class="btn btn-ratting">

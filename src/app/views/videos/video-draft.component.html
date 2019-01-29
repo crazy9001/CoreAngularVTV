@@ -5,10 +5,10 @@
             <div class="toolbar">
                 <div class="btn-group">
                     <div *ngIf="selectItem">
-                        <button *ngIf="role === 'Reporter'" type="button" class="btn btn-square btn-warning" (click)="changeItemToEditor()">
+                        <button *ngIf="role === 'Reporter'" type="button" class="btn btn-square btn-info" (click)="changeItemToEditor()">
                             <i class="fa fa-arrow-circle-o-up fa-lg"></i> Gửi biên tập
                         </button>
-                        <button *ngIf="role === 'Secretary' || role === 'Editor'" type="button" class="btn btn-square btn-warning" (click)="changeItemToPublish()">
+                        <button *ngIf="role === 'Secretary' || role === 'Editor'" type="button" class="btn btn-square btn-info" (click)="changeItemToPublish()">
                             <i class="fa fa-mail-forward"></i> Gửi xuất bản
                         </button>
                         <button *ngIf="role === 'Secretary'" type="button" class="btn btn-square btn-danger" (click)="eventPublishItem()">

@@ -70,4 +70,32 @@ export class VideoEditorComponent implements OnInit {
             .catch(() => {
             });
     }
+
+    eventPublishItem() {
+        this.confirmationDialogService.confirm('Xác nhận', 'Xuất bản video ?')
+            .then((confirmed) => {
+                if (confirmed) {
+                    this.videoService.publishVideo(this.selected.id).then(res => {
+                        this.getEditorVideo();
+                    }, (errorRes: HttpErrorResponse) => {
+                    });
+                }
+            })
+            .catch(() => {
+            });
+    }
+
+    eventDeleteItem() {
+        this.confirmationDialogService.confirm('Xác nhận', 'Gỡ video xuống ?')
+            .then((confirmed) => {
+                if (confirmed) {
+                    this.videoService.removeVideo(this.selected.id).then(res => {
+                        this.getEditorVideo();
+                    }, (errorRes: HttpErrorResponse) => {
+                    });
+                }
+            })
+            .catch(() => {
+            });
+    }
 }

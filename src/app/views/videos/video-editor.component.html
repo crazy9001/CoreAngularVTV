@@ -12,11 +12,14 @@
                         <button *ngIf="role === 'Secretary' || role === 'Editor'" type="button" class="btn btn-square btn-info" (click)="changeItemToPublish()">
                             <i class="fa fa-mail-forward"></i> Gửi xuất bản
                         </button>
-                        <button *ngIf="role === 'Secretary'" type="button" class="btn btn-square btn-danger">
+                        <button *ngIf="role === 'Secretary'" type="button" class="btn btn-square btn-danger" (click)="eventPublishItem()">
                             <i class="fa fa-upload fa-lg"></i> Xuất bản
                         </button>
-                        <button class="btn btn-square btn-danger" type="button" >
+                        <button *ngIf="role === 'Secretary' || role === 'Editor'" class="btn btn-square btn-danger" type="button" (click)="eventDeleteItem()">
                             <span class="fa fa-trash-o"></span> Xóa video
+                        </button>
+                        <button *ngIf="role === 'Reporter'" class="btn btn-square btn-danger" type="button" >
+                            <span class="fa fa-reply fa-lg"></span> Rút lại
                         </button>
                     </div>
                 </div>
@@ -33,7 +36,7 @@
                 <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}" (click)="selectVideo(video)">
                     <div class="actions">
                         <span class="action">
-                            <i class="fa fa-square-o"></i>
+                            <input type="checkbox" [checked]=" selected?.id === video.id">
                         </span>
                         <span class="action" id="CMSHighlightVideo">
                             <button class="btn btn-ratting">

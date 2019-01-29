@@ -23,7 +23,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
                 <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Đăng xuất</a>
+                <a class="dropdown-item" (click)="onLogout($event)"><i class="fa fa-lock"></i> Đăng xuất</a>
             </div>
         </li>
     </ul>

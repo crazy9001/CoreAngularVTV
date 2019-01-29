@@ -27,6 +27,11 @@ export class AuthService {
         return localStorage.getItem('user') ? true : false;
     }
 
+    logout(): void {
+        this.httpClient.get(`${environment.api_url}/auth/logout`);
+        localStorage.clear();
+    }
+
     getRoleUser() {
       return localStorage.getItem('role') ? localStorage.getItem('role') : null;
     }

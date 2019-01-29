@@ -18,7 +18,7 @@ export class ModalMediaVideoComponent implements OnInit {
     playVideo = false;
 
     constructor(
-        private mediaServide: MediaService
+        private mediaServide: MediaService,
     ) {
         this.environment = environment;
     }
@@ -65,5 +65,6 @@ export class ModalMediaVideoComponent implements OnInit {
 
     onUploadSuccess($event) {
         console.log($event);
+        this.mediaServide.getMediaVideo();
     }
 }

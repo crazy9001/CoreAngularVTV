@@ -14,7 +14,7 @@ export class MenuComponent implements OnInit {
     createFormMenu: FormGroup;
     typeIn = true;
     categories: Array<ICategory>;
-
+    listMenu: any;
     constructor(
         private formBuilder: FormBuilder,
         private categoryService: CategoryService,
@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit {
     ngOnInit() {
         this.createForm();
         this.getCategoryDefault();
+        this.defaultMenu();
     }
 
     createForm() {
@@ -39,10 +40,17 @@ export class MenuComponent implements OnInit {
         });
     }
 
+    defaultMenu () {
+        this.menuService.getAllMenu().then(menu => {
+            console.log(menu);
+            this.listMenu = menu;
+        });
+    }
     onSubmit() {
         console.log(this.createFormMenu.value);
         this.menuService.create(this.createFormMenu.value).subscribe(res => {
             this.createFormMenu.reset();
+            this.defaultMenu();
         }, (errorRes: HttpErrorResponse) => {
             if (errorRes.status === 401) {
 

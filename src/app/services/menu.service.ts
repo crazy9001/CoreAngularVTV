@@ -26,4 +26,18 @@ export class MenuService {
                 return data;
             });
     }
+
+    getAllMenu() {
+        return this.httpClient.get(`${environment.api_url}` + '/menu')
+            .toPromise()
+            .then((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any): Promise<any> {
+        console.error('An error occurred', error); // for demo purposes only
+        return Promise.reject(error.message || error);
+    }
 }

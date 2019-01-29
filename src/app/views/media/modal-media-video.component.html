@@ -25,7 +25,7 @@
                             <div class="uploader-inline tab-pane" id="media-uploader-video">
                                 <div class="uploader-inline-content no-upload-message">
                                     <div class="upload-ui">
-                                        <div class="dropzone" [dropzone]="config"></div>
+                                        <div class="dropzone" [dropzone]="config" (success)="onUploadSuccess($event)"></div>
                                     </div>
                                 </div>
                             </div>

@@ -62,4 +62,8 @@ export class ModalMediaVideoComponent implements OnInit {
         this.loadDetail = false;
         this.hide();
     }
+
+    onUploadSuccess($event) {
+        console.log($event);
+    }
 }

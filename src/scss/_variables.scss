@@ -251,7 +251,10 @@
   margin: 0;
 }
 .email-app .inbox .selected {
-  background: #f0f3f5 !important;
+  background: #577fbc !important;
+}
+.email-app .inbox .selected a, .email-app .inbox .selected span {
+  color: #fff !important
 }
 .email-app .btn-info {
   color: #fff !important;

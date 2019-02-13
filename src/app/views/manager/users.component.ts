@@ -1,26 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { UsersPaginate } from '../../model/users-paginate.model';
-import { UsersService } from '../../services/users.service';
+import {Component, OnInit} from '@angular/core';
+import {UsersPaginate} from '../../model/users-paginate.model';
+import {UsersService} from '../../services/users.service';
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.scss']
+	selector: 'app-users',
+	templateUrl: './users.component.html',
 })
 export class UsersComponent implements OnInit {
 
-  users: UsersPaginate;
-  constructor(
-    private usersService: UsersService
-  ) { }
+	users: UsersPaginate;
 
-  ngOnInit() {
-    this.getAllUsers();
-  }
+	constructor(
+		private usersService: UsersService
+	) {
+	}
 
-  getAllUsers() {
-    this.usersService.getAllUsers().then(users => {
-      this.users = users
-    });
-  }
+	ngOnInit() {
+		this.getAllUsers();
+	}
+
+	getAllUsers() {
+		this.usersService.getAllUsers().then(users => {
+			this.users = users;
+		});
+	}
+
+	prevPage() {
+		this.usersService.getUsersAtUrl(this.users.prev_page_url).then(users => this.users = users);
+	}
+
+	nextPage() {
+		this.usersService.getUsersAtUrl(this.users.next_page_url).then(users => this.users = users);
+	}
 }

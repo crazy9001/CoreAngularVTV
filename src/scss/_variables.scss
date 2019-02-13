@@ -262,3 +262,22 @@
 .email-app .btn i {
   font-size: 12px;
 }
+#CMSFixTable th {
+  text-align: center;
+}
+#CMSFixTable .CMSUserStatus, #CMSFixTable .CMSUserEdit, #CMSFixTable .CMSUserResetPass, #CMSFixTable .CMSUserRole {
+  text-align: center;
+}
+
+.CMSUserName img{
+  display: inline-block;
+  float: left;
+  height: 30px;
+  width: 30px;
+  border-radius: 3px;
+}
+
+.CMSUserName a{
+  margin-left: 10px;
+  margin-top: 16px;
+}

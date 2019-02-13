@@ -29,16 +29,6 @@
                         </ng-container>
                         </tbody>
                     </table>
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">Prev</a></li>
-                        <li class="page-item active">
-                            <a class="page-link" href="#">1</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">4</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -111,8 +101,8 @@
                     </div>
                 </div>
                 <div class="card-footer">
-                    <button type="button" (click)="onSubmit()" class="btn btn-sm btn-primary" [disabled]="createFormMenu.invalid">
-                        <i class="fa fa-dot-circle-o"></i> Lưu lại
+                    <button type="button" (click)="onSubmit()" class="btn btn-square btn-primary" [disabled]="createFormMenu.invalid">
+                        <i class="fa fa-save fa-lg"></i> Lưu lại
                     </button>
                 </div>
             </div>

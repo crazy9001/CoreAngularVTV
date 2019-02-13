@@ -3,6 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {ProgramComponent} from './program.component';
 import {MenuComponent} from './menu.component';
 import {ProgramCreateComponent} from './program-create.component';
+import { UsersComponent } from './users.component';
 
 const routes: Routes = [{
     path: '',
@@ -38,6 +39,13 @@ const routes: Routes = [{
             component: MenuComponent,
             data: {
                 title: 'Quản lý menu'
+            }
+        },
+        {
+            path: 'users',
+            component: UsersComponent,
+            data: {
+                title: 'Quản lý người dùng'
             }
         },
     ]

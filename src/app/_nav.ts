@@ -72,6 +72,11 @@ export const navItems: NavData[] = [
         icon: 'fa fa-th-list fa-lg',
     },
     {
+        name: 'Người dùng',
+        url: '/manager/users',
+        icon: 'fa fa-users fa-lg'
+    },
+    {
         name: 'Menu',
         url: '/manager/menu',
         icon: 'fa fa-th-list fa-lg'

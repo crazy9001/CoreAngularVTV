@@ -68,19 +68,8 @@ export const navItems: NavData[] = [
     },
     {
         name: 'Chương trình',
+        url: '/manager/program',
         icon: 'fa fa-th-list fa-lg',
-        children: [
-            {
-                name: 'Danh sách',
-                url: '/manager/program',
-                icon: 'fa fa-th-list fa-lg'
-            },
-            {
-                name: 'Thêm mới',
-                url: '/manager/program/create',
-                icon: 'fa fa-plus fa-lg'
-            },
-        ]
     },
     {
         name: 'Menu',

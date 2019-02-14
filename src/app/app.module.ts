@@ -1,3 +1,4 @@
+
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule, LOCALE_ID} from '@angular/core';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
@@ -55,6 +56,7 @@ import {ConfirmationDialogService} from './views/confirmation-dialog/confirmatio
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgxSmartModalModule } from 'ngx-smart-modal';
+import { AutoLogoutComponent } from './views/auto-logout/auto-logout.component';
 @NgModule({
     imports: [
         BrowserModule,
@@ -83,7 +85,8 @@ import { NgxSmartModalModule } from 'ngx-smart-modal';
         P500Component,
         LoginComponent,
         RegisterComponent,
-        ConfirmationDialogComponent
+        ConfirmationDialogComponent,
+        AutoLogoutComponent
     ],
     providers: [
         {

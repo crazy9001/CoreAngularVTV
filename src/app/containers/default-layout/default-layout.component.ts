@@ -1,4 +1,4 @@
-import { Component, OnDestroy, Inject } from '@angular/core';
+import { Component, OnDestroy, Inject, OnInit } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { navItems } from './../../_nav';
 import {AuthService} from '../../services/auth-service.service';
@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
   selector: 'app-dashboard',
   templateUrl: './default-layout.component.html'
 })
-export class DefaultLayoutComponent implements OnDestroy {
+export class DefaultLayoutComponent implements OnDestroy, OnInit {
   public navItems = navItems;
   public sidebarMinimized = true;
   private changes: MutationObserver;
@@ -25,7 +25,9 @@ export class DefaultLayoutComponent implements OnDestroy {
       attributeFilter: ['class']
     });
   }
-
+  ngOnInit(){
+    localStorage.setItem('lastAction', Date.now().toString());
+  }
   ngOnDestroy(): void {
     this.changes.disconnect();
   }

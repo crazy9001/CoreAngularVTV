@@ -26,22 +26,12 @@
             <tr>
               <td valign="top" align="right" width="90px">Họ tên:</td>
               <td valign="top" align="left">
-                <input type="text" [(value)]="popupUserDetail.getData()['name']" class="input_form" name="fullname" id="txt_account_fullname"> </td>
+                <input type="text" [(value)]="popupUserDetail.getData().name" class="input_form" name="fullname" id="txt_account_fullname"> </td>
             </tr>
             <tr>
               <td valign="top" align="right" width="90px">Email:</td>
               <td valign="top" align="left">
-                <input type="text" [(value)]="popupUserDetail.getData()['email']" class="input_form" name="email" id="txt_account_email"> </td>
-            </tr>
-            <tr>
-              <td valign="top" align="right">Điện thoại:</td>
-              <td valign="top" align="left">
-                <input type="text" value="0903470368" class="input_form" name="mobile" id="txt_account_mobile"> </td>
-            </tr>
-            <tr style="display: none">
-              <td valign="top" align="right">Địa chỉ:</td>
-              <td valign="top" align="left">
-                <input type="text" value="" class="input_form" name="address" id="txt_account_address"> </td>
+                <input type="text" [(value)]="popupUserDetail.getData().email" class="input_form" name="email" id="txt_account_email"> </td>
             </tr>
           </tbody>
         </table>

@@ -1,4 +1,5 @@
-<ngx-smart-modal #popupUserDetail [identifier]="'popupUserDetail'">
+<ngx-smart-modal #popupUserDetail [identifier]="'popupUserDetail'" >
+  <div *ngIf="popupUserDetail.hasData()">
   <div class="CMSPopupHeader">
     <span class="CMSTitlePopup">Cập nhật thông tin tài khoản</span>
   </div>
@@ -25,12 +26,12 @@
             <tr>
               <td valign="top" align="right" width="90px">Họ tên:</td>
               <td valign="top" align="left">
-                <input type="text" value="Lê Văn Vụ" class="input_form" name="fullname" id="txt_account_fullname"> </td>
+                <input type="text" [(value)]="popupUserDetail.getData()['name']" class="input_form" name="fullname" id="txt_account_fullname"> </td>
             </tr>
             <tr>
               <td valign="top" align="right" width="90px">Email:</td>
               <td valign="top" align="left">
-                <input type="text" value="vulevan@vccorp.vn" class="input_form" name="email" id="txt_account_email"> </td>
+                <input type="text" [(value)]="popupUserDetail.getData()['email']" class="input_form" name="email" id="txt_account_email"> </td>
             </tr>
             <tr>
               <td valign="top" align="right">Điện thoại:</td>
@@ -52,4 +53,5 @@
     <button type="button">Cập nhật</button>
     <button type="button" (click)="popupUserDetail.close()">Huỷ</button>
   </div>
+</div>
 </ngx-smart-modal>

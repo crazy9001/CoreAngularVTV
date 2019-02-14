@@ -7,5 +7,5 @@ export const environment = {
     pusher: {
         key: '8db9afe1b28c36e74654',
         cluster: 'ap1',
-    }
+    },
 };

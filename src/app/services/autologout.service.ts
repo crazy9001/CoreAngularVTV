@@ -1,10 +1,11 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from './auth-service.service';
+import {CONST} from './app-const';
 
-const MINUTES_UNITL_AUTO_LOGOUT = 1;
+const MINUTES_UNITL_AUTO_LOGOUT = 60;
 const CHECK_INTERVAL = 15000;
-const STORE_KEY = 'lastAction';
+const STORE_KEY = CONST.STORE_LAST_ACTION;
 
 @Injectable({
 	providedIn: 'root'

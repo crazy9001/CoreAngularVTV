@@ -10,7 +10,9 @@ import { DropzoneModule } from 'ngx-dropzone-wrapper';
 import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import {environment} from './../../../environments/environment.prod';
-const token = localStorage.getItem('token');
+import {CONST} from './../../services/app-const';
+
+
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
     chunking: true,
@@ -19,7 +21,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     chunkSize: 2000000,
     acceptedFiles: 'image/*,.mp4',
     dictDefaultMessage : '<img src="assets/img/graphic-upload-area.svg" class="upload-aria"><div class="uploader-active-text">Drag and drop files here</div>',
-    headers: {'Authorization': `Bearer ${token}`},
+    headers: {'Authorization': `Bearer ${CONST.STORE_TOKEN}`},
 };
 
 @NgModule({

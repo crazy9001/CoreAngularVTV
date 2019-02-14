@@ -2,6 +2,7 @@ import {Injectable, Injector} from '@angular/core';
 import {HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse, HttpClient} from '@angular/common/http';
 import {environment} from './../../../environments/environment.prod';
 import {Observable} from 'rxjs/Rx';
+import {CONST} from './../../services/app-const';
 
 @Injectable()
 export class RefreshTokenInterceptor implements HttpInterceptor {
@@ -16,7 +17,7 @@ export class RefreshTokenInterceptor implements HttpInterceptor {
                 const http = this.injector.get(HttpClient);
                 return http.post<any>(`${environment.api_url}/auth/refresh`, {})
                     .flatMap(data => {
-                        localStorage.setItem('token', data.token);
+                        localStorage.setItem(CONST.STORE_TOKEN, data.token);
                         const cloneRequest = request.clone({setHeaders: {'Authorization': `Bearer ${data.token}`}});
                         return next.handle(cloneRequest);
                     });

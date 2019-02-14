@@ -3,7 +3,7 @@ import { DOCUMENT } from '@angular/common';
 import { navItems } from './../../_nav';
 import {AuthService} from '../../services/auth-service.service';
 import {Router} from '@angular/router';
-
+import {CONST} from './../../services/app-const';
 
 @Component({
   selector: 'app-dashboard',
@@ -26,7 +26,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
     });
   }
   ngOnInit(){
-    localStorage.setItem('lastAction', Date.now().toString());
+    localStorage.setItem(CONST.STORE_LAST_ACTION, Date.now().toString());
   }
   ngOnDestroy(): void {
     this.changes.disconnect();

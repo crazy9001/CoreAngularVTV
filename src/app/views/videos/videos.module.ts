@@ -21,8 +21,9 @@ import { VideoEditComponent } from './video-edit.component';
 import { VideoTrashedComponent } from './video-trashed.component';
 
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import {CONST} from './../../services/app-const';
 
-const token = localStorage.getItem('token');
+const token = localStorage.getItem(CONST.STORE_TOKEN);
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
     chunking: true,

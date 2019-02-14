@@ -37,7 +37,7 @@
                                     <span class="badge badge-success">Active</span>
                                 </td>
                                 <td class="CMSUserEdit">
-                                    <a class="fa fa-pencil-square-o fa-lg"></a>
+                                    <a class="fa fa-pencil-square-o fa-lg" (click)="ngxSmartModalService.getModal('popupUserDetail').open()"></a>
                                 </td>
                                 <td class="CMSUserResetPass">
                                     <a class="icon-refresh icons font-2xl d-block"></a>
@@ -61,3 +61,4 @@
         </div>
     </div>
 </div>
+<app-modal-userinfomation></app-modal-userinfomation>

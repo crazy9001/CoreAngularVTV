@@ -53,6 +53,8 @@ import {AuthGuard} from './guards/auth.guard';
 import { ConfirmationDialogComponent } from './views/confirmation-dialog/confirmation-dialog.component';
 import {ConfirmationDialogService} from './views/confirmation-dialog/confirmation-dialog.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { NgxSmartModalModule } from 'ngx-smart-modal';
 @NgModule({
     imports: [
         BrowserModule,
@@ -71,7 +73,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HttpClientModule,
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot(), // ToastrModule added,
-        NgbModule.forRoot()
+        NgbModule.forRoot(),
+        NgxSmartModalModule.forRoot()
     ],
     declarations: [
         AppComponent,

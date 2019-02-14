@@ -281,3 +281,77 @@
   margin-left: 10px;
   margin-top: 16px;
 }
+.CMSPopupHeader {
+  border-bottom: solid 1px #c8c8cc !important;
+  color: #666 !important;
+  text-shadow: 1px 1px 1px #fff;
+  margin-bottom: 15px
+}
+.CMSTitlePopup {
+  color: #aaa;
+  font-weight: bold
+}
+.CMSPopupBody {
+  border: 1px solid #ddd;
+  padding: 10px
+}
+#UpdateProfileUserWrapper {
+  width: 100%;
+}
+#UserAvatar {
+  background: none repeat scroll 0 0 #fff;
+  border: 1px solid #ccc;
+  float: left;
+  padding: 5px;
+  text-align: center;
+  width: 112px;
+}
+#UserAvatarDetail {
+  background: url(https://ims.mediacdn.vn/Statics2/Modules/AccountV2/Templates/images/avatar1.gif) no-repeat scroll center center / cover rgba(0, 0, 0, 0);
+  cursor: pointer;
+  float: left;
+  height: 100px;
+  margin-bottom: 3px;
+  position: relative;
+  width: 100px;
+}
+#UserAvatar img {
+  float: left;
+  height: 100px;
+  max-width: 120px;
+  width: 100px;
+}
+#IMSChangeMyAvatarBtn {
+  margin-right: 0px !important;
+}
+.IMSButton.IMSFlat {
+  background: url(https://ims.mediacdn.vn/Statics2/Themes/Cms/images/button/IMSButtonFlat.png) repeat-x scroll 0 0 transparent !important;
+  font-weight: normal !important;
+  height: 25px !important;
+  text-transform: none;
+  line-height: 25px !important;
+  border-radius: 2px !important;
+}
+#OtherInfo {
+  float: left;
+}
+#OtherInfo table.Tbl_UserInfo {
+  font-size: 12px;
+  border-spacing: 5px;
+  width: 100%;
+  border: 0;
+  line-height: 25px;
+}
+.CMSPopupFooter{
+  border-top: solid 1px #ddd;
+  margin-top: 15px;
+  padding: 15px 0
+}
+.CMSPopupFooter button{
+  background: rgba(0, 0, 0, 0) linear-gradient(#f4f4f4, #ececec) repeat scroll 0 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    color: #333;
+    padding: 5px 7px;
+    white-space: nowrap;
+}

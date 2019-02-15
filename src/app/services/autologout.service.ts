@@ -34,7 +34,7 @@ export class AutoLogoutService {
 
 	check() {
 		const now = Date.now();
-		const timeleft = this.getLastAction() + MINUTES_UNITL_AUTO_LOGOUT * 5 * 1000;
+		const timeleft = this.getLastAction() + MINUTES_UNITL_AUTO_LOGOUT * 60 * 1000;
 		const diff = timeleft - now;
 		const isTimeout = diff < 0;
 
@@ -43,7 +43,7 @@ export class AutoLogoutService {
 		if (isTimeout) {
 			// alert('logout');
 			this.authService.logout();
-			window.location.href = './login';
+			window.location.href = './#/login';
 			//this.router.navigate(['./login']);
 		}
 	}

@@ -1,18 +1,14 @@
-import { Component, AfterViewInit, OnInit } from '@angular/core';
-import { NgxSmartModalService, NgxSmartModalComponent } from 'ngx-smart-modal';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-modal-userinfomation',
   templateUrl: './modal-userinfomation.component.html'
 })
-export class ModalUserinfomationComponent implements OnInit, AfterViewInit {
+export class ModalUserinfomationComponent implements OnInit {
 
-  constructor(public ngxSmartModalService: NgxSmartModalService) { }
+  constructor() { }
 
   ngOnInit() {
 
-  }
-  ngAfterViewInit(){
-    console.log(this.ngxSmartModalService.getModalData('popupUserDetail'));
   }
 }

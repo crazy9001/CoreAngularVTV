@@ -1,6 +1,6 @@
 <div class="animated fadeIn">
     <div class="row">
-        <div class="col-md-4 offset-md-8 mb-3">
+        <div class="col-md-4 offset-md-6 mb-3">
             <div class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text">
@@ -9,6 +9,11 @@
                 </div>
                 <input class="form-control ng-pristine ng-valid ng-touched" placeholder="Tìm kiếm" type="text">
             </div>
+        </div>
+        <div class="col-md-2 mb-3">
+            <button aria-pressed="true" class="btn btn-square btn-primary active" style="float: right" type="button" (click)="ngxSmartModalService.getModal('popupAddUser').open()">
+                <i class="fa fa-plus fa-lg"></i> Thêm mới
+            </button>
         </div>
         <div class="col-lg-12">
             <div class="card">
@@ -40,7 +45,7 @@
                                     <a class="fa fa-pencil-square-o fa-lg" (click)="ngxSmartModalService.getModal('popupUserDetail').open(); selectUser(user)"></a>
                                 </td>
                                 <td class="CMSUserResetPass">
-                                    <a class="icon-refresh icons font-2xl d-block"></a>
+                                    <a class="icon-refresh icons font-2xl d-block" (click)="ngxSmartModalService.getModal('popupUserPassword').open(); changePasswordUser(user)"></a>
                                 </td>
                                 <td class="CMSUserRole">
                                     <a class="icon-shield icons font-2xl d-block"></a>
@@ -62,3 +67,5 @@
     </div>
 </div>
 <app-modal-userinfomation></app-modal-userinfomation>
+<app-modal-userpassword></app-modal-userpassword>
+<app-modal-adduser (messageEventAddUser)="receiAddUserEvent($event)"></app-modal-adduser>

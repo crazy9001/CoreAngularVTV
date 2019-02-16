@@ -1,0 +1,49 @@
+<ngx-smart-modal #popupAddUser [identifier]="'popupAddUser'">
+    <div class="CMSPopupHeader">
+        <span class="CMSTitlePopup">Thêm mới người dùng</span>
+    </div>
+    <div class="CMSPopupBody">
+        <form [formGroup]="createUserForm">
+        <div id="UpdateProfileUserWrapper">
+            <div id="UserAvatar">
+                <div id="UserAvatarDetail">
+                    <img src="https://vtv1.mediacdn.vn/zoom/100_100/2019/1/22/20130809img0945-15481250582011419752547.jpg"
+                         ondragstart="return false;">
+                </div>
+                <span class="IMSButton IMSFlat" id="IMSChangeMyAvatarBtn">Thay avatar...</span>
+            </div>
+            <div id="OtherInfo">
+                <table class="Tbl_UserInfo">
+                    <tbody>
+                    <tr>
+                        <td valign="top" align="right" width="90px">Username:</td>
+                        <td valign="top" align="left">
+                            <input type="text" class="input_form" formControlName="username" id="username"></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" align="right" width="90px">Password:</td>
+                        <td valign="top" align="left">
+                            <input type="text" class="input_form" formControlName="password" id="password"></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" align="right" width="90px">Họ tên:</td>
+                        <td valign="top" align="left">
+                            <input type="text" class="input_form" formControlName="name" id="txt_account_fullname"></td>
+                    </tr>
+                    <tr>
+                        <td valign="top" align="right" width="90px">Email:</td>
+                        <td valign="top" align="left">
+                            <input type="text" class="input_form" formControlName="email" id="txt_account_email"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        </form>
+    </div>
+    <div class="CMSPopupFooter">
+        <button type="button" [disabled]="createUserForm.invalid" (click)="onSubmit()">Cập nhật</button>
+        <button type="button" (click)="popupAddUser.close()">Huỷ</button>
+    </div>
+</ngx-smart-modal>

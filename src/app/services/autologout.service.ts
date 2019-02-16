@@ -8,63 +8,62 @@ const CHECK_INTERVAL = 15000;
 const STORE_KEY = CONST.STORE_LAST_ACTION;
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class AutoLogoutService {
 
-	constructor(
-		private router: Router,
-		private authService: AuthService,
-	) {
-		console.log('object created');
-		// this.auth = authService;
-		this.check();
-		this.initListener();
-		this.initInterval();
-	}
+    constructor(
+        private router: Router,
+        private authService: AuthService,
+    ) {
+        // this.auth = authService;
+        this.check();
+        this.initListener();
+        this.initInterval();
+    }
 
-	public getLastAction() {
-		return parseInt(localStorage.getItem(STORE_KEY));
-	}
+    public getLastAction() {
+        return parseInt(localStorage.getItem(STORE_KEY));
+    }
 
-	public setLastAction(lastAction: number) {
-		localStorage.setItem(STORE_KEY, lastAction.toString());
-	}
+    public setLastAction(lastAction: number) {
+        localStorage.setItem(STORE_KEY, lastAction.toString());
+    }
 
-	check() {
-		const now = Date.now();
-		const timeleft = this.getLastAction() + MINUTES_UNITL_AUTO_LOGOUT * 60 * 1000;
-		const diff = timeleft - now;
-		const isTimeout = diff < 0;
+    check() {
+        const now = Date.now();
+        const timeleft = this.getLastAction() + MINUTES_UNITL_AUTO_LOGOUT * 60 * 1000;
+        const diff = timeleft - now;
+        const isTimeout = diff < 0;
 
 
-		// if (isTimeout && this.auth.loggedIn)
-		if (isTimeout) {
-			// alert('logout');
-			this.authService.logout();
-			window.location.href = './#/login';
-			//this.router.navigate(['./login']);
-		}
-	}
+        // if (isTimeout && this.auth.loggedIn)
+        if (isTimeout) {
+            // alert('logout');
+            this.authService.logout();
+            window.location.href = './#/login';
+            //this.router.navigate(['./login']);
+        }
+    }
 
-	initListener() {
-		document.body.addEventListener('click', () => this.reset());
-		document.body.addEventListener('mouseover', () => this.reset());
-		document.body.addEventListener('mouseout', () => this.reset());
-		document.body.addEventListener('keydown', () => this.reset());
-		document.body.addEventListener('keyup', () => this.reset());
-		document.body.addEventListener('keypress', () => this.reset());
-	}
+    initListener() {
+        document.body.addEventListener('click', () => this.reset());
+        document.body.addEventListener('mouseover', () => this.reset());
+        document.body.addEventListener('mouseout', () => this.reset());
+        document.body.addEventListener('keydown', () => this.reset());
+        document.body.addEventListener('keyup', () => this.reset());
+        document.body.addEventListener('keypress', () => this.reset());
+    }
 
-	reset() {
-		this.setLastAction(Date.now());
-	}
+    reset() {
+        this.setLastAction(Date.now());
+    }
 
-	initInterval() {
-		setInterval(() => {
-			this.check();
-		}, CHECK_INTERVAL);
-	}
+    initInterval() {
+        setInterval(() => {
+            this.check();
+        }, CHECK_INTERVAL);
+    }
 
 }

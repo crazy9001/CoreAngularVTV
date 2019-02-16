@@ -1,47 +1,50 @@
-<ngx-smart-modal #popupUserDetail [identifier]="'popupUserDetail'" >
-  <div *ngIf="popupUserDetail.hasData()">
-  <div class="CMSPopupHeader">
-    <span class="CMSTitlePopup">Cập nhật thông tin tài khoản</span>
-  </div>
-  <div class="CMSPopupBody">
-    <div id="UpdateProfileUserWrapper">
-      <div id="UserAvatar">
-        <div id="UserAvatarDetail">
-          <img src="https://vtv1.mediacdn.vn/zoom/100_100/2019/1/22/20130809img0945-15481250582011419752547.jpg" ondragstart="return false;">
+<ngx-smart-modal #popupUserDetail [identifier]="'popupUserDetail'">
+    <div *ngIf="popupUserDetail.hasData()">
+        <div class="CMSPopupHeader">
+            <span class="CMSTitlePopup">Cập nhật thông tin tài khoản</span>
         </div>
-        <span class="IMSButton IMSFlat" id="IMSChangeMyAvatarBtn">Thay avatar...</span>
-      </div>
-      <div id="OtherInfo">
-        <table class="Tbl_UserInfo">
-          <tbody>
-            <tr>
-              <td valign="top" align="right">Trạng thái:</td>
-              <td valign="top" align="left">
-                <select id="DDLUserStatus" data="1" class="FSelectField">
-                  <option value="1">Hoạt động</option>
-                  <option value="0">Ngừng hoạt động</option>
-                </select>
-              </td>
-            </tr>
-            <tr>
-              <td valign="top" align="right" width="90px">Họ tên:</td>
-              <td valign="top" align="left">
-                <input type="text" [(value)]="popupUserDetail.getData().name" class="input_form" name="fullname" id="txt_account_fullname"> </td>
-            </tr>
-            <tr>
-              <td valign="top" align="right" width="90px">Email:</td>
-              <td valign="top" align="left">
-                <input type="text" [(value)]="popupUserDetail.getData().email" class="input_form" name="email" id="txt_account_email"> </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="clearfix"></div>
+        <div class="CMSPopupBody">
+            <div id="UpdateProfileUserWrapper">
+                <div id="UserAvatar">
+                    <div id="UserAvatarDetail">
+                        <img src="https://vtv1.mediacdn.vn/zoom/100_100/2019/1/22/20130809img0945-15481250582011419752547.jpg"
+                             ondragstart="return false;">
+                    </div>
+                    <span class="IMSButton IMSFlat" id="IMSChangeMyAvatarBtn">Thay avatar...</span>
+                </div>
+                <div id="OtherInfo">
+                    <table class="Tbl_UserInfo">
+                        <tbody>
+                        <tr>
+                            <td valign="top" align="right">Trạng thái:</td>
+                            <td valign="top" align="left">
+                                <select id="DDLUserStatus" data="1" class="FSelectField">
+                                    <option value="1">Hoạt động</option>
+                                    <option value="0">Ngừng hoạt động</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td valign="top" align="right" width="90px">Họ tên:</td>
+                            <td valign="top" align="left">
+                                <input type="text" [(value)]="popupUserDetail.getData().name" class="input_form"
+                                       name="fullname" id="txt_account_fullname"></td>
+                        </tr>
+                        <tr>
+                            <td valign="top" align="right" width="90px">Email:</td>
+                            <td valign="top" align="left">
+                                <input type="text" [(value)]="popupUserDetail.getData().email" class="input_form"
+                                       name="email" id="txt_account_email"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+        <div class="CMSPopupFooter">
+            <button type="button">Cập nhật</button>
+            <button type="button" (click)="popupUserDetail.close()">Huỷ</button>
+        </div>
     </div>
-  </div>
-  <div class="CMSPopupFooter">
-    <button type="button">Cập nhật</button>
-    <button type="button" (click)="popupUserDetail.close()">Huỷ</button>
-  </div>
-</div>
 </ngx-smart-modal>

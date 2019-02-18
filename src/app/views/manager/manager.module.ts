@@ -11,6 +11,7 @@ import {ModalUserinfomationComponent} from '../modals/modal-userinfomation.compo
 import {NgxSmartModalModule} from 'ngx-smart-modal';
 import {ModalUserpasswordComponent} from '../modals/modal-userpassword.component';
 import {ModalAdduserComponent} from '../modals/modal-adduser.component';
+import { ModalAddProgramComponent } from '../modals/modal-add-program.component';
 @NgModule({
     declarations: [
         ProgramComponent,
@@ -19,7 +20,8 @@ import {ModalAdduserComponent} from '../modals/modal-adduser.component';
         UsersComponent,
         ModalUserinfomationComponent,
         ModalUserpasswordComponent,
-        ModalAdduserComponent
+        ModalAdduserComponent,
+        ModalAddProgramComponent
     ]
     ,
     imports: [

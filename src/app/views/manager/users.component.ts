@@ -49,6 +49,7 @@ export class UsersComponent implements OnInit {
     receiAddUserEvent(event) {
         if (event === 'true') {
             this.getAllUsers();
+            this.ngxSmartModalService.getModal('popupAddUser').close();
         }
     }
 }

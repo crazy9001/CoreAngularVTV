@@ -1,32 +1,34 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ICategory} from '../../model/type';
 import {ProgramService} from '../../services/program.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {NgxSmartModalService} from 'ngx-smart-modal';
 
 @Component({
-  selector: 'app-program',
-  templateUrl: './program.component.html',
-  styleUrls: ['./program.component.scss']
+    selector: 'app-program',
+    templateUrl: './program.component.html',
 })
 export class ProgramComponent implements OnInit {
 
-  createFormProgram: FormGroup;
-  listProgram: any;
-  constructor(
-    private formBuilder: FormBuilder,
-    private programService: ProgramService
-  ) { }
+    createFormProgram: FormGroup;
+    listProgram: any;
 
-  ngOnInit() {
-    this.getAllProgram();
-  }
+    constructor(
+        private formBuilder: FormBuilder,
+        private programService: ProgramService,
+        public ngxSmartModalService: NgxSmartModalService,
+    ) {
+    }
 
-  getAllProgram() {
-    this.programService.getAllProgram().then(program => {
-      console.log(program);
-      this.listProgram = program;
-  });
-  }
+    ngOnInit() {
+        this.getAllProgram();
+    }
+
+    getAllProgram() {
+        this.programService.getAllProgram().then(program => {
+            this.listProgram = program;
+        });
+    }
 
 }

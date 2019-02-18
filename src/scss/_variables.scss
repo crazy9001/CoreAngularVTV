@@ -385,3 +385,61 @@
   width: 270px;
   padding: 2px;
 }
+.CMSCreateBox{
+  border-radius: 1px;
+  border: solid 1px #ccc;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  box-shadow: 0px 1px 2px #ddd;
+  display: inline-block;
+  width: 100%;
+}
+.CMSCreateBoxHeader {
+  background: #EEEEEE;
+  padding: 8px;
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #333;
+  margin: 0;
+}
+.CMSCreateBoxContent {
+  padding: 10px;
+}
+.CMSCreateBoxVideoLoading{
+  width: 100%;
+  min-height: 120px;
+  border: solid 1px #ddd;
+  padding: 2px;
+  background: #eee;
+  position: relative;
+}
+.CMSCreateBoxUploadWrapper {
+  position: relative;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.CMSUploadVideoLabel {
+  background-color: #d3394c;
+  color: #fff;
+  font-size: 15px;
+  padding: 8px 20px!important;
+  text-transform: uppercase;
+  font-weight: bold;
+  display: inline-block;
+  cursor: pointer;
+}
+.clearfix {
+  clear:both
+}
+.CMSButtonWrapper {
+  width: 84px;
+  height: 84px;
+  border: 2px dashed #dddddd;
+  text-align: center;
+  display: block;
+  line-height: 84px;
+  cursor: pointer;
+}
+.CMSButtonWrapper i {
+  font-size: 30px;
+}

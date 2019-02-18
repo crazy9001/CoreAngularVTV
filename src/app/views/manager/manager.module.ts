@@ -19,6 +19,13 @@ import {CONST} from './../../services/app-const';
 import {environment} from './../../../environments/environment.prod';
 import {DROPZONE_CONFIG, DropzoneConfigInterface} from 'ngx-dropzone-wrapper';
 import {MediaImageDetailComponent} from '../media/media-image-detail.component';
+import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
+import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true
+};
 
 const token = localStorage.getItem(CONST.STORE_TOKEN);
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -54,12 +61,17 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         NgxSmartModalModule.forRoot(),
         ModalModule.forRoot(),
         TabsModule,
-        DropzoneModule
+        DropzoneModule,
+        PerfectScrollbarModule,
     ],
     providers: [
         {
             provide: DROPZONE_CONFIG,
             useValue: DEFAULT_DROPZONE_CONFIG
+        },
+        {
+            provide: PERFECT_SCROLLBAR_CONFIG,
+            useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
         }
     ],
 })

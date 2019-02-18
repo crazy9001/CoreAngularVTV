@@ -24,7 +24,6 @@ export class ModalMediaVideoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadMedia();
     }
 
     show() {
@@ -65,5 +64,9 @@ export class ModalMediaVideoComponent implements OnInit {
 
     onUploadSuccess($event) {
         this.mediaServide.getMediaVideo();
+    }
+
+    reloadMediaVideo() {
+        this.loadMedia();
     }
 }

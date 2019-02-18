@@ -1,6 +1,6 @@
 <div bsModal #mediaImageModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="media-modal wp-core-ui">
-        <button type="button" class="button-link media-modal-close">
+        <button type="button" class="button-link media-modal-close" (click)="hide()">
         <span class="media-modal-icon">
             <span class="screen-reader-text">Đóng bảng điều khiển Media</span>
         </span>
@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                         </tab>
-                        <tab heading="Thư viện nội dung ảnh">
+                        <tab heading="Thư viện nội dung ảnh" (select)="reloadMediaImage()">
                             <div class="attachments-browser tab-pane active" id="media-attachments">
                                 <div class="media-toolbar">
                                     <div class="media-toolbar-secondary">

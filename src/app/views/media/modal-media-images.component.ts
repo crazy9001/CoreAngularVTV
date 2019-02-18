@@ -23,7 +23,6 @@ export class ModalMediaImagesComponent implements OnInit {
 
     ngOnInit() {
         this.environment = environment;
-        this.loadMediaImages();
     }
 
     loadMediaImages() {
@@ -63,5 +62,9 @@ export class ModalMediaImagesComponent implements OnInit {
 
     onUploadSuccess($event) {
         this.mediaService.getMediaImages();
+    }
+
+    reloadMediaImage() {
+        this.loadMediaImages();
     }
 }

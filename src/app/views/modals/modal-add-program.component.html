@@ -12,9 +12,12 @@
                     <div class="CMSCreateBoxVideoLoading">
                         <div class="CMSCreateBoxUploadWrapper">
                             <div class="CMsVideoUploadControlWrapper">
-                                <label class="CMSUploadVideoLabel" data-toggle="modal" data-target="#__mediaUploadImage">
+                                <label class="CMSUploadVideoLabel" data-toggle="modal" data-target="#__mediaUploadImage" (click)="mediaImageModal.show()">
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Chèn ảnh
                                 </label>
+                            </div>
+                            <div *ngIf="imageInsert">
+                                <img [src]="environment.storage_url + imageInsert">
                             </div>
                         </div>
                     </div>
@@ -122,3 +125,4 @@
         <button type="button" (click)="popupAddProgram.close()">Huỷ</button>
     </div>
 </ngx-smart-modal>
+<app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>

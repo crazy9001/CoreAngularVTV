@@ -11,6 +11,8 @@ import { DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { DropzoneConfigInterface } from 'ngx-dropzone-wrapper';
 import {environment} from './../../../environments/environment.prod';
 import {CONST} from './../../services/app-const';
+import { ModalMediaImagesComponent } from './modal-media-images.component';
+import { MediaImageDetailComponent } from './media-image-detail.component';
 
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
@@ -28,7 +30,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     declarations: [
         MediaVideoComponent,
         ModalMediaVideoComponent,
-        MediaVideoDetailComponent
+        MediaVideoDetailComponent,
+        ModalMediaImagesComponent,
+        MediaImageDetailComponent
     ],
     imports: [
         CommonModule,

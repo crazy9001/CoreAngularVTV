@@ -64,7 +64,6 @@ export class ModalMediaVideoComponent implements OnInit {
     }
 
     onUploadSuccess($event) {
-        console.log($event);
         this.mediaServide.getMediaVideo();
     }
 }

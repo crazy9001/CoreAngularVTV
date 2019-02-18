@@ -22,6 +22,15 @@ export class MediaService {
             .catch(this.handleError);
     }
 
+    getMediaImages(): Promise<MediaPaginateModel> {
+        return this.httpClient.get(`${environment.api_url}` + '/media/gallery?action=image')
+            .toPromise()
+            .then((response) => {
+                return response as MediaPaginateModel;
+            })
+            .catch(this.handleError);
+    }
+
     getMediaAtUrl(url: string): Promise<MediaPaginateModel> {
         return this.httpClient.get(url)
             .toPromise()

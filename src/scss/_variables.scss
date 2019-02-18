@@ -182,7 +182,6 @@
 }
 
 .CMSHtml5UploadInputWrapperV3 {
-  margin-left: 15px;
   margin-top: 10px;
   width: 550px;
 }
@@ -415,8 +414,10 @@
 }
 .CMSCreateBoxUploadWrapper {
   position: relative;
-  margin-left: 15px;
-  margin-top: 10px;
+  margin: 10px;
+}
+.CMSCreateBoxUploadWrapper img {
+  width: 100%;
 }
 .CMSUploadVideoLabel {
   background-color: #d3394c;
@@ -442,4 +443,7 @@
 }
 .CMSButtonWrapper i {
   font-size: 30px;
+}
+.msg-modal-media-images {
+  width: 900px !important;
 }

@@ -1,0 +1,90 @@
+<div tabindex="0" data-id="184" class="attachment-details save-ready">
+    <h2>
+        Chi tiết đính kèm <span class="settings-save-status">
+                                        <span class="spinner"></span>
+                                        <span class="saved">Đã lưu.</span>
+                                    </span>
+    </h2>
+    <div class="attachment-info">
+        <div class="thumbnail thumbnail-image">
+            <img [src]=" image.thumbnails && image.thumbnails.length !== 0 ? environment.storage_url  + image.thumbnails[1] : 'assets/images/no-avatar.gif'">
+        </div>
+
+        <div class="details">
+            <div class="file-size media-view-info"><i class="fa fa-info"></i>12MB</div>
+            <div class="uploaded media-view-info"><i class="fa fa-clock-o"></i>  {{ image.created_at }}</div>
+            <div class="uploaded media-view-info"><i class="fa fa-file"></i> {{ image.mime_type }}</div>
+        </div>
+        <div class="MediaVideoFunction">
+            <div id="MediaEditThumbVideo" class="MediaBtn BtnMedium"><i class="fa fa-photo"></i> Sửa ảnh</div>
+            <div id="MediaCutVideo" class="MediaBtn BtnMedium"><i class="fa fa-cut"></i> Cắt</div>
+            <div id="MediaVideoDownload" class="MediaBtn BtnMedium"><i class="fa fa-download"></i>
+                Tải xuống
+            </div>
+        </div>
+    </div>
+    <label class="setting" data-setting="url">
+        <span class="name">URL</span>
+        <input type="text"
+               value="{{ image ? image.path : '' }}"
+               readonly>
+    </label>
+    <label class="setting" data-setting="title">
+        <span class="name">Tiêu đề</span>
+        <input type="text" value="{{ image ? image.name : '' }}">
+    </label>
+    <label class="setting" data-setting="caption">
+        <span class="name">Chú thích</span>
+        <textarea></textarea>
+    </label>
+    <label class="setting" data-setting="alt">
+        <span class="name">Văn bản thay thế</span>
+        <input type="text" value="">
+    </label>
+    <label class="setting" data-setting="description">
+        <span class="name">Mô tả</span>
+        <textarea></textarea>
+    </label>
+</div>
+
+<div class="attachment-display-settings">
+    <h2>Tùy chọn hiển thị nội dung đính kèm</h2>
+    <label class="setting">
+        <span>Căn chỉnh</span>
+        <select class="alignment" data-setting="align" data-user-setting="align">
+
+            <option value="left">
+                Trái
+            </option>
+            <option value="center">
+                Chính giữa
+            </option>
+            <option value="right">
+                Phải
+            </option>
+            <option value="none" selected="">
+                Trống
+            </option>
+        </select>
+    </label>
+    <div class="setting">
+        <label>
+            <span>Liên kết tới</span>
+            <select class="link-to" data-setting="link" data-user-setting="urlbutton">
+                <option value="none" selected=""> Trống</option>
+                <option value="file"> Tập tin đa phương tiện</option>
+                <option value="post"> Trang nội dung đính kèm</option>
+                <option value="custom"> URL tùy chỉnh</option>
+            </select>
+        </label>
+        <input type="text" class="link-to-custom hidden" data-setting="linkUrl">
+    </div>
+    <label class="setting">
+        <span>Kích cỡ</span>
+        <select class="size" name="size" data-setting="size" data-user-setting="imgsize">
+            <option value="full" selected="selected">
+                Kích thước đầy đủ – 960 × 1280
+            </option>
+        </select>
+    </label>
+</div>

@@ -23,6 +23,14 @@ import { VideoTrashedComponent } from './video-trashed.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import {CONST} from './../../services/app-const';
 
+import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
+import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true
+};
+
 const token = localStorage.getItem(CONST.STORE_TOKEN);
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
@@ -56,12 +64,17 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalModule.forRoot(),
         TooltipModule.forRoot(),
         TabsModule,
-        DropzoneModule
+        DropzoneModule,
+        PerfectScrollbarModule,
     ],
     providers: [
         {
             provide: DROPZONE_CONFIG,
             useValue: DEFAULT_DROPZONE_CONFIG
+        },
+        {
+            provide: PERFECT_SCROLLBAR_CONFIG,
+            useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
         }
     ],
 })

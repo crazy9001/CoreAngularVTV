@@ -33,7 +33,7 @@
                     </button>
                 </div>
             </div>
-            <ul class="messages" *ngIf="videos">
+            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 339px);">
                 <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}" (click)="selectVideo(video)">
                     <div class="actions">
                         <span class="action">

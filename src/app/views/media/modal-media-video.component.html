@@ -88,9 +88,13 @@
                                     </ul>
                                 </div>
                                 <div class="CMCPaginateWrapperMedia">
-                                    <div class="btn-group">
-                                        <button (click)="prevPageMediaVideo()" [disabled]="media && !media.files.prev_page_url" class="btn btn-default"><i class="fa fa-angle-left"></i></button>
-                                        <button (click)="nextPageMediaVideo()" [disabled]="media && !media.files.next_page_url" class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    <div class="btn-group float-right">
+                                        <button class="btn btn-light" type="button" (click)="prevPageMediaVideo()" [disabled]="media && !media.files.prev_page_url">
+                                            <span class="fa fa-chevron-left"></span>
+                                        </button>
+                                        <button class="btn btn-light" type="button" (click)="nextPageMediaVideo()" [disabled]="media && !media.files.next_page_url">
+                                            <span class="fa fa-chevron-right"></span>
+                                        </button>
                                     </div>
                                 </div>
 

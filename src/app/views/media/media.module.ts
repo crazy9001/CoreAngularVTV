@@ -14,6 +14,13 @@ import {CONST} from './../../services/app-const';
 import { ModalMediaImagesComponent } from './modal-media-images.component';
 import { MediaImageDetailComponent } from './media-image-detail.component';
 
+import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
+import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
+import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+    suppressScrollX: true
+};
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
@@ -40,11 +47,16 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         MediaRoutingModule,
         ModalModule.forRoot(),
         TabsModule,
+        PerfectScrollbarModule,
     ],
     providers: [
         {
             provide: DROPZONE_CONFIG,
             useValue: DEFAULT_DROPZONE_CONFIG
+        },
+        {
+            provide: PERFECT_SCROLLBAR_CONFIG,
+            useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
         }
     ],
     exports: []

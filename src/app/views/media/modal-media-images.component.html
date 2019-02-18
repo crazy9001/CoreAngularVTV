@@ -31,7 +31,7 @@
                             </div>
                         </tab>
                         <tab heading="Thư viện nội dung ảnh" (select)="reloadMediaImage()">
-                            <div class="attachments-browser tab-pane active" id="media-attachments">
+                            <div class="attachments-browser tab-pane active" id="media-attachments" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 212px);" >
                                 <div class="media-toolbar">
                                     <div class="media-toolbar-secondary">
                                         <label for="media-attachment-filters" class="screen-reader-text"> Lọc theo
@@ -73,11 +73,13 @@
                                     </ul>
                                 </div>
                                 <div class="CMCPaginateWrapperMedia">
-                                    <div class="btn-group">
-                                        <button (click)="prevPageMedia()" [disabled]="media && !media.files.prev_page_url"
-                                                class="btn btn-default"><i class="fa fa-angle-left"></i></button>
-                                        <button (click)="nextPageMedia()" [disabled]="media && !media.files.next_page_url"
-                                                class="btn btn-default"><i class="fa fa-angle-right"></i></button>
+                                    <div class="btn-group float-right">
+                                        <button class="btn btn-light" type="button" (click)="prevPageMedia()" [disabled]="media && !media.files.prev_page_url">
+                                            <span class="fa fa-chevron-left"></span>
+                                        </button>
+                                        <button class="btn btn-light" type="button" (click)="nextPageMedia()" [disabled]="media && !media.files.next_page_url">
+                                            <span class="fa fa-chevron-right"></span>
+                                        </button>
                                     </div>
                                 </div>
 

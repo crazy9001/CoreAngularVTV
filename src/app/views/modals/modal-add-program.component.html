@@ -19,6 +19,7 @@
                             <div *ngIf="imageInsert">
                                 <img [src]="environment.storage_url + imageInsert">
                             </div>
+                            <input type="hidden" formControlName="content" [ngModel]="imageInsert" class="form-control" autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -31,20 +32,19 @@
                 <div class="CMSCreateBoxContent">
                     <div class="form-group" id="CMSImageOtherWrapper">
                         <div id="CMSSelectedImageList">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <div class="CMSOtherImageItem">
-                                        <div class="CMSBTNRemoveImageProgram"></div>
-                                    </div>
+                            <div class="row" *ngIf="lstImageInsert.length > 0">
+                                <div class="CMSOtherImageItem " *ngFor="let imageOther of lstImageInsert">
+                                    <img [src]="environment.storage_url + imageOther">
+                                    <div class="CMSBTNRemoveImageProgram"></div>
+                                    <input type="hidden" formControlName="images" [ngModel]="lstImageInsert" class="form-control" autocomplete="off">
                                 </div>
-                                <div class="col-sm-4">
-                                    <div class="CMSOtherImageItem">
-                                        <div class="CMSButtonAddMoreImages">
-                                            <div class="CMSButtonWrapper">
-                                                <i class="fa fa-plus fa-lg"></i>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="clear"></div>
+                            </div>
+                            <div class="col-sm-4" style="padding: 0px">
+                                <div class="CMSButtonAddMoreImages">
+                                    <label class="CMSButtonWrapper" data-toggle="modal" data-target="#__mediaUploadImage" (click)="mediaImageMultipleModal.show()">
+                                        <i class="fa fa-plus fa-lg"></i>
+                                    </label>
                                 </div>
                             </div>
                         </div>
@@ -121,8 +121,9 @@
         </form>
     </div>
     <div class="CMSPopupFooter">
-        <button type="button">Cập nhật</button>
+        <button type="button" (click)="onSubmit()">Cập nhật</button>
         <button type="button" (click)="popupAddProgram.close()">Huỷ</button>
     </div>
 </ngx-smart-modal>
 <app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>
+<app-multi-media-images #mediaImageMultipleModal (messageEventInsertImageMultiple)="eventReceiveImageMultipleInsert($event)"> </app-multi-media-images>

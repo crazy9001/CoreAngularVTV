@@ -1,0 +1,118 @@
+<div bsModal #mediaImageMultipleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true">
+    <div class="media-modal wp-core-ui">
+        <button type="button" class="button-link media-modal-close" (click)="hide()">
+        <span class="media-modal-icon">
+            <span class="screen-reader-text">Đóng bảng điều khiển Media</span>
+        </span>
+        </button>
+        <div class="media-modal-content">
+            <div class="media-frame mode-select wp-core-ui" id="__wp-uploader-id-0">
+                <div class="media-frame-menu">
+                    <div class="media-menu">
+                        <a href="#" class="media-menu-item active"> Danh sách ảnh </a>
+                        <div class="separator"></div>
+                        <a href="#" class="media-menu-item">Chèn từ URL</a></div>
+                </div>
+                <div class="media-frame-title">
+                    <h1>Chèn nội dung đa phương tiện
+                        <span class="dashicons dashicons-arrow-down"></span>
+                    </h1>
+                </div>
+
+                <div class="media-frame-content" data-columns="9">
+                    <tabset>
+                        <tab heading=" Tải tập tin lên">
+                            <div class="uploader-inline tab-pane" id="media-uploader-video">
+                                <div class="uploader-inline-content no-upload-message">
+                                    <div class="upload-ui">
+                                        <div class="dropzone" [dropzone]="config"
+                                             (success)="onUploadSuccess($event)"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tab>
+                        <tab heading="Thư viện nội dung ảnh" (select)="reloadMediaImage()">
+                            <div class="attachments-browser tab-pane active" id="media-attachments" [perfectScrollbar]
+                                 style="position: relative; max-height: calc(100vh - 212px);">
+                                <div class="media-toolbar">
+                                    <div class="media-toolbar-secondary">
+                                        <label for="media-attachment-filters" class="screen-reader-text"> Lọc theo
+                                            loại</label>
+                                        <select id="media-attachment-filters" class="attachment-filters">
+                                            <option value="all">Tất cả</option>
+                                            <option value="uploaded">Uploaded to this product</option>
+                                            <option value="image">Hình ảnh</option>
+                                            <option value="audio">Âm thanh</option>
+                                            <option value="video">Video</option>
+                                            <option value="unattached">Chưa được đính kèm</option>
+                                        </select>
+                                        <label for="media-attachment-date-filters" class="screen-reader-text">Lọc theo
+                                            ngày</label>
+                                        <select id="media-attachment-date-filters" class="attachment-filters">
+                                            <option value="all">Tất cả các ngày</option>
+                                            <option value="0">Tháng Mười 2018</option>
+                                            <option value="1">Tháng Chín 2016</option>
+                                        </select>
+                                        <span class="spinner"></span>
+                                    </div>
+                                </div>
+
+                                <div id="DivScrollMediaVideo">
+                                    <ul *ngIf="media" tabindex="-1" class="attachments ui-sortable ui-sortable-disabled"
+                                        id="__attachments-view-720">
+
+                                        <li *ngFor="let mediaImage of media.files.data" tabindex="0"
+                                            class="attachment save-ready"
+                                            [ngClass]="{details: isActive(mediaImage)}"
+                                            (click)="loadDetailImageEvent(mediaImage)">
+                                            <div class="attachment-preview js-select-attachment type-image subtype-jpeg landscape">
+                                                <div class="thumbnail">
+                                                    <div class="centered">
+                                                        <img src="{{ mediaImage.thumbnails && mediaImage.thumbnails.length !== 0 ? environment.storage_url + mediaImage.thumbnails[0] : 'assets/images/no-avatar.gif' }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                                <div class="CMCPaginateWrapperMedia">
+                                    <div class="btn-group float-right">
+                                        <button class="btn btn-light" type="button" (click)="prevPageMedia()"
+                                                [disabled]="media && !media.files.prev_page_url">
+                                            <span class="fa fa-chevron-left"></span>
+                                        </button>
+                                        <button class="btn btn-light" type="button" (click)="nextPageMedia()"
+                                                [disabled]="media && !media.files.next_page_url">
+                                            <span class="fa fa-chevron-right"></span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="media-sidebar" id="media-sidebar">
+                                    <app-media-image-detail *ngIf="loadDetail"
+                                                            [image]="selected"></app-media-image-detail>
+                                </div>
+                            </div>
+                        </tab>
+                    </tabset>
+                </div>
+
+                <div class="media-frame-toolbar">
+                    <div class="media-toolbar">
+                        <div class="media-toolbar-primary">
+                            <button type="button"
+                                    class="button media-button button-primary button-large media-button-insert"
+                                    [disabled]="!loadDetail" (click)="eventInsertImageMulty()"><i
+                                    class="fa fa-arrow-down"></i>
+                                Chèn video
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

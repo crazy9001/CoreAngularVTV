@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../environments/environment.prod';
+import {IProgram} from '../model/type';
 
 @Injectable({
     providedIn: 'root'
@@ -19,6 +20,13 @@ export class CategoryService {
                 return response;
             })
             .catch(this.handleError);
+    }
+
+    createCategory(program: IProgram) {
+        return this.httpClient.post<any>(`${environment.api_url}/program/category `, program)
+            .do(data => {
+                return data;
+            });
     }
 
     private handleError(error: any): Promise<any> {

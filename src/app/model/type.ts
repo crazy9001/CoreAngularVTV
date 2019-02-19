@@ -20,7 +20,19 @@ interface IVideoForm {
     category_id: number;
 }
 
+interface IProgram {
+    name: string;
+    content: string;
+    images: any;
+    description: string;
+    active: number;
+    seo_keywords: string;
+    seo_description: string;
+    seo_title: string;
+}
+
 export {
     ICategory,
     IVideoForm,
+    IProgram
 };

@@ -452,3 +452,33 @@
   bottom: 15px;
   left: 15px;
 }
+.CMSOtherImageItem {
+  display: inline-block;
+  margin-left: 16px;
+  margin-bottom: 15px;
+  position: relative;
+}
+.CMSOtherImageItem img {
+  width: 84px;
+  height: 84px;
+}
+.CMSBTNRemoveImageProgram {
+  background: rgba(0, 0, 0, 0) url('./../assets/img/download.png') no-repeat scroll 0 0;
+  display: inline-block;
+  height: 33px;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  text-indent: -99999px;
+  top: 0;
+  width: 33px;
+  z-index: 99;
+}
+.CMSProgramAvatar {
+  width: 150px;
+}
+.CMSPageStats {
+  display: block;
+  margin-right: 15px;
+  margin-top: 7px;
+}

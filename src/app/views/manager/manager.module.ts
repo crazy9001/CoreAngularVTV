@@ -22,6 +22,7 @@ import {MediaImageDetailComponent} from '../media/media-image-detail.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
+import {MultiMediaImagesComponent} from '../media/multi-media-images.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -50,6 +51,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalAdduserComponent,
         ModalAddProgramComponent,
         ModalMediaImagesComponent,
+        MultiMediaImagesComponent,
         MediaImageDetailComponent
     ]
     ,

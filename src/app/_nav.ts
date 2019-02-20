@@ -31,9 +31,9 @@ export const navItems: NavData[] = [
         icon: 'fa fa-film fa-lg',
         children: [
             {
-                name: 'Thêm mới video',
+                name: 'Tạo video mới',
                 url: '/videos/create',
-                icon: 'fa fa-upload fa-lg'
+                icon: 'fa fa-plus-circle fa-lg'
             },
             {
                 name: 'Lưu Tạm',

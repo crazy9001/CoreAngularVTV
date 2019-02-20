@@ -1,38 +1,28 @@
 <div class="animated fadeIn">
-
-    <div class="col-md-4 offset-md-8 mb-3">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fa fa-search"></i>
-                    </span>
-            </div>
-            <input class="form-control ng-pristine ng-valid ng-touched" placeholder="Tìm kiếm" type="text">
-        </div>
-    </div>
-
     <div class="email-app mb-4">
-
         <main class="inbox">
-            <div class="toolbar">
+            <div class="toolbar" id="CMSLibraryToolBar">
+                <label>
+                    Thư viện video
+                </label>
                 <div class="btn-group">
                     <div *ngIf="selectItem">
-                        <button *ngIf="role === 'Secretary' || role === 'Editor'"
+                        <a *ngIf="role === 'Secretary' || role === 'Editor'"
                                 type="button" class="btn btn-square btn-dark">
                             <i class="fa fa-refresh fa-lg"></i> Trả lại
-                        </button>
-                        <button *ngIf="role === 'Secretary' || role === 'Editor'" type="button" class="btn btn-square btn-info" (click)="changeItemToPublish()">
+                        </a>
+                        <a *ngIf="role === 'Secretary' || role === 'Editor'" type="button" class="btn btn-square btn-info" (click)="changeItemToPublish()">
                             <i class="fa fa-mail-forward"></i> Gửi xuất bản
-                        </button>
-                        <button *ngIf="role === 'Secretary'" type="button" class="btn btn-square btn-danger" (click)="eventPublishItem()">
+                        </a>
+                        <a *ngIf="role === 'Secretary'" type="button" class="btn btn-square btn-danger" (click)="eventPublishItem()">
                             <i class="fa fa-upload fa-lg"></i> Xuất bản
-                        </button>
-                        <button *ngIf="role === 'Secretary' || role === 'Editor'" class="btn btn-square btn-danger" type="button" (click)="eventDeleteItem()">
+                        </a>
+                        <a *ngIf="role === 'Secretary' || role === 'Editor'" class="btn btn-square btn-danger" type="button" (click)="eventDeleteItem()">
                             <span class="fa fa-trash-o"></span> Xóa video
-                        </button>
-                        <button *ngIf="role === 'Reporter'" class="btn btn-square btn-danger" type="button" >
+                        </a>
+                        <a *ngIf="role === 'Reporter'" class="btn btn-square btn-danger" type="button" >
                             <span class="fa fa-reply fa-lg"></span> Rút lại
-                        </button>
+                        </a>
                     </div>
                 </div>
                 <div class="btn-group float-right">
@@ -47,7 +37,7 @@
                     </button>
                 </div>
             </div>
-            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 339px);">
+            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 370px);">
                 <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}" (click)="selectVideo(video)">
                     <div class="actions">
                         <span class="action">

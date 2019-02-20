@@ -14,7 +14,7 @@
     <div class="email-app mb-4">
 
         <main class="inbox">
-            <div class="toolbar">
+            <div class="toolbar" id="CMSLibraryToolBar">
                 <div class="btn-group">
                     <button class="btn btn-light" type="button">
                         <span class="fa fa-envelope"></span>
@@ -77,7 +77,7 @@
                     </button>
                 </div>
             </div>
-            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 339px);">
+            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 370px);">
                 <li class="message unread" *ngFor="let video of videos.data">
                     <div class="actions">
                         <span class="action">

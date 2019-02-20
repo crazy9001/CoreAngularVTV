@@ -1,26 +1,19 @@
 <div class="animated fadeIn">
-
-    <div class="col-md-4 offset-md-8 mb-3">
-        <div class="input-group">
-            <div class="input-group-prepend">
-                    <span class="input-group-text">
-                        <i class="fa fa-search"></i>
-                    </span>
-            </div>
-            <input class="form-control ng-pristine ng-valid ng-touched" placeholder="Tìm kiếm" type="text">
-        </div>
-    </div>
-
     <div class="email-app mb-4">
-
         <main class="inbox">
-            <div class="toolbar">
+            <div class="toolbar" id="CMSLibraryToolBar">
+                <label>
+                    Thư viện video
+                </label>
                 <div class="btn-group">
                     <div *ngIf="selectItem">
-                        <button *ngIf="role === 'Secretary'" class="btn btn-square btn-danger" type="button" (click)="eventDeleteItem()">
+                        <a *ngIf="role === 'Secretary'" class="btn btn-square btn-danger" type="button" (click)="eventDeleteItem()">
                             <span class="fa fa-trash-o"></span> Gỡ video
-                        </button>
+                        </a>
                     </div>
+                    <a *ngIf="role === 'Secretary'" class="btn btn-square btn-danger" type="button">
+                        <i class="fa fa-plus fa-lg"></i> Video nổi bật
+                    </a>
                 </div>
                 <div class="btn-group float-right">
                     <span class="CMSPageStats" *ngIf="videos && videos.total !== 0">
@@ -36,7 +29,20 @@
                     </button>
                 </div>
             </div>
-            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 339px);">
+            <div class="toolbar" id="CMSToolbarFillter">
+                <label>
+                    <input class="form-control ng-pristine ng-valid ng-touched" placeholder="Tìm kiếm" type="text">
+                </label>
+                <div class="CMSFilterSelect">
+                    <select id="select1" name="select1" class="form-control">
+                        <option value="0">Please select</option>
+                        <option value="1">Option #1</option>
+                        <option value="2">Option #2</option>
+                        <option value="3">Option #3</option>
+                    </select>
+                </div>
+            </div>
+            <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 370px);">
                 <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}" (click)="selectVideo(video)">
                     <div class="actions">
                         <span class="action">

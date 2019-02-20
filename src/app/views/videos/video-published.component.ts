@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {environment} from '../../../environments/environment.prod';
 import {VideoService} from '../../services/video.service';
 import {VideoPaginate} from '../../model/video-paginate.model';
@@ -6,12 +6,16 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth-service.service';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ModalVideoHighlightComponent} from '../modals/modal-video-highlight.component';
 
 @Component({
     selector: 'app-video-published',
     templateUrl: './video-published.component.html',
 })
 export class VideoPublishedComponent implements OnInit {
+
+    @ViewChild('videoHighlightModal') videoHighlightModal: ModalVideoHighlightComponent;
+
     environment: any;
     videos: VideoPaginate;
     selectItem = false;

@@ -11,7 +11,7 @@
                             <span class="fa fa-trash-o"></span> Gỡ video
                         </a>
                     </div>
-                    <a *ngIf="role === 'Secretary'" class="btn btn-square btn-danger" type="button">
+                    <a *ngIf="role === 'Secretary'" class="btn btn-square btn-danger" type="button" (click)="videoHighlightModal.show()">
                         <i class="fa fa-plus fa-lg"></i> Video nổi bật
                     </a>
                 </div>
@@ -90,3 +90,4 @@
         </main>
     </div>
 </div>
+<app-modal-video-highlight #videoHighlightModal></app-modal-video-highlight>

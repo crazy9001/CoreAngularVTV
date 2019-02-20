@@ -64,6 +64,9 @@
                     </div>
                 </div>
                 <div class="btn-group float-right">
+                    <span class="CMSPageStats" *ngIf="videos && videos.total !== 0">
+                        {{ videos.from + ' đến ' + videos.to + ' trong tổng số ' + videos.total}}
+                    </span>
                     <button class="btn btn-light" type="button" (click)="prevPage()"
                             [disabled]="videos && !videos.prev_page_url">
                         <span class="fa fa-chevron-left"></span>

@@ -28,6 +28,7 @@ import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {ModalVideoHighlightComponent} from '../modals/modal-video-highlight.component';
 import { NgxInfiniteScrollerModule } from 'ngx-infinite-scroller';
+import {TimeAgoPipe} from 'time-ago-pipe';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -57,7 +58,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         VideoPublishedComponent,
         VideoEditComponent,
         VideoTrashedComponent,
-        ModalVideoHighlightComponent
+        ModalVideoHighlightComponent,
+        TimeAgoPipe
     ],
     imports: [
         CommonModule,

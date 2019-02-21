@@ -16,23 +16,40 @@
                             <div class="_6rp1  _50f7 _2ien _2iex">4/5</div>
                         </div>
                         <div class="_6nr7  _2ieq">Bạn có thể chọn tới 5 video để hiển thị nổi bật ở đầu Trang.</div>
-                        <div class="CMSListVideoPublic">
-                            <div class="CMSVideoPublicItem">
+                        <div class="CMSListVideoPublic"
+                             ngxInfiniteScroller
+                             strategy="scrollingToBoth"
+                             (onScrollDown)="onScrollDown()">
+                            <div class="CMSVideoPublicItem" *ngFor="let video of videos">
                                 <div class="CMSVideoPublicItemAvatar">
                                     <div class="_3g12">
                                         <div class="_28_z">
-                                            <img class="_28_- img" src="https://scontent.fhan2-1.fna.fbcdn.net/v/t15.5256-10/51848807_583992118695389_4952910376841773056_n.jpg?_nc_cat=106&amp;_nc_oc=AQklOc_atVtUe06CgDTbTXhaKh9WgkKlU7CHaFLfv5qSyqQx-DNsxZpKaVsGIpHc0VM&amp;_nc_ht=scontent.fhan2-1.fna&amp;oh=f523233424bafd4ca405a0dd6b9eb177&amp;oe=5CEEAA0D" alt="">
+                                            <img class="_28_- img" [src]="environment.storage_url + video.thumbnails" alt="">
                                             <div class="_28__">
                                                 <div class="_6nhr _3g13"
-                                                     style="background-repeat: no-repeat; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset; background-image: url(https://scontent.fhan2-1.fna.fbcdn.net/v/t15.5256-10/51848807_583992118695389_4952910376841773056_n.jpg?_nc_cat=106&_nc_oc=AQklOc_atVtUe06CgDTbTXhaKh9WgkKlU7CHaFLfv5qSyqQx-DNsxZpKaVsGIpHc0VM&_nc_ht=scontent.fhan2-1.fna&oh=f523233424bafd4ca405a0dd6b9eb177&oe=5CEEAA0D); background-position: center center;">
+                                                     style="background-repeat: no-repeat; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset; background-position: center center;" [ngStyle]="{ 'background-image': 'url(' + environment.storage_url + video.thumbnails + ')'}">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="CMSVideoPublicItemInformation">
+                                    <div class="_6q6e _6fjm _6fjq  _50f7 _2iem _2iev" role="heading" aria-level="4" style="max-height: 36px; -webkit-line-clamp: 2;">
+                                        {{ video.title }}
+                                    </div>
+                                    <div class="_6nht  _2iep _2iex">
+                                        <span class="_6gok">11 ngày trước</span>
+                                        <span class="_6gok">280K lượt xem</span>
+                                        <span class="_6gok">15 bình luận</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
+                        </div>
+                        <div class="_6q6n">
+                            <button class="btn btn-outline-dark" type="button">Hủy</button>
+                            <button aria-pressed="true" class="btn CMSCustomBtn" type="button">Lưu</button>
+                        </div>
                     </tab>
                     <tab>
                         <ng-template tabHeading>

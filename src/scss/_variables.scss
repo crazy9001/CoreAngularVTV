@@ -631,7 +631,7 @@
   padding: 0;
   width: 33%;
   float: left;
-  border: none;
+  border-right: 1px solid #dadde1;
 }
 .CMSTabsetModalVideoHighlight .tab-content {
   box-sizing: border-box;
@@ -640,17 +640,17 @@
    flex-grow: 0;
    flex-shrink: 0;
   height: 100%;
-  padding: 15px;
-  width: 66%;
+  padding: 15px 0 0 20px;
+  width: 67%;
   float: left;
   border: none;
   margin: 0 !important;
 }
 
 .CMSTabsetModalVideoHighlight .nav-tabs , .CMSTabsetModalVideoHighlight .nav-tabs .nav-link.active {
-  border: none;
   border-radius: 0;
   box-shadow: none;
+  color: #3578e5;
 }
 .CMSTabsetModalVideoHighlight .nav-tabs .nav-link.active {
   background-color: #fff;
@@ -695,7 +695,11 @@
   line-height: 18px;
 }
 .CMSListVideoPublic {
-  height: 100%;
+  height: calc(100vh - 440px);
+  overflow-y: auto;
+}
+.CMSListVideoPublic:after {
+  clear: both;
 }
 .CMSVideoPublicItem{
   border-radius: 4px;
@@ -736,10 +740,84 @@
 }
 ._6nhr {
   border-radius: 4px;
-  height: 113px;
-  width: 200px;
+  height: 100px;
+  width: 187px;
 }
 ._3g13 {
   background-size: cover;
 }
+.CMSVideoPublicItemInformation{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-left: 12px;
+}
+._6fjq {
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  overflow: hidden;
+}
+._6fjm {
+  word-wrap: break-word;
+}
+._2iev {
+  color: #1c1e21;
+}
+._50f7 {
+  font-weight: 600;
+}
+._2iem {
+  font-size: 14px;
+  line-height: 18px;
+}
+._6nht {
+  margin-top: 4px;
+}
+._2iex {
+  color: #606770;
+}
+._2iep {
+  font-size: 12px;
+  line-height: 16px;
+}
+._6gok {
+  display: inline-block;
+}
+._6gok::after {
+  content: '\2022';
+  margin: 0 4px;
+}
+._6gok:last-child::after {
+  content: initial;
+  margin: initial;
+}
 
+._6q6n {
+  align-items: center;
+  border-top: 1px solid #dadde1;
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: flex-end;
+  margin-left: -20px;
+  padding: 12px 20px;
+}
+._6q6n button {
+  margin-left: 5px;
+  border: 1px solid;
+  border-radius: 2px;
+  box-sizing: content-box;
+  font-size: 12px;
+  -webkit-font-smoothing: antialiased;
+  font-weight: bold;
+  justify-content: center;
+  position: relative;
+  text-align: center;
+  text-shadow: none;
+  vertical-align: middle;
+  border-color: #ccd0d5;
+}
+.CMSCustomBtn{
+  background-color: #4267b2 !important;
+  color: #fff !important;
+}

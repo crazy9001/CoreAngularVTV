@@ -51,6 +51,10 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    getVideoPublishedPaginate(page: number = 1) {
+        return this.httpClient.get(`${environment.api_url}` + `/video/paginate/published?page=${page}`);
+    }
+
     getVideoTrashed(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/trashed')
             .toPromise()

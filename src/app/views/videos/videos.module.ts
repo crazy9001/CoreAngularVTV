@@ -27,6 +27,7 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {ModalVideoHighlightComponent} from '../modals/modal-video-highlight.component';
+import { NgxInfiniteScrollerModule } from 'ngx-infinite-scroller';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -67,7 +68,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         TooltipModule.forRoot(),
         TabsModule,
         DropzoneModule,
-        PerfectScrollbarModule
+        PerfectScrollbarModule,
+        NgxInfiniteScrollerModule,
     ],
     providers: [
         {

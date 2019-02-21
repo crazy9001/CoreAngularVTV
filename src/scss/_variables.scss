@@ -377,15 +377,18 @@
   padding: 5px 7px;
   white-space: nowrap;
 }
+
 #AccountUpdatePasswordForm {
   padding: 20px;
 }
+
 #AccountUpdatePasswordForm input {
   border: #ccc solid 1px;
   width: 270px;
   padding: 2px;
 }
-.CMSCreateBox{
+
+.CMSCreateBox {
   border-radius: 1px;
   border: solid 1px #ccc;
   margin-bottom: 10px;
@@ -394,6 +397,7 @@
   display: inline-block;
   width: 100%;
 }
+
 .CMSCreateBoxHeader {
   background: #EEEEEE;
   padding: 8px;
@@ -402,10 +406,12 @@
   color: #333;
   margin: 0;
 }
+
 .CMSCreateBoxContent {
   padding: 10px;
 }
-.CMSCreateBoxVideoLoading{
+
+.CMSCreateBoxVideoLoading {
   width: 100%;
   min-height: 120px;
   border: solid 1px #ddd;
@@ -413,26 +419,31 @@
   background: #eee;
   position: relative;
 }
+
 .CMSCreateBoxUploadWrapper {
   position: relative;
   margin: 10px;
 }
+
 .CMSCreateBoxUploadWrapper img {
   width: 100%;
 }
+
 .CMSUploadVideoLabel {
   background-color: #d3394c;
   color: #fff;
   font-size: 15px;
-  padding: 8px 20px!important;
+  padding: 8px 20px !important;
   text-transform: uppercase;
   font-weight: bold;
   display: inline-block;
   cursor: pointer;
 }
+
 .clearfix {
-  clear:both
+  clear: both
 }
+
 .CMSButtonWrapper {
   width: 84px;
   height: 84px;
@@ -442,27 +453,33 @@
   line-height: 84px;
   cursor: pointer;
 }
+
 .CMSButtonWrapper i {
   font-size: 30px;
 }
+
 .msg-modal-media-images {
   width: 900px !important;
 }
+
 .CMCPaginateWrapperMedia {
   position: absolute;
   bottom: 15px;
   left: 15px;
 }
+
 .CMSOtherImageItem {
   display: inline-block;
   margin-left: 16px;
   margin-bottom: 15px;
   position: relative;
 }
+
 .CMSOtherImageItem img {
   width: 84px;
   height: 84px;
 }
+
 .CMSBTNRemoveImageProgram {
   background: rgba(0, 0, 0, 0) url('./../assets/img/download.png') no-repeat scroll 0 0;
   display: inline-block;
@@ -475,35 +492,43 @@
   width: 33px;
   z-index: 99;
 }
+
 .CMSProgramAvatar {
   width: 150px;
 }
+
 .CMSPageStats {
   display: block;
   margin-right: 15px;
   margin-top: 7px;
 }
+
 .CMSButtonFeature {
   background-color: #f5f6f7;
   border-color: #ccd0d5;
   color: #4b4f56;
 }
+
 .CMSVideoFeatureWrapper {
   display: block;
 }
+
 .CMSVideoFeatureContent {
   padding: 12px;
 }
+
 .CMSVideoFeatureLabel {
   width: 489px
 }
-.CMSVideoFeatureLabel span{
+
+.CMSVideoFeatureLabel span {
   font-family: inherit;
   font-weight: 600;
   font-size: 14px;
   line-height: 18px;
 }
-#CMSLibraryToolBar a{
+
+#CMSLibraryToolBar a {
   background-color: #f5f6f7 !important;
   border-color: #ccd0d5 !important;
   color: #4b4f56 !important;
@@ -520,10 +545,10 @@
   text-shadow: none;
   vertical-align: middle;
   line-height: 22px;
-  margin-left: 12px;
+  margin-left: 5px;
 }
 
-#CMSLibraryToolBar label{
+#CMSLibraryToolBar label {
   color: #1d2129;
   font-size: 14px;
   text-transform: none;
@@ -532,10 +557,12 @@
   font-family: inherit;
   margin-bottom: 0;
 }
+
 #CMSToolbarFillter {
   padding: 8px 0 !important;
 }
-#CMSToolbarFillter label{
+
+#CMSToolbarFillter label {
   height: 24px;
   padding: 3px 8px 5px;
   font-family: inherit;
@@ -547,7 +574,8 @@
   margin: 0;
   display: inline-block;
 }
-#CMSToolbarFillter input{
+
+#CMSToolbarFillter input {
   background: transparent;
   border: 0;
   margin: 0;
@@ -557,14 +585,17 @@
   height: 100%;
   box-shadow: unset !important;
 }
+
 #CMSToolbarFillter input:focus {
   outline: none;
 }
+
 .CMSFilterSelect {
   height: 24px;
   display: inline-block;
 }
-.CMSFilterSelect select{
+
+.CMSFilterSelect select {
   height: 100%;
   font-size: 12px;
   padding: 5px;
@@ -573,3 +604,142 @@
   outline: none;
   box-shadow: unset !important;
 }
+
+._6ekw {
+  color: rgba(144, 148, 156, .7);
+  font-size: 12px;
+  line-height: 17px;
+  margin-top: 12px;
+}
+#CMSBodyModalVideoHighlight {
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 660px;
+  padding: 0;
+  border-radius: 0;
+}
+.CMSTabsetModalVideoHighlight {
+  width: 100%;
+}
+.CMSTabsetModalVideoHighlight ul{
+  background-color: #f5f6f7;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column !important;
+  height: 100%;
+  padding: 0;
+  width: 33%;
+  float: left;
+  border: none;
+}
+.CMSTabsetModalVideoHighlight .tab-content {
+  box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   flex-grow: 0;
+   flex-shrink: 0;
+  height: 100%;
+  padding: 15px;
+  width: 66%;
+  float: left;
+  border: none;
+  margin: 0 !important;
+}
+
+.CMSTabsetModalVideoHighlight .nav-tabs , .CMSTabsetModalVideoHighlight .nav-tabs .nav-link.active {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+.CMSTabsetModalVideoHighlight .nav-tabs .nav-link.active {
+  background-color: #fff;
+  border-right-color: #3578e5;
+}
+.CMSTabsetModalVideoHighlight ul li a{
+  border-left: 2px solid transparent;
+  border-top: 1px solid #dadde1;
+  box-sizing: border-box;
+  color: #8d949e;
+  cursor: pointer;
+  line-height: 17px;
+  padding: 12px 12px 20px 16px;
+  width: 100%;
+  box-shadow: none;
+}
+.CMSTabsetModalVideoHighlight  .nav-tabs .nav-link:hover, .CMSTabsetModalVideoHighlight  .nav-tabs .nav-link:focus {
+  border: none !important;
+}
+._6rq0 {
+  display: flex;
+  flex-grow: 0;
+  flex-shrink: 0;
+  margin: 8px 20px 8px 0;
+}
+._6nr7 {
+  margin-bottom: 8px;
+}
+._6rp1 {
+    flex-grow: 0;
+    flex-shrink: 0;
+    text-align: center;
+    width: 113px;
+  }
+._2ieq {
+  font-size: 12px;
+  line-height: 16px;
+}
+._50f7 {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+}
+.CMSListVideoPublic {
+  height: 100%;
+}
+.CMSVideoPublicItem{
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  margin-bottom: 12px;
+  width: 100%;
+}
+.CMSVideoPublicItemAvatar {
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+._3g12 {
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+._28_z {
+  overflow: hidden;
+  position: relative;
+}
+._28_- {
+  bottom: 0;
+  -webkit-filter: blur(20px);
+  height: 100%;
+  left: 0;
+  opacity: .6;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: scale(1.1);
+  width: 100%;
+  z-index: 0;
+}
+._28__ {
+  position: relative;
+  z-index: 1;
+}
+._6nhr {
+  border-radius: 4px;
+  height: 113px;
+  width: 200px;
+}
+._3g13 {
+  background-size: cover;
+}
+

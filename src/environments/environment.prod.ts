@@ -1,7 +1,7 @@
 export const environment = {
     production: true,
-    hls: false,
-    server_hls : 'http://192.168.1.67:1935/vod/mp4:',
+    hls: true,
+    server_hls : 'http://apiworld.vtv.vn:1935/vodworld/_definst_/mp4:',
     api_url: 'http://apiworld.vtv.vn/api/v1',
     storage_url: 'http://apiworld.vtv.vn/storage/',
     pusher: {

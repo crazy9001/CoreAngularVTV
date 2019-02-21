@@ -1,20 +1,54 @@
-<div bsModal #videoHighlightModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div bsModal #videoHighlightModal="bs-modal" class="modal fade" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Modal title</h4>
-                <button type="button" class="close" (click)="largeModal.hide()" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
+            <div class="modal-body" id="CMSBodyModalVideoHighlight">
 
+                <tabset [vertical]="true" class="CMSTabsetModalVideoHighlight">
+                    <tab>
+                        <ng-template tabHeading>
+                            <i class="fa fa-youtube-play fa-lg"></i>
+                            Chọn video
+                            <div class="_6ekw">Chọn video để hiển thị trong mục nổi bật</div>
+                        </ng-template>
+                        <div class="_6rq0">
+                            <div class="_6rp2  _50f7 _2ien">Chọn tối đa 5 video</div>
+                            <div class="_6rp1  _50f7 _2ien _2iex">4/5</div>
+                        </div>
+                        <div class="_6nr7  _2ieq">Bạn có thể chọn tới 5 video để hiển thị nổi bật ở đầu Trang.</div>
+                        <div class="CMSListVideoPublic">
+                            <div class="CMSVideoPublicItem">
+                                <div class="CMSVideoPublicItemAvatar">
+                                    <div class="_3g12">
+                                        <div class="_28_z">
+                                            <img class="_28_- img" src="https://scontent.fhan2-1.fna.fbcdn.net/v/t15.5256-10/51848807_583992118695389_4952910376841773056_n.jpg?_nc_cat=106&amp;_nc_oc=AQklOc_atVtUe06CgDTbTXhaKh9WgkKlU7CHaFLfv5qSyqQx-DNsxZpKaVsGIpHc0VM&amp;_nc_ht=scontent.fhan2-1.fna&amp;oh=f523233424bafd4ca405a0dd6b9eb177&amp;oe=5CEEAA0D" alt="">
+                                            <div class="_28__">
+                                                <div class="_6nhr _3g13"
+                                                     style="background-repeat: no-repeat; box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px inset; background-image: url(https://scontent.fhan2-1.fna.fbcdn.net/v/t15.5256-10/51848807_583992118695389_4952910376841773056_n.jpg?_nc_cat=106&_nc_oc=AQklOc_atVtUe06CgDTbTXhaKh9WgkKlU7CHaFLfv5qSyqQx-DNsxZpKaVsGIpHc0VM&_nc_ht=scontent.fhan2-1.fna&oh=f523233424bafd4ca405a0dd6b9eb177&oe=5CEEAA0D); background-position: center center;">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                    </tab>
+                    <tab>
+                        <ng-template tabHeading>
+                            <i class="fa fa-arrows-alt fa-lg"></i>
+                            Sắp xếp video
+                            <div class="_6ekw">Thay đổi thứ tự video nổi bật</div>
+                        </ng-template>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" (click)="videoHighlightModal.hide()">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                        <div class="_6rq0">
+                            <div class="_6rp2  _50f7 _2ien">Sắp xếp video</div>
+                        </div>
+                        <div class="_6nr7  _2ieq">Kéo rồi thả video để thay đổi thứ tự xuất hiện.</div>
+
+                    </tab>
+                </tabset>
+
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->

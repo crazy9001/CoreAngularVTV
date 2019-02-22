@@ -82,6 +82,15 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    getVideoHighLight() {
+        return this.httpClient.get(`${environment.api_url}` + '/video/highlight')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
     create(video: IVideoForm) {
         return this.httpClient.post<any>(`${environment.api_url}/video`, video)
             .do(data => {

@@ -63,9 +63,11 @@
                         </tab>
                         <tab>
                             <ng-template tabHeading>
-                                <i class="fa fa-arrows-alt fa-lg"></i>
-                                Sắp xếp video
-                                <div class="_6ekw">Thay đổi thứ tự video nổi bật</div>
+                                <div (click)="reloadVideoHighLight()">
+                                    <i class="fa fa-arrows-alt fa-lg"></i>
+                                    Sắp xếp video
+                                    <div class="_6ekw" (select)="reloadVideoHighLight()">Thay đổi thứ tự video nổi bật</div>
+                                </div>
                             </ng-template>
 
                             <div class="_6rq0">
@@ -73,8 +75,8 @@
                             </div>
                             <div class="_6nr7  _2ieq">Kéo rồi thả video để thay đổi thứ tự xuất hiện.</div>
 
-                            <div class="CMSListVideoPublic" cdkDropList (cdkDropListDropped)="drop($event)">
-                                <div class="CMSVideoPublicItem" *ngFor="let video of videos" cdkDrag>
+                            <div class="CMSListVideoPublic" *ngIf="videosHighLight.length > 0" cdkDropList (cdkDropListDropped)="drop($event)">
+                                <div class="CMSVideoPublicItem" *ngFor="let video of videosHighLight" cdkDrag>
                                     <div class="_6nhq">
                                         <div class="CMSVideoPublicItemAvatar">
                                             <div class="_3g12">

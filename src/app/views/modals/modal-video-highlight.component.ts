@@ -1,10 +1,11 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ModalDirective} from 'ngx-bootstrap';
 import {tap, skipWhile} from 'rxjs/operators';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
+import {SettingService} from '../../services/setting.service';
 @Component({
     selector: 'app-modal-video-highlight',
     templateUrl: './modal-video-highlight.component.html',
@@ -20,6 +21,8 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
 
     public videos: Array<any> = [];
 
+    public videosHighLight: Array<any> = [];
+
     public listItemSelected: string[] = [];
 
     public httpReqestInProgress: boolean = false;
@@ -28,7 +31,8 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
 
     constructor(
         private http: HttpClient,
-        private videoService: VideoService
+        private videoService: VideoService,
+        private settingService: SettingService
     ) {
         this.environment = environment;
     }
@@ -81,10 +85,19 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
             this.httpReqestInProgress = false;
         });
     }
-
+    private getVideoHighLight() {
+        this.videoService.getVideoHighLight().then(videos => {
+            this.videosHighLight = videos;
+        });
+    }
     eventSaveHighlight() {
         this.listItemSelected = this.getIds();
-        console.log(this.listItemSelected);
+        this.settingService.updateHighLightHome(this.listItemSelected).subscribe(res => {
+        }, (errorRes: HttpErrorResponse) => {
+            if (errorRes.status === 401) {
+
+            }
+        });
     }
 
     getIds() {
@@ -97,8 +110,20 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
     }
 
     drop(event: CdkDragDrop<string[]>) {
-        moveItemInArray(this.videos, event.previousIndex, event.currentIndex);
-        console.log(event);
+        moveItemInArray(this.videosHighLight, event.previousIndex, event.currentIndex);
+		let ids: any = [];
+		ids = this.videosHighLight.map(i => i.id);
+		console.log(ids);
+		this.settingService.updateHighLightHome(ids).subscribe(res => {
+        }, (errorRes: HttpErrorResponse) => {
+            if (errorRes.status === 401) {
+
+            }
+        });
+    }
+
+    reloadVideoHighLight() {
+        this.getVideoHighLight();
     }
 
 }

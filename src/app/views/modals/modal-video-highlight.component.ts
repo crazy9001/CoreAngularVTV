@@ -4,7 +4,7 @@ import {tap, skipWhile} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
-
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 @Component({
     selector: 'app-modal-video-highlight',
     templateUrl: './modal-video-highlight.component.html',
@@ -95,4 +95,10 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
         });
         return listIdVideo;
     }
+
+    drop(event: git <string[]>) {
+        moveItemInArray(this.videos, event.previousIndex, event.currentIndex);
+        console.log(event);
+    }
+
 }

@@ -96,7 +96,7 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
         return listIdVideo;
     }
 
-    drop(event: git <string[]>) {
+    drop(event: CdkDragDrop<string[]>) {
         moveItemInArray(this.videos, event.previousIndex, event.currentIndex);
         console.log(event);
     }

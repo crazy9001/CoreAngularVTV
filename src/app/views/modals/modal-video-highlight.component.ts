@@ -1,6 +1,6 @@
-import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ModalDirective} from 'ngx-bootstrap';
-import { tap, skipWhile } from 'rxjs/operators';
+import {tap, skipWhile} from 'rxjs/operators';
 import {HttpClient} from '@angular/common/http';
 import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
@@ -12,9 +12,15 @@ import {environment} from '../../../environments/environment.prod';
 export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
     @ViewChild('videoHighlightModal') public videoHighlightModal: ModalDirective;
 
+    @ViewChild('listVideoRef') listVideoRef: ElementRef;
+
     environment: any;
 
+    hightlightStatus: Array<boolean> = [];
+
     public videos: Array<any> = [];
+
+    public listItemSelected: string[] = [];
 
     public httpReqestInProgress: boolean = false;
 
@@ -31,13 +37,13 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
 
     }
 
-	ngAfterViewInit() {
-		this.getVideosPublished(
-			this.currentPage,
-			(videos) => {
-				this.videos = this.videos.concat(videos);
-			});
-	}
+    ngAfterViewInit() {
+        this.getVideosPublished(
+            this.currentPage,
+            (videos) => {
+                this.videos = this.videos.concat(videos);
+            });
+    }
 
     show() {
         this.videoHighlightModal.show();
@@ -66,7 +72,9 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
     private getVideosPublished(page: number = 1, saveResultsCallback: (videos) => void) {
         return this.videoService.getVideoPublishedPaginate(page).pipe(
             skipWhile(() => this.httpReqestInProgress),
-            tap(() => { this.httpReqestInProgress = true; })
+            tap(() => {
+                this.httpReqestInProgress = true;
+            })
         ).subscribe((videos: any[]) => {
             this.currentPage++;
             saveResultsCallback(videos);
@@ -74,4 +82,17 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
         });
     }
 
+    eventSaveHighlight() {
+        this.listItemSelected = this.getIds();
+        console.log(this.listItemSelected);
+    }
+
+    getIds() {
+        const listIdVideo = [];
+        const elements = this.listVideoRef.nativeElement.querySelectorAll('[data-selected="true"]');
+        elements.forEach(element => {
+            listIdVideo.push(element.getAttribute('data-item'));
+        });
+        return listIdVideo;
+    }
 }

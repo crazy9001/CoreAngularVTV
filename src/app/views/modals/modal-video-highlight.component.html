@@ -17,11 +17,11 @@
                                 <div class="_6rp1  _50f7 _2ien _2iex">4/5</div>
                             </div>
                             <div class="_6nr7  _2ieq">Bạn có thể chọn tới 5 video để hiển thị nổi bật ở đầu Trang.</div>
-                            <div class="CMSListVideoPublic"
+                            <div class="CMSListVideoPublic" #listVideoRef
                                  ngxInfiniteScroller
                                  strategy="scrollingToBoth"
                                  (onScrollDown)="onScrollDown()">
-                                <div class="CMSVideoPublicItem" *ngFor="let video of videos">
+                                <div class="CMSVideoPublicItem" *ngFor="let video of videos, let i = index" [attr.data-selected]="hightlightStatus[i]" [attr.data-item]="video.id" (click)="hightlightStatus[i]=!hightlightStatus[i];" [class._6nhp]="hightlightStatus[i]" >
                                     <div class="_6nhq">
                                         <div class="CMSVideoPublicItemAvatar">
                                             <div class="_3g12">
@@ -49,8 +49,8 @@
                                     <div class="_6os_ _6osy">
                                         <div class="_6otz"
                                              data-tooltip-content="Unselect a video before adding this one."
-                                             data-hover="tooltip" id="js_2cl"><i alt=""
-                                                                                 class="img sp_-HmUbA4wUN9 sx_4ec9b2"></i>
+                                             data-hover="tooltip" id="js_2cl">
+                                            <i alt="" class="img sp_-HmUbA4wUN9 sx_4ec9b2" [class.sx_be05da]="hightlightStatus[i]" ></i>
                                         </div>
                                     </div>
                                 </div>
@@ -58,7 +58,7 @@
                             </div>
                             <div class="_6q6n">
                                 <button class="btn btn-outline-dark" type="button">Hủy</button>
-                                <button aria-pressed="true" class="btn CMSCustomBtn" type="button">Lưu</button>
+                                <button aria-pressed="true" class="btn CMSCustomBtn" type="button" (click)="eventSaveHighlight()">Lưu</button>
                             </div>
                         </tab>
                         <tab>

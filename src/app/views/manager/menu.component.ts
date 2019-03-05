@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {ICategory} from '../../model/type';
+import {DefaultCategory} from '../../model/type';
 import {CategoryService} from '../../services/category.service';
 import {MenuService} from '../../services/menu.service';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -13,7 +13,7 @@ export class MenuComponent implements OnInit {
 
     createFormMenu: FormGroup;
     typeIn = true;
-    categories: Array<ICategory>;
+    categories: Array<DefaultCategory>;
     listMenu: any;
     constructor(
         private formBuilder: FormBuilder,
@@ -42,7 +42,6 @@ export class MenuComponent implements OnInit {
 
     defaultMenu () {
         this.menuService.getAllMenu().then(menu => {
-            console.log(menu);
             this.listMenu = menu;
         });
     }
@@ -59,7 +58,7 @@ export class MenuComponent implements OnInit {
     }
 
     getCategoryDefault() {
-        this.categoryService.getVideoCategoryByUser().then(category => {
+        this.categoryService.getAllCategory().then(category => {
             this.categories = category;
         });
     }

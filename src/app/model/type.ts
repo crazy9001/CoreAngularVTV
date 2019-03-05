@@ -2,7 +2,10 @@ interface ICategory {
     id: number | string;
     text: string;
 }
-
+interface DefaultCategory {
+    id: number | string;
+    name: string;
+}
 interface IVideoForm {
     id: number;
     title: string;
@@ -34,5 +37,6 @@ interface IProgram {
 export {
     ICategory,
     IVideoForm,
-    IProgram
+    IProgram,
+    DefaultCategory
 };

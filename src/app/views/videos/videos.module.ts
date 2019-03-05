@@ -30,6 +30,8 @@ import {ModalVideoHighlightComponent} from '../modals/modal-video-highlight.comp
 import { NgxInfiniteScrollerModule } from 'ngx-infinite-scroller';
 import {TimeAgoPipe} from 'time-ago-pipe';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import {ManagerModule} from '../manager/manager.module';
+import {MediaModule} from '../media/media.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -51,8 +53,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     declarations: [
         VideoDraftComponent,
         VideoCreateComponent,
-        ModalMediaVideoComponent,
-        MediaVideoDetailComponent,
         PreviewVideoComponent,
         VideoEditorComponent,
         VideoPublishComponent,
@@ -73,7 +73,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         DropzoneModule,
         PerfectScrollbarModule,
         NgxInfiniteScrollerModule,
-        DragDropModule
+        DragDropModule,
+        MediaModule
     ],
     providers: [
         {

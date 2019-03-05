@@ -46,7 +46,6 @@ export class ModalAddProgramComponent implements OnInit {
 
     eventReceiveImageMultipleInsert($event) {
         this.lstImageInsert.push($event.thumbnails[2]);
-        console.log(this.lstImageInsert);
     }
 
     onSubmit() {
@@ -59,6 +58,5 @@ export class ModalAddProgramComponent implements OnInit {
 
             }
         });
-        console.log(this.createProgramForm.value);
     }
 }

@@ -12,17 +12,15 @@ import {NgxSmartModalModule} from 'ngx-smart-modal';
 import {ModalUserpasswordComponent} from '../modals/modal-userpassword.component';
 import {ModalAdduserComponent} from '../modals/modal-adduser.component';
 import { ModalAddProgramComponent } from '../modals/modal-add-program.component';
-import {ModalMediaImagesComponent} from '../media/modal-media-images.component';
 import {ModalModule, TabsModule} from 'ngx-bootstrap';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
 import {CONST} from './../../services/app-const';
 import {environment} from './../../../environments/environment.prod';
 import {DROPZONE_CONFIG, DropzoneConfigInterface} from 'ngx-dropzone-wrapper';
-import {MediaImageDetailComponent} from '../media/media-image-detail.component';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
-import {MultiMediaImagesComponent} from '../media/multi-media-images.component';
+import {MediaModule} from '../media/media.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -49,10 +47,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalUserinfomationComponent,
         ModalUserpasswordComponent,
         ModalAdduserComponent,
-        ModalAddProgramComponent,
-        ModalMediaImagesComponent,
-        MultiMediaImagesComponent,
-        MediaImageDetailComponent
+        ModalAddProgramComponent
     ]
     ,
     imports: [
@@ -65,6 +60,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         TabsModule,
         DropzoneModule,
         PerfectScrollbarModule,
+        MediaModule
     ],
     providers: [
         {

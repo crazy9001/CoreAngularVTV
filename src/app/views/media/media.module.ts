@@ -61,7 +61,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
         }
     ],
-    exports: []
+    exports: [
+        ModalMediaVideoComponent,
+        MediaVideoDetailComponent,
+        ModalMediaImagesComponent,
+        MediaImageDetailComponent,
+        MultiMediaImagesComponent
+    ]
 })
 export class MediaModule {
 }

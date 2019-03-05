@@ -6,6 +6,7 @@ import {VideoService} from '../../services/video.service';
 import {ICategory} from '../../model/type';
 import {CategoryService} from '../../services/category.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import {ModalMediaImagesComponent} from '../media/modal-media-images.component';
 
 @Component({
     selector: 'app-video-create',
@@ -14,12 +15,14 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class VideoCreateComponent implements OnInit {
 
     @ViewChild('mediaVideoModal') mediaVideoModal: ModalMediaVideoComponent;
+    @ViewChild('mediaImageModal') mediaImageModal: ModalMediaImagesComponent;
     urlVideoInsert: string;
     idStorage: number;
     listThumbs: any;
     environment: any;
     createVideoForm: FormGroup;
     categories: Array<ICategory>;
+    customThumb = '';
     constructor(
         private viewContainerRef: ViewContainerRef,
         private formBuilder: FormBuilder,
@@ -71,5 +74,11 @@ export class VideoCreateComponent implements OnInit {
 
             }
         });
+    }
+    eventReceiveImageInsert(event) {
+        if (event) {
+            this.customThumb = event.thumbnails[0];
+        }
+
     }
 }

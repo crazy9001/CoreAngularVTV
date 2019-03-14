@@ -1,8 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {ProgramService} from '../../services/program.service';
 import {NgxSmartModalService} from 'ngx-smart-modal';
 import {environment} from '../../../environments/environment.prod';
+import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
     selector: 'app-program',
@@ -17,6 +19,7 @@ export class ProgramComponent implements OnInit {
         private formBuilder: FormBuilder,
         private programService: ProgramService,
         public ngxSmartModalService: NgxSmartModalService,
+        private confirmationDialogService: ConfirmationDialogService,
     ) {
         this.environment = environment;
     }
@@ -29,6 +32,28 @@ export class ProgramComponent implements OnInit {
         this.programService.getAllProgram().then(program => {
             this.listProgram = program;
         });
+    }
+
+    eventReceiverAddProgram($event) {
+        if ($event === 'true') {
+            this.getAllProgram();
+            this.ngxSmartModalService.getModal('popupAddProgram').close();
+        }
+    }
+
+    eventDeleteProgram(id: number) {
+        this.confirmationDialogService.confirm('Xác nhận', 'Xóa chương trình ?')
+            .then((confirmed) => {
+                if (confirmed) {
+                    this.programService.removeProgram(id).then(res => {
+                        console.log(res);
+                        this.getAllProgram();
+                    }, (errorRes: HttpErrorResponse) => {
+                    });
+                }
+            })
+            .catch(() => {
+            });
     }
 
 }

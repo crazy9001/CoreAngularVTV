@@ -493,8 +493,18 @@
   z-index: 99;
 }
 
-.CMSProgramAvatar {
+.CMSProgramAvatar, .CMSProgramStatus, .CMSProgramAction {
+  text-align: center !important;
+  vertical-align: middle !important;
+}
+
+.CMSProgramAvatar img {
   width: 150px;
+  height: 84px;
+}
+.CMSProgramName {
+  vertical-align: middle !important;
+  font-weight: bold;
 }
 
 .CMSPageStats {
@@ -611,9 +621,11 @@
   line-height: 17px;
   margin-top: 12px;
 }
+
 #CMSBodyModalVideoHighlight {
   padding: 0;
 }
+
 .CMSTabsetModalVideoHighlight {
   background-color: #fff;
   display: flex;
@@ -852,19 +864,22 @@
   background-color: #4267b2 !important;
   color: #fff !important;
 }
-.CMSModalListVideoPublished .modal-dialog{
-  max-width:964px !important;
+
+.CMSModalListVideoPublished .modal-dialog {
+  max-width: 964px !important;
   margin: auto;
   position: absolute;
-  top:50px;
+  top: 50px;
   right: 0;
   bottom: 0;
   left: 0;
 }
+
 ._6nhq {
   display: flex;
   flex-grow: 1;
 }
+
 ._6osy {
   align-items: center;
   display: flex;
@@ -873,6 +888,7 @@
   justify-content: center;
   width: 113px;
 }
+
 ._6otz {
   align-items: center;
   display: flex;
@@ -880,11 +896,13 @@
   justify-content: center;
   width: 24px;
 }
+
 .sp_-HmUbA4wUN9.sx_be05da {
   width: 24px;
   height: 24px;
   background-position: 0 0;
 }
+
 .sp_-HmUbA4wUN9 {
   background-image: url(https://static.xx.fbcdn.net/rsrc.php/v3/yc/r/mmVP3gvBCzr.png);
   background-size: auto;
@@ -893,15 +911,18 @@
   height: 16px;
   width: 16px;
 }
+
 ._6q6f, ._6os_ {
   opacity: 0;
-  transition: opacity 200ms cubic-bezier(.12,.8,.32,1);
+  transition: opacity 200ms cubic-bezier(.12, .8, .32, 1);
 }
+
 .sp_-HmUbA4wUN9.sx_4ec9b2 {
   width: 24px;
   height: 24px;
   background-position: 0 -25px;
 }
+
 .sp_-HmUbA4wUN9.sx_be05da {
   width: 24px;
   height: 24px;
@@ -928,6 +949,7 @@
 .cdk-drag-animating {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
+
 #VMVideoEditItemAvatarChoose li {
   list-style-type: none;
   float: left;
@@ -936,15 +958,18 @@
   padding: 5px;
   vertical-align: top;
 }
+
 #VMWrapper .VMButton {
   white-space: nowrap;
 }
+
 .VMButton.Lower {
   text-transform: capitalize;
   height: 25px;
   line-height: 25px;
   padding: 0 8px;
 }
+
 .VMButton {
   background: url(https://ims.mediacdn.vn/Statics2/ModuleExtensions/VTV/VideoManagerV2/Templates/images/VMVideoDetailButtonBg.png) repeat-x;
   height: 31px;

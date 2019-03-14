@@ -9,7 +9,7 @@
                     </button>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="CMSFixTable">
                         <thead>
                             <tr>
                                 <th>Tên chương trình</th>
@@ -20,15 +20,17 @@
                         </thead>
                         <tbody *ngIf="listProgram">
                             <tr *ngFor="let program of listProgram">
-                                <td>{{ program.name }}</td>
-                                <td>
-                                    <img class="CMSProgramAvatar" [src]="environment.storage_url + program.content.content">
+                                <td class="CMSProgramName">{{ program.name }}</td>
+                                <td class="CMSProgramAvatar">
+                                    <img [src]="environment.storage_url + program.content.content">
                                 </td>
-                                <td>
-                                    {{ program.active === 1 ? 'Acctive' : 'Inactive' }}
+                                <td class="CMSProgramStatus">
+                                    {{ program.active === 1 ? 'Active' : 'Inactive' }}
                                 </td>
-                                <td>
-                                    <span class="badge badge-success">Active</span>
+                                <td class="CMSProgramAction">
+                                    <button aria-pressed="true" class="btn btn-square btn-danger" type="button" title="Xóa" (click)="eventDeleteProgram(program.id)">
+                                        <i class="fa fa-trash-o fa-lg"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -38,4 +40,4 @@
         </div>
     </div>
 </div>
-<app-modal-add-program></app-modal-add-program>
+<app-modal-add-program (messageEventAddProgram)="eventReceiverAddProgram($event)"></app-modal-add-program>

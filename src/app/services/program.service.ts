@@ -21,6 +21,14 @@ export class ProgramService {
             .catch(this.handleError);
     }
 
+    removeProgram(id: number) {
+        return this.httpClient.delete<any>(`${environment.api_url}` + '/program/category/' + id)
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
     private handleError(error: any): Promise<any> {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);

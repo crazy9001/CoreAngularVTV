@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ModalMediaImagesComponent} from '../media/modal-media-images.component';
 import {environment} from '../../../environments/environment.prod';
@@ -13,6 +13,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 export class ModalAddProgramComponent implements OnInit {
     @ViewChild('mediaImageModal') mediaImageModal: ModalMediaImagesComponent;
     @ViewChild('mediaImageMultipleModal') mediaImageMultipleModal: MultiMediaImagesComponent;
+    @Output() messageEventAddProgram = new EventEmitter<string>();
     createProgramForm: FormGroup;
     imageInsert: any;
     lstImageInsert: string[] = [];
@@ -53,6 +54,7 @@ export class ModalAddProgramComponent implements OnInit {
             this.createProgramForm.reset();
             this.lstImageInsert = [];
             this.imageInsert = '';
+            this.messageEventAddProgram.emit('true');
         }, (errorRes: HttpErrorResponse) => {
             if (errorRes.status === 401) {
 

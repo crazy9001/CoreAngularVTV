@@ -56,4 +56,11 @@ export class ProgramComponent implements OnInit {
             });
     }
 
+    viewProgram(program) {
+        console.log(program);
+        this.ngxSmartModalService.getModal('popupEditProgram').open();
+        this.ngxSmartModalService.resetModalData('popupEditProgram');
+        this.ngxSmartModalService.setModalData(program, 'popupEditProgram');
+    }
+
 }

@@ -20,7 +20,11 @@
                         </thead>
                         <tbody *ngIf="listProgram">
                             <tr *ngFor="let program of listProgram">
-                                <td class="CMSProgramName">{{ program.name }}</td>
+                                <td class="CMSProgramName">
+                                    <a (click)="viewProgram(program)">
+                                        {{ program.name }}
+                                    </a>
+                                </td>
                                 <td class="CMSProgramAvatar">
                                     <img [src]="environment.storage_url + program.content.content">
                                 </td>
@@ -41,3 +45,4 @@
     </div>
 </div>
 <app-modal-add-program (messageEventAddProgram)="eventReceiverAddProgram($event)"></app-modal-add-program>
+<app-modal-edit-program></app-modal-edit-program>

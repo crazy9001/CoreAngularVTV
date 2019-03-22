@@ -1,0 +1,127 @@
+<ngx-smart-modal #popupEditProgram customClass="msg-modal-edit-program" [identifier]="'popupEditProgram'" [dismissable]="false">
+    <div *ngIf="popupEditProgram.hasData()">
+        <div class="CMSPopupHeader">
+            <span class="CMSTitlePopup">Chỉnh sửa chương trình</span>
+        </div>
+        <div class="CMSPopupBody" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 212px);">
+            <form [formGroup]="editProgramForm">
+                <div class="CMSCreateBox">
+                    <h4 class="CMSCreateBoxHeader">
+                        Ảnh đại diện
+                    </h4>
+                    <div class="CMSCreateBoxContent">
+                        <div class="CMSCreateBoxVideoLoading">
+                            <div class="CMSCreateBoxUploadWrapper">
+                                <div class="CMsVideoUploadControlWrapper">
+                                    <label class="CMSUploadVideoLabel" data-toggle="modal" data-target="#__mediaUploadImage" (click)="mediaImageModal.show()">
+                                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Chèn ảnh
+                                    </label>
+                                </div>
+                                <img [src]="environment.storage_url + popupEditProgram.getData().content.content">
+                                <input type="hidden" formControlName="content" [ngModel]="imageInsert" class="form-control" autocomplete="off">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="CMSCreateBox">
+                    <h4 class="CMSCreateBoxHeader">
+                        Ảnh khác
+                    </h4>
+                    <div class="CMSCreateBoxContent">
+                        <div class="form-group" id="CMSImageOtherWrapper">
+                            <div id="CMSSelectedImageList">
+                                <div class="row" *ngIf="popupEditProgram.getData().attribute.images.length > 0">
+                                    <div class="CMSOtherImageItem " *ngFor="let imageOther of popupEditProgram.getData().attribute.images">
+                                        <img [src]="environment.storage_url + imageOther">
+                                        <div class="CMSBTNRemoveImageProgram"></div>
+                                        <input type="hidden" formControlName="images" [ngModel]="lstImageInsert" class="form-control" autocomplete="off">
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                                <div class="col-sm-4" style="padding: 0px">
+                                    <div class="CMSButtonAddMoreImages">
+                                        <label class="CMSButtonWrapper" data-toggle="modal" data-target="#__mediaUploadImage" (click)="mediaImageMultipleModal.show()">
+                                            <i class="fa fa-plus fa-lg"></i>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="CMSCreateBox">
+                    <h4 class="CMSCreateBoxHeader">
+                        Thông tin chương trình
+                    </h4>
+                    <div class="CMSCreateBoxContent">
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="CMSProgramTitle" class="col-sm-3 control-label">Tên</label>
+                                <div class="col-sm-9">
+                                    <input formControlName="name" [(value)]="popupEditProgram.getData().name" autocomplete="off" type="text" class="form-control" id="CMSProgramTitle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="CMSProgramDescription" class="col-sm-3 control-label">Mô tả ngắn</label>
+                                <div class="col-sm-9">
+                                    <input formControlName="description" [(value)]="popupEditProgram.getData().description" autocomplete="off" type="text" class="form-control input-lg" id="CMSProgramDescription">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label class="col-sm-3 control-label">Trạng thái</label>
+                                <div class="col-sm-9">
+                                    <label>
+                                        <input type="checkbox" formControlName="active" checked="checked" [(ngModel)]="popupEditProgram.getData().active" [checked]="popupEditProgram.getData().active">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="CMSCreateBox">
+                    <h4 class="CMSCreateBoxHeader">
+                        Thông tin SEO
+                    </h4>
+                    <div class="CMSCreateBoxContent">
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="CMSProgramMetaTitle" class="col-sm-3 control-label">Meta Title</label>
+                                <div class="col-sm-9">
+                                    <input type="text" formControlName="seo_title" [(value)]="popupEditProgram.getData().seo.seo_title" autocomplete="off" class="form-control" id="CMSProgramMetaTitle">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="CMSProgramMetaKeyword" class="col-sm-3 control-label">Meta Keyword</label>
+                                <div class="col-sm-9">
+                                    <input type="text" formControlName="seo_keywords" [(value)]="popupEditProgram.getData().seo.seo_keywords" autocomplete="off" class="form-control" id="CMSProgramMetaKeyword">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <label for="CMSProgramMetaDescription" class="col-sm-3 control-label">Meta Description</label>
+                                <div class="col-sm-9">
+                                    <input type="text" formControlName="seo_description" [(value)]="popupEditProgram.getData().seo.seo_description" autocomplete="off" class="form-control input-lg" id="CMSProgramMetaDescription">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="CMSPopupFooter">
+            <button type="button" (click)="onSubmit()">Cập nhật</button>
+            <button type="button" (click)="popupAddProgram.close()">Huỷ</button>
+        </div>
+    </div>
+</ngx-smart-modal>

@@ -21,6 +21,7 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {MediaModule} from '../media/media.module';
+import {ModalEditProgramComponent} from '../modals/modal-edit-program.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -47,7 +48,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalUserinfomationComponent,
         ModalUserpasswordComponent,
         ModalAdduserComponent,
-        ModalAddProgramComponent
+        ModalAddProgramComponent,
+        ModalEditProgramComponent
     ]
     ,
     imports: [

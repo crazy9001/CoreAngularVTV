@@ -22,6 +22,15 @@ export class CategoryService {
             .catch(this.handleError);
     }
 
+    getProgramByUser() {
+        return this.httpClient.get(`${environment.api_url}` + '/program/user/category')
+            .toPromise()
+            .then((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
     getAllCategory() {
         return this.httpClient.get(`${environment.api_url}` + '/video/category')
             .toPromise()

@@ -83,9 +83,16 @@
                                 <select id="select1" formControlName="category_id" class="form-control">
                                     <option value="0"></option>
                                     <option [ngValue]="null">Chọn giá trị...</option>
-                                    <option *ngFor="let category of categories" [ngValue]="category.id">
-                                        {{ category?.text }}
-                                    </option>
+                                    <optgroup label="Chuyên mục">
+                                        <option *ngFor="let category of categories" [ngValue]="category.id">
+                                            {{ category?.text }}
+                                        </option>
+                                    </optgroup>
+                                    <optgroup label="Chương trình">
+                                        <option *ngFor="let program of programs" [ngValue]="program.id">
+                                            {{ program?.text }}
+                                        </option>
+                                    </optgroup>
                                 </select>
                             </div>
                         </div>

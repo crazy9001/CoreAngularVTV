@@ -22,6 +22,7 @@ export class VideoCreateComponent implements OnInit {
     environment: any;
     createVideoForm: FormGroup;
     categories: Array<ICategory>;
+    programs: Array<ICategory>;
     customThumb = '';
     constructor(
         private viewContainerRef: ViewContainerRef,
@@ -35,6 +36,7 @@ export class VideoCreateComponent implements OnInit {
     ngOnInit() {
         this.createForm();
         this.getCategoryDefault();
+        this.getProgramDefault();
     }
 
     eventReceiveVideoInsert($event) {
@@ -64,6 +66,12 @@ export class VideoCreateComponent implements OnInit {
     getCategoryDefault() {
         this.categoryService.getVideoCategoryByUser().then(category => {
             this.categories = category;
+        });
+    }
+
+    getProgramDefault() {
+        this.categoryService.getProgramByUser().then(programs => {
+            this.programs = programs;
         });
     }
     onSubmit() {

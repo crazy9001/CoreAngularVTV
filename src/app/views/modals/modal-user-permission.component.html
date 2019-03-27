@@ -1,0 +1,92 @@
+<ngx-smart-modal #popupPermissionUser [identifier]="'popupPermissionUser'" [dismissable]="false">
+    <div class="CMSPopupHeader">
+        <span class="CMSTitlePopup">Phân quyền user</span>
+    </div>
+    <form [formGroup]="permissionUserForm">
+        <div class="PBox PBoxLeft" id="PBox_1" data="1">
+            <div class="PBox_Header">
+                <span>Quản lý video</span>
+                <i class="NewsBoxIcon"></i>
+            </div>
+            <div class="PBox_Body">
+                <div class="PBox_Body_Left IMSFloatLeft CMSBoxListPermission">
+
+                    <div class="CMSPRole">
+                        <input type="radio"
+                               [value]="3"
+                               [checked]="popupPermissionUser.getData().roles[0].id === 3" [(ngModel)]="popupPermissionUser.getData().roles[0].id"
+                               id="CMSPermissionReporter" formControlName="user_role"
+                        >
+                        <label for="CMSPermissionReporter"><span></span>
+                            <b>Phóng viên</b>
+                        </label>
+                    </div>
+                    <div class="CMSPRole">
+                        <input type="radio"
+                               [value]="2"
+                               [checked]="popupPermissionUser.getData().roles[0].id === 2" [(ngModel)]="popupPermissionUser.getData().roles[0].id"
+                               id="CMSPermissionEditor" formControlName="user_role"
+                        >
+                        <label for="CMSPermissionEditor"><span></span>
+                            <b>Biên tập viên</b>
+                        </label>
+                    </div>
+                    <div class="CMSPRole">
+                        <input type="radio"
+                               [value]="1"
+                               [checked]="popupPermissionUser.getData().roles[0].id === 1" [(ngModel)]="popupPermissionUser.getData().roles[0].id"
+                               id="CMSPermissionSecretary" formControlName="user_role"
+                        >
+                        <label for="CMSPermissionSecretary"><span></span>
+                            <b>Thư ký</b>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="slimScrollDiv">
+                    <div class="PBox_Body_Right IMSFloatRight" style="height: 185px; overflow: hidden; width: 60%; overflow-y: scroll">
+                        <div class="RoleItem">
+                            <div>
+                                <label class="IMSCheckboxLabel" style="font-size: 10pt !important; color: #666 !important; font-weight: bold;" >
+                                    Tất cả chuyên mục
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="RoleItem" *ngFor="let VCategory of categories">
+                            <div>
+                                <input type="checkbox" class="IMSCheckbox">
+                                <label class="IMSCheckboxLabel" style="font-size: 10pt !important; color: #666 !important;">
+                                    {{ VCategory?.name }}
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="RoleItem">
+                            <div>
+                                <label class="IMSCheckboxLabel" style="font-size: 10pt !important; color: #666 !important; font-weight: bold;">
+                                    Tất cả chương trình
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="RoleItem" *ngFor="let VProgram of programs">
+                            <div>
+                                <input type="checkbox" class="IMSCheckbox">
+                                <label class="IMSCheckboxLabel" style="font-size: 10pt !important; color: #666 !important;">
+                                    {{ VProgram?.name }}
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+    <div class="CMSPopupFooter">
+        <button type="button" [disabled]="permissionUserForm.invalid" (click)="onSubmit()">Cập nhật</button>
+        <button type="button" (click)="popupPermissionUser.close()">Huỷ</button>
+    </div>
+</ngx-smart-modal>

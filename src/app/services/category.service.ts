@@ -40,6 +40,15 @@ export class CategoryService {
             .catch(this.handleError);
     }
 
+    getAllProgram() {
+        return this.httpClient.get(`${environment.api_url}` + '/program/category')
+            .toPromise()
+            .then((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
     createCategory(program: IProgram) {
         return this.httpClient.post<any>(`${environment.api_url}/program/category `, program)
             .do(data => {

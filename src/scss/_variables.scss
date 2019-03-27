@@ -986,3 +986,126 @@
   font-size: 12px !important;
   font-weight: bold;
 }
+
+
+.PBoxLeft {
+  float: left;
+  margin-top: 20px;
+}
+.PBox {
+  border: 1px solid #bfbfc5;
+  border-radius: 5px;
+  width: 100%;
+  height: 219px;
+}
+
+.PBox_Header {
+  height: 33px;
+  background: url(https://ims.mediacdn.vn/Statics2/Modules/AccountV2/Templates/images/HeaderBoxBG.png) repeat-x;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  border-bottom: 1px solid #C1C1C1;
+}
+.IMSFloatLeft {
+  float: left;
+  white-space: nowrap;
+}
+.IMSFloatRight {
+  float: right;
+  white-space: nowrap;
+}
+.PRole {
+  height: 30px;
+  background: url(https://ims.mediacdn.vn/Statics2/Modules/AccountV2/Templates/images/ItemBG.png) repeat-x;
+  border-top: 1px solid #d9d8d7;
+  border-right: 1px solid #d9d8d7;
+  cursor: pointer;
+}
+.PRole span {
+  color: #737373;
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 12px;
+  margin-top: 5px;
+  overflow: hidden;
+  float: left;
+}
+.PBox_Header span {
+  text-transform: uppercase;
+  font-size: 10pt;
+  font-weight: bold;
+  color: #686868;
+  display: inline-block;
+  margin-top: 8px;
+  margin-left: 12px;
+}
+.PBox_Body div.PBox_Body_Left {
+  width: 40%;
+}
+.RoleItem:nth-of-type(even) {
+  background-color: #f6f6f6;
+}
+.RoleItem {
+  height: 23px;
+}
+.RoleItem {
+  white-space: nowrap;
+}
+#PermissionUpdate_Body .IMSCheckboxLabel {
+  white-space: nowrap;
+}
+input[type=checkbox].IMSCheckbox + label.IMSCheckboxLabel {
+  padding-left: 16px;
+  height: 16px;
+  display: inline-block;
+  line-height: 16px;
+  background-repeat: no-repeat;
+  background-position: -5px -5px;
+  font-size: 15px;
+  vertical-align: middle;
+  cursor: pointer;
+  text-indent: 8px;
+}
+.RoleItem input {
+  margin-left: 20px !important;
+}
+
+.CMSBoxListPermission input[type="radio"] {
+  display: none;
+}
+
+.CMSBoxListPermission input[type="radio"]:checked + label span {
+  display: inline-block;
+  width: 19px;
+  height: 19px;
+  vertical-align: middle;
+  cursor: pointer;
+  background: url(https://ims.mediacdn.vn/Statics2/Modules/AccountV2/Templates/images/SelectedIcon.png)no-repeat;
+  float: right;
+  margin-top: 4px
+}
+
+.CMSPRole {
+  height: 30px;
+  background: url(https://ims.mediacdn.vn/Statics2/Modules/AccountV2/Templates/images/ItemBG.png) repeat-x;
+  border-top: 1px solid #d9d8d7;
+  border-right: 1px solid #d9d8d7;
+  cursor: pointer;
+}
+
+.CMSPRole label {
+  width: 100%;
+}
+.CMSPRole label b {
+  color: #737373;
+  display: inline-block;
+  font-size: 14px;
+  margin-left: 12px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+.RoleItem label {
+  margin-left: 20px !important;
+}
+
+

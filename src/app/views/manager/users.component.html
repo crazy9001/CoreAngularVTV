@@ -48,7 +48,7 @@
                                     <a class="icon-refresh icons font-2xl d-block" (click)="ngxSmartModalService.getModal('popupUserPassword').open(); changePasswordUser(user)"></a>
                                 </td>
                                 <td class="CMSUserRole">
-                                    <a class="icon-shield icons font-2xl d-block"></a>
+                                    <a class="icon-shield icons font-2xl d-block" (click)="changePermissionUser(user)"></a>
                                 </td>
                             </tr>
                         </tbody>
@@ -69,3 +69,4 @@
 <app-modal-userinfomation></app-modal-userinfomation>
 <app-modal-userpassword></app-modal-userpassword>
 <app-modal-adduser (messageEventAddUser)="receiAddUserEvent($event)"></app-modal-adduser>
+<app-modal-user-permission *ngIf="selectedUser"></app-modal-user-permission>

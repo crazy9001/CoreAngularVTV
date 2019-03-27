@@ -11,7 +11,7 @@ import {Users} from '../../model/users.model';
 export class UsersComponent implements OnInit {
 
     users: UsersPaginate;
-
+    selectedUser = false;
     constructor(
         private usersService: UsersService,
         public ngxSmartModalService: NgxSmartModalService,
@@ -44,6 +44,13 @@ export class UsersComponent implements OnInit {
     changePasswordUser(user: Users) {
         this.ngxSmartModalService.resetModalData('popupUserPassword');
         this.ngxSmartModalService.setModalData(user, 'popupUserPassword');
+    }
+
+    changePermissionUser(user: Users) {
+        this.selectedUser = true;
+        this.ngxSmartModalService.getModal('popupPermissionUser').open();
+        this.ngxSmartModalService.resetModalData('popupPermissionUser');
+        this.ngxSmartModalService.setModalData(user, 'popupPermissionUser');
     }
 
     receiAddUserEvent(event) {

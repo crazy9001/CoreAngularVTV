@@ -90,6 +90,10 @@ export const routes: Routes = [
                 loadChildren: './views/videos/videos.module#VideosModule'
             },
             {
+                path: 'posts',
+                loadChildren: './views/posts/posts.module#PostsModule'
+            },
+            {
                 path: 'manager',
                 loadChildren: './views/manager/manager.module#ManagerModule'
             },

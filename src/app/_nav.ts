@@ -64,6 +64,22 @@ export const navItems: NavData[] = [
     },
     {
         title: true,
+        name: 'Quản lý tin'
+    },
+    {
+        name: 'Tin bài',
+        url: '/posts',
+        icon: 'fa fa-newspaper-o fa-lg',
+        children: [
+            {
+                name: 'Viết bài mới',
+                url: '/posts/create',
+                icon: 'fa fa-plus-circle fa-lg'
+            },
+        ]
+    },
+    {
+        title: true,
         name: 'Quản lý hệ thống'
     },
     {

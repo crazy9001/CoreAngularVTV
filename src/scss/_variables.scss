@@ -1,4 +1,9 @@
 // Variable overrides
+.form-control:focus {
+  background-color: #fff;
+  outline: 0;
+  box-shadow: unset !important;
+}
 
 .email-app {
   display: -ms-flexbox;
@@ -1107,5 +1112,217 @@ input[type=checkbox].IMSCheckbox + label.IMSCheckboxLabel {
 .RoleItem label {
   margin-left: 20px !important;
 }
+#CMSTabEditor {
+  padding: 0;
+  float: left;
+  height: 100%;
+  position: relative;
+}
+#CMSTabInfo {
+  z-index: 999;
+  padding: 52px 0;
+  float: left;
+  height: 100%;
+  position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 
+#NLEditorHeader {
+  text-align: center;
+  background: #f4f4f4 none repeat scroll 0 0;
+  color: #fff;
+  display: inline-block;
+  width: 100%;
+  padding-top: 7px;
+}
+#NLEditorToolbar {
+  padding: 0 0 7px;
+  font-size: 14px;
+  display: inline-block;
+  text-rendering: optimizeLegibility;
+}
+#NLEditorToolbar > ul {
+  background: #fff none repeat scroll 0 0;
+  border-radius: 2px;
+  color: #fff;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 0;
+}
+#NLEditorToolbar > ul li {
+  border-right: 1px solid #f4f4f4;
+  -moz-user-select: none;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin: 0;
+  padding: 10px 13px;
+  -webkit-user-select: none;
+  user-select: none;
+  position: relative;
+  color: #777;
+  text-rendering: optimizeLegibility;
+  box-sizing: border-box;
+}
+#NLEditorToolbar > ul li i {
+  text-rendering: optimizeLegibility;
+}
+#NLEditorToolbar > ul li:not(.disable):hover {
+  background-color: #e4e4e4;
+  color: #333;
+  border-right: solid 1px transparent;
+}
+#IMSNewsLayout {
+  overflow: auto;
+  position: relative;
+  background: #f4f4f4;
+}
+#NLEditorOuter {
+  position: relative;
+  margin: 0 auto;
+  padding: 30px 0;
+  background: #fff;
+  height: 100%;
+}
+#IMSNewsLayout #NLEditor {
+  text-align: justify;
+  width: 90%;
+}
+#NLEditor p{
+  font-family: Arial, sans-serif;
+  font-size: 15px !important;
+  line-height: 22px !important;
+  color: #3c3c3c;
+}
+#NLEditor {
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+#NLEditor > p {
+  border: 1px dashed #cccccc;
+}
+#NLEditor > p {
+  min-height: 30px;
+  position: relative;
+}
+#NLEditor > p {
+  margin-bottom: 15px;
+}
+#NLEditor * {
+  box-sizing: border-box;
+}
+#IMSNewsLayout {
+  height: calc(100vh - 250px);
+}
 
+#IMSActionBar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  bottom: 0;
+  display: block;
+  padding: 10px;
+  box-sizing: border-box;
+  white-space: nowrap;
+  min-height: 30px;
+  text-align: right;
+  background: #e4e4e4 url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAcAAAAeCAMAAADXVfSyAAAAA1BMVEX0QUH9DumUAAAAC0lEQVR4AWMYYQAAAPAAAeK4dSIAAAAASUVORK5CYII=) no-repeat center left;
+}
+#TabInfo *, #TabInfo *:focus {
+  outline: none !important;
+}
+#IMSActionBar .NotPermission {
+  float: left;
+  display: inline-block;
+  line-height: 30px;
+  font-weight: bold;
+  color: #F44141;
+  padding: 0 10px;
+  font-size: 13px;
+}
+#IMSActionBar .btn.btn-default {
+  background: #c7c7c7 !important;
+}
+#IMSActionBar .btn {
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  color: #FFF !important;
+  text-shadow: none !important;
+}
+.IMSInfoBlock {
+  margin-bottom: 11px;
+  position: relative;
+  padding: 0 15px;
+}
+#IMSNewsInfo .IMSInfoBlockName {
+  border-left: 4px solid #16a086;
+}
+.IMSInfoBlockName {
+  background: #e4e4e4;
+  padding: 0 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #333;
+  z-index: 9;
+  height: 38px;
+  display: block;
+  line-height: 39px;
+  padding-left: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+#IMSNewsInfo .IMSInfoBlockContent, #IMSThirdInfoBlock .IMSInfoBlockContent {
+  padding-top: 15px;
+}
+/*.IMSInfoBlock .IMSInfoBlockName {
+  position: fixed;
+}*/
+#CMSTabInfo label {
+  display: block !important;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+#CMSTabInfo .form-control, #IMS_CheckTitle_Btn {
+  border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  font-family: Arial, sans-serif;
+  -moz-border-radius: 0 !important;
+}
+#CMSTabInfo .form-control {
+  font-size: 13px;
+  font-family: Arial, sans-serif;
+}
+
+.IMS_RightLabel {
+  color: #888888;
+  text-align: right;
+  margin-bottom: 10px !important;
+  font-size: 12px;
+  line-height: 19px;
+  margin-top: 0px;
+}
+.IMSRequireField {
+  color: #ff0000;
+}
+#IMS_FormEdit_Title {
+  resize: none;
+  height: 50px !important;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+#IMSTabInfoDetail {
+  height: calc(100vh - 295px);
+  position: relative;
+}
+#IMSThirdInfoBlock .IMSInfoBlockName {
+  border-left: 4px solid #5870cb;
+}

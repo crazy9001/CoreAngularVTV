@@ -14,9 +14,6 @@ import {ModalAdduserComponent} from '../modals/modal-adduser.component';
 import { ModalAddProgramComponent } from '../modals/modal-add-program.component';
 import {ModalModule, TabsModule} from 'ngx-bootstrap';
 import {DropzoneModule} from 'ngx-dropzone-wrapper';
-import {CONST} from './../../services/app-const';
-import {environment} from './../../../environments/environment.prod';
-import {DROPZONE_CONFIG, DropzoneConfigInterface} from 'ngx-dropzone-wrapper';
 import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
@@ -26,18 +23,6 @@ import {ModalUserPermissionComponent} from '../modals/modal-user-permission.comp
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
-};
-
-const token = localStorage.getItem(CONST.STORE_TOKEN);
-const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
-    url: `${environment.api_url}/media/upload`,
-    chunking: true,
-    method: 'POST',
-    maxFilesize: 2048,
-    chunkSize: 2000000,
-    acceptedFiles: 'image/*,.mp4',
-    dictDefaultMessage : '<img src="assets/img/graphic-upload-area.svg" class="upload-aria"><div class="uploader-active-text">Drag and drop files here</div>',
-    headers: {'Authorization': `Bearer ${token}`},
 };
 
 @NgModule({
@@ -67,10 +52,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         MediaModule
     ],
     providers: [
-        {
-            provide: DROPZONE_CONFIG,
-            useValue: DEFAULT_DROPZONE_CONFIG
-        },
         {
             provide: PERFECT_SCROLLBAR_CONFIG,
             useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG

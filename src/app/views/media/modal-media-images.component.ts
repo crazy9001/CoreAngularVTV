@@ -15,7 +15,9 @@ export class ModalMediaImagesComponent implements OnInit {
     environment: any;
     selected: any;
     loadDetail = false;
-
+    configDropzone = {
+        acceptedFiles: 'image/*',
+    };
     constructor(
         private mediaService: MediaService
     ) {
@@ -61,7 +63,7 @@ export class ModalMediaImagesComponent implements OnInit {
     }
 
     onUploadSuccess($event) {
-        this.mediaService.getMediaImages();
+       // this.mediaService.getMediaImages();
     }
 
     reloadMediaImage() {

@@ -1326,3 +1326,95 @@ input[type=checkbox].IMSCheckbox + label.IMSCheckboxLabel {
 #IMSThirdInfoBlock .IMSInfoBlockName {
   border-left: 4px solid #5870cb;
 }
+#IMS_FormEdit_Date {
+  width: 100%;
+}
+#IMSNewsEditWrapper .btn.btn-success {
+  background: #16a086 !important;
+}
+#IMSNewsEditWrapper .btn {
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  color: #FFF !important;
+  text-shadow: none !important;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+#IMSNewsEditWrapper {
+  width: 100%;
+}
+#IMSNewsEditWrapper .btn.btn-primary {
+  background: #5870cb !important;
+}
+#IMSNewsEditWrapper .btn:hover {
+  opacity: 0.9;
+  filter: alpha(opacity = 90);
+}
+#IMSSelectedAvatarList.large-screen {
+  margin: 0 -10px;
+}
+.large-screen .ims-avatar-col {
+  width: 16.66666667%;
+  padding: 10px;
+}
+.ims-avatar-col {
+  padding: 5px;
+  width: 25%;
+  float: left;
+}
+.IMSNewsAvatarItem {
+  position: relative;
+  cursor: pointer;
+  padding-top: 70%;
+  background-size: cover;
+  border: 1px solid #F2F2F2;
+  overflow: hidden;
+  background: #FFF;
+}
+#IMSSelectedAvatarList {
+  overflow: hidden;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  margin: 0 -5px;
+}
+.IMSNewsAvatarItem img {
+  max-width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+  right: 0;
+  max-height: 100%;
+}
+.cms_bm_view_full_avatar {
+  background: rgba(0, 0, 0, 0) url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAAhCAYAAABX5MJvAAAAGXRFW…KYgngNYQjiB8QZiF8Q/0AChL/RO/uL+hUUcQNxExA/AgwAQCThORpp8DAAAAAASUVORK5CYII=) no-repeat scroll 0 0;
+  display: inline-block;
+  height: 33px;
+  opacity: 0.8;
+  position: absolute;
+  right: 0;
+  text-indent: -99999px;
+  top: 0;
+  width: 33px;
+  z-index: 99;
+}
+.cms_bm_watermark_avatar {
+  background-color: #c1c1c1;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 700;
+  left: 40px;
+  padding: 5px 10px;
+  position: absolute;
+  top: 20px;
+  display: none;
+}
+.cms_bm_watermark_avatar:hover {
+  background-color: red;
+}

@@ -16,7 +16,9 @@ export class ModalMediaVideoComponent implements OnInit {
     environment: any;
     loadDetail = false;
     playVideo = false;
-
+    configDropzone = {
+        acceptedFiles: '.mp4',
+    };
     constructor(
         private mediaServide: MediaService,
     ) {
@@ -63,7 +65,7 @@ export class ModalMediaVideoComponent implements OnInit {
     }
 
     onUploadSuccess($event) {
-        this.mediaServide.getMediaVideo();
+       // this.mediaServide.getMediaVideo();
     }
 
     reloadMediaVideo() {

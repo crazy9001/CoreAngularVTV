@@ -43,7 +43,8 @@
                 </div>
             </div>
             <ul class="messages" *ngIf="videos" [perfectScrollbar] style="position: relative; max-height: calc(100vh - 370px);">
-                <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}" (click)="selectVideo(video)">
+                <li class="message unread" *ngFor="let video of videos.data" [ngClass]="{selected: isActive(video)}"
+                    (click)="selectVideo(video)">
                     <div class="actions">
                         <span class="action">
                             <input type="checkbox" [checked]=" selected?.id === video.id">
@@ -56,33 +57,30 @@
                     </div>
                     <div class="CMSVideoItemAvatarWrapper">
                         <img class="CMSVideoItem_Avatar"
-                             [src]="video.thumbnails ? environment.storage_url + video.thumbnails : ''"
-                             alt="{{ video.title }}">
+                             [src]="video.Thumbnails ? environment.storage_url + video.Thumbnails : ''"
+                             alt="{{ video.Title }}">
                     </div>
                     <div class="CMSVideoItemInfoWrapper">
                         <a (click)="eventViewDetailVideo(video.id)">
-                            {{ video ? video.title : '' }}
+                            {{ video ? video.Title : '' }}
                         </a>
                         <div class="CMSVideoItemInfoDetail">
                             <label>
                                 Ngày tạo
                             </label>
-                            <span>{{ video.element.time_created | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
+                            <span>{{ video.element.CreatedAt | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
                             <label>
                                 Ngày xuất bản
                             </label>
-                            <span>{{ video.element.publish_at | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
+                            <span>{{ video.element.PublishAt | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
                             <label>
                                 Người tạo</label>
-                            <span>{{ video.element.user_created.name }}</span>
-                             -
-                            <label>
-                                Xuất bản bởi</label>
-                            <span>{{ video.element.user_publish.name }}</span>
+                            <span>{{ video.element.user_created.FullName }}</span>
                             <br>
                             <label>
                                 Lượt xem</label>
-                            <span>0</span><br>
+                            <span>0</span>
+                            <br>
                         </div>
                     </div>
                 </li>

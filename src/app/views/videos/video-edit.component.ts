@@ -67,20 +67,19 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     getDetailVideo() {
         this.videoService.getDetailVideoById(this.id).then(video => {
             this.video.id = video.id;
-            this.video.content = video.content.content;
+            this.video.content = video.content.Content;
             this.video.category_id = video.category.id;
-            this.video.title = video.title;
-            this.video.description = video.description;
-            this.video.publish_at = video.element.publish_at;
-            this.video.source = video.source;
-            this.video.highlight = video.highlight;
-            this.video.seo_title = video.seo.seo_title;
-            this.video.seo_description = video.seo.seo_description;
-            this.video.seo_keywords = video.seo.seo_keywords;
-            this.video.thumbnails = video.thumbnails;
+            this.video.title = video.Title;
+            this.video.description = video.Description;
+            this.video.publish_at = video.element.PublishAt;
+            this.video.source = video.Source;
+            this.video.seo_title = video.seo.MetaTitle;
+            this.video.seo_description = video.seo.MetaDescription;
+            this.video.seo_keywords = video.seo.MetaKeyWords;
+            this.video.thumbnails = video.Thumbnails;
             this.video.storage_id = video.storage[0].pivot.storage_id;
             this.thumbnails = Object.keys(video.storage[0].thumbnails).map(key => ({type: key, value: video.storage[0].thumbnails[key]}));
-            this.video.status = video.status;
+            this.video.status = video.Status;
         });
     }
 

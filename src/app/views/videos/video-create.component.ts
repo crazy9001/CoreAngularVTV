@@ -60,7 +60,7 @@ export class VideoCreateComponent implements OnInit {
             seo_keywords: ['', null],
             seo_description: ['', null],
             highlight: ['', null],
-            category_id: [null, null]
+            categories: [null, null]
         });
     }
     getCategoryDefault() {

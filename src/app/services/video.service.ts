@@ -98,6 +98,13 @@ export class VideoService {
             });
     }
 
+    createPost(video: IVideoForm) {
+        return this.httpClient.post<any>(`${environment.api_url}/post`, video)
+            .do(data => {
+                return data;
+            });
+    }
+
     update(video: IVideoForm) {
         return this.httpClient.put<any>(`${environment.api_url}/video/${video.id}`, video)
             .do(data => {

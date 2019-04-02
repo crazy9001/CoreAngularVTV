@@ -11,6 +11,9 @@ import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
 };
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MediaModule} from '../media/media.module';
 
 @NgModule({
     declarations: [
@@ -18,9 +21,14 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ],
     imports: [
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         MediumEditorModule,
+        OwlDateTimeModule,
+        OwlNativeDateTimeModule,
         PerfectScrollbarModule,
         PostsRoutingModule,
+        MediaModule
     ]
 })
 export class PostsModule {

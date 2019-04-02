@@ -23,15 +23,15 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
 };
 
+const token = localStorage.getItem(CONST.STORE_TOKEN);
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     url: `${environment.api_url}/media/upload`,
     chunking: true,
     method: 'POST',
     maxFilesize: 2048,
     chunkSize: 2000000,
-    acceptedFiles: 'image/*,.mp4',
     dictDefaultMessage : '<img src="assets/img/graphic-upload-area.svg" class="upload-aria"><div class="uploader-active-text">Drag and drop files here</div>',
-    headers: {'Authorization': `Bearer ${CONST.STORE_TOKEN}`},
+    headers: {'Authorization': `Bearer ${token}`},
 };
 
 @NgModule({

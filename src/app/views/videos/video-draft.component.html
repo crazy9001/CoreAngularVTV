@@ -54,25 +54,25 @@
                     </div>
                     <div class="CMSVideoItemAvatarWrapper">
                         <img class="CMSVideoItem_Avatar"
-                             [src]="video.thumbnails ? environment.storage_url + video.thumbnails : ''"
-                             alt="{{ video.title }}">
+                             [src]="video.Thumbnails ? environment.storage_url + video.Thumbnails : ''"
+                             alt="{{ video.Title }}">
                     </div>
                     <div class="CMSVideoItemInfoWrapper">
                         <a (click)="eventViewDetailVideo(video.id)">
-                            {{ video ? video.title : '' }}
+                            {{ video ? video.Title : '' }}
                         </a>
                         <div class="CMSVideoItemInfoDetail">
                             <label>
                                 Ngày tạo
                             </label>
-                            <span>{{ video.element.time_created | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
+                            <span>{{ video.element.CreatedAt | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
                             <label>
                                 Ngày xuất bản
                             </label>
-                            <span>{{ video.element.publish_at | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
+                            <span>{{ video.element.PublishAt | date : 'dd/MM/yyyy hh:mm:ss a' }}</span><br>
                             <label>
                                 Người tạo</label>
-                            <span>{{ video.element.user_created.name }}</span>
+                            <span>{{ video.element.user_created.FullName }}</span>
                             <br>
                             <label>
                                 Lượt xem</label>

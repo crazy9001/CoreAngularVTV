@@ -1,0 +1,134 @@
+<div class="animated fadeIn">
+
+    <div class="email-app mb-4">
+
+        <main class="inbox">
+
+            <div class="toolbar" id="CMSLibraryToolBar">
+                <div id="IMSTopFilter">
+                    <div id="IMSTopFilterContent">
+                        <div class="IMSFilterItem">
+                            <select id="IMSFilterByZoneSelect" data-placeholder="Chọn chuyên mục" class="FSelectField">
+                                <option value="">-- Chuyên mục --</option>
+
+                                <option value="87" data-parent="0"> Văn hóa - Giải trí</option>
+
+                                <option value="101" data-parent="87"> Âm nhạc</option>
+                            </select>
+                        </div>
+                        <div class="IMSFilterItem">
+                            <label>
+                            </label>
+                            <input type="text" id="IMSFilterFrom" value="" placeholder="Từ ngày" class="hasDatepicker">
+                        </div>
+                        <div class="IMSFilterItem">
+                            <label>
+                            </label>
+                            <input type="text" id="IMSFilterTo" value="" placeholder="Đến ngày" class="hasDatepicker">
+                        </div>
+
+                        <div id="IMSPager">
+                            <div class="IMSPagerStats" *ngIf="posts && posts.total !== 0">
+                                {{ posts.from + ' đến ' + posts.to + ' trong tổng số ' + posts.total}}
+                            </div>
+                            <div class="IMSPagerButtonWrapper">
+                                <button (click)="prevPage()" [disabled]="posts && !posts.prev_page_url"
+                                        class="IMSPager_Back" id="IMSPager_btnPrevPage"></button>
+                                <button (click)="nextPage()" [disabled]="posts && !posts.next_page_url"
+                                        class="IMSPager_Next" id="IMSPager_btnNextPage"></button>
+                            </div>
+                        </div>
+
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                <div id="IMSListActionBar" *ngIf="selectItem">
+                    <div id="IMSListActionBarContent">
+                        <span class="IMSActionButton" id="IMSListAction_Preview" title="Xem trước"
+                              style="display: block;">
+                            <i>Preview</i>
+                        </span>
+                        <span class="IMSActionButton" id="IMSListAction_Edit" title="Sửa"
+                              style="display: block;">
+                            <i>Edit</i>
+                        </span>
+                        <div class="IMSActionButtonGroup">
+                            <!--<span class="IMSActionButton IMSFirstButton" id="IMSListAction_Return" title="Trả lại">
+                                <i>Trả lại</i>
+                            </span>-->
+                            <!--<span class="IMSActionButton IMSMiddleButton" id="IMSListAction_Release" title="Nhả ra">
+                                <i>Nhả ra</i>
+                            </span>-->
+                            <!--<span class="IMSActionButton" id="IMSListAction_GetBack" title="Rút lại">
+                                <i>Rút lại</i>
+                            </span>-->
+                            <!--<span class="IMSActionButton" id="IMSListAction_Receive" title="Nhận">
+                                <i>Nhận</i>
+                            </span>-->
+                            <span
+                                    *ngIf="role === 'Secretary'"
+                                    class="IMSActionButton IMSMiddleButton"
+                                    id="IMSListAction_Publish"
+                                    title="Xuất bản"
+                                    (click)="eventPublish()"
+                            >
+                                <i>Xuất bản</i>
+                            </span>
+                            <!--<span class="IMSActionButton" id="IMSListAction_Restore" title="Phục hồi">
+                                <i>Phục hồi</i>
+                            </span>-->
+                            <!--<span class="IMSActionButton" id="IMSListAction_RemoveNewsCache" title="Xóa cache bài viết">
+                                <i></i>
+                            </span>-->
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="messages" [perfectScrollbar] id="CMSListPostWrapper" *ngIf="posts">
+                <li class="message unread IMSNewsItem" *ngFor="let post of posts.data"
+                    [ngClass]="{IMSSelectedNewsItem: isActive(post)}" (click)="eventSelectItem(post)">
+                    <div class="IMSNewsItemContent">
+                        <div class="IMSNewsItemAction actions">
+                            <span class="action">
+                                <i class="fa fa-square-o"></i>
+                            </span>
+                            <span class="action">
+                                <i class="fa fa-star-o"></i>
+                            </span>
+                        </div>
+                        <div class="IMSNewsItemImage">
+                            <img [src]="post && post.Thumbnails ? environment.storage_url + post.Thumbnails : 'https://vtv1.mediacdn.vn/zoom/50_50/2019/4/3/fg-1554265155174649288823.png' ">
+                        </div>
+                        <div class="IMSNewsItemInfo">
+                            <div class="IMSNewsItem_Header header">
+                                <span class="IMSNewsItemTitle from">
+                                    {{ post ? post.Title : '' }}
+                                </span>
+                                <span class="IMSNewsItem_Category date">
+                                    {{ post ? post.category.name : '' }}
+                                </span>
+                            </div>
+                            <span class="IMSNewsItem_CreatedDate">
+                                <span class="IMSNewsItemDateField">Thứ Tư, 3/4/2019 12:08</span>
+                                <div class="IMSNewsStatsSortColumn">
+                                    <span class="IMSNewsStats IMSNewsStats_ViewCount">Lượt xem: <b>27</b></span>,
+                                    <span class="IMSNewsStats IMSNewsStats_ViewCountMobile">Mobile: <b>21</b></span>,
+                                    <span class="IMSNewsStats IMSNewsStats_Sender">Nhuận bút: <b>0</b></span>
+                                </div>
+                            </span>
+                            <div class="IMSNewsItem_Statistics description">
+                                <span class="IMSNewsStats IMSNewsStats_Sender">Viết bởi: <b>{{ post ? post.element.user_created.FullName : '' }}</b></span>
+                                <span class="IMSNewsStats IMSNewsStats_Sender">  Xuất bản bởi: <b>luonghue</b></span>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </main>
+
+    </div>
+
+</div>

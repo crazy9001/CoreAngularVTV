@@ -24,6 +24,15 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    getNewsDraft(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/post/draft')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
     getVideoEditor(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/waiting/editor')
             .toPromise()
@@ -32,6 +41,16 @@ export class VideoService {
             })
             .catch(this.handleError);
     }
+
+    getNewsEditor(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/post/waiting/editor')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
 
     getVideoPublish(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/waiting/publish')
@@ -42,8 +61,27 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    getNewsPublish(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/post/waiting/publish')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+
     getVideoPublished(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/published')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+    getNewsPublished(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/post/published')
             .toPromise()
             .then((response) => {
                 return response as VideoPaginate;
@@ -121,9 +159,27 @@ export class VideoService {
             });
     }
 
+    /* Change news to editor */
+    changeNewsToEditor(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/to/editor', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
     /* change video to publish */
     changeVideoToPublish(id: number) {
         return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/publish', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
+    /* change news to publish */
+    changeNewsToPublish(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/to/publish', {id: id})
             .toPromise()
             .then((response) => {
                 return response;
@@ -139,9 +195,26 @@ export class VideoService {
             });
     }
 
+    /* Published news */
+    publishNews(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/to/published', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
     /* remove video */
     removeVideo(id: number) {
         return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/trash', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+    /* remove news */
+    removeNews(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/to/trash', {id: id})
             .toPromise()
             .then((response) => {
                 return response;

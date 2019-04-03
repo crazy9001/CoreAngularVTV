@@ -6,6 +6,9 @@
 @import "media";
 // If you want to add something do it here
 @import "custom";
+
 @import "~ngx-smart-modal/ngx-smart-modal";
-@import url('https://cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css');
+@import "medium-editor.css";
+@import "flat.min.css";
+@import "medium-editor-tables.css";
 @import "~ng-pick-datetime/assets/style/picker.min.css";

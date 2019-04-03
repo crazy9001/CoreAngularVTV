@@ -14,10 +14,18 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MediaModule} from '../media/media.module';
+import { PostDraftComponent } from './post-draft.component';
+import { PostEditorComponent } from './post-editor.component';
+import { PostPublishComponent } from './post-publish.component';
+import { PostPublishedComponent } from './post-published.component';
 
 @NgModule({
     declarations: [
-        PostCreateComponent
+        PostCreateComponent,
+        PostDraftComponent,
+        PostEditorComponent,
+        PostPublishComponent,
+        PostPublishedComponent
     ],
     imports: [
         CommonModule,

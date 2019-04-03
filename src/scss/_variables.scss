@@ -1418,3 +1418,278 @@ input[type=checkbox].IMSCheckbox + label.IMSCheckboxLabel {
 .cms_bm_watermark_avatar:hover {
   background-color: red;
 }
+
+#CMSListPostWrapper {
+  max-height: calc(100vh - 380px);
+  position: relative;
+}
+
+#IMSTopFilter {
+  background: #F0F0F0;
+  border-radius: 0;
+  display: inline-block;
+  width: 100%;
+}
+#IMSTopFilterContent {
+  padding: 10px;
+  height: 50px;
+}
+#IMSPager {
+  float: right;
+  position: relative;
+}
+.IMSPagerStats {
+  font-weight: bold;
+  font-family: tahoma;
+  font-size: 12px;
+  color: #444;
+  float: left;
+  margin-right: 15px;
+  margin-top: 5px;
+}
+.IMSPagerStats span {
+  font-weight: normal;
+}
+.IMSPagerButtonWrapper {
+  display: inline-block;
+}
+#IMSTopFilter input[type="text"]#IMSPagerCurrentPageNumber {
+  float: left;
+  margin-right: 10px;
+  width: 15px;
+  border-radius: 0;
+}
+#IMSTopFilter input[type=text] {
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 1px 2px #DDDDDD inset;
+  padding: 5px;
+  width: 100px;
+  border-radius: 4px;
+}
+.IMSPagerButtonWrapper button:disabled {
+  opacity: 0.6;
+}
+.IMSPagerButtonWrapper .IMSPager_Next {
+  background-position: -30px 0;
+}
+
+.IMSPagerButtonWrapper button {
+  background: url(https://ims.mediacdn.vn/Statics2/ModuleExtensions/VTV/NewsListV2/Templates/images/IMSPagerIcon.png) no-repeat;
+  width: 27px;
+  height: 27px;
+  display: inline-block;
+  box-sizing:  unset !important;
+  padding: 0 !important;
+  outline:  none !important;
+  margin-left: 0 !important;
+  border: none;
+}
+.IMSPager_Back {
+  margin-right: 5px;
+}
+
+.IMSFilterItem {
+  float: left;
+}
+
+#IMSTopFilter select {
+  width: 145px;
+  padding: 2px;
+  border: solid 1px #ccc;
+}
+input.hasDatepicker {
+  background: url(https://ims.mediacdn.vn/micro/widget/statics/images/IMSDatePickerTriggerBg.png) #fff 5px center no-repeat !important;
+  text-indent: 20px;
+  color: #333;
+  font-size: 12px;
+}
+#IMSListActionBar {
+  box-shadow: 1px -3px 3px -4px #999 inset;
+}
+#IMSListActionBarContent {
+  padding: 10px;
+  display: inline-block;
+}
+.IMSActionButton {
+  position: relative;
+  overflow: visible;
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid #d4d4d4;
+  margin: 0;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0 #fff;
+  font: 12px/normal sans-serif;
+  color: #333;
+  white-space: nowrap;
+  cursor: pointer;
+  outline: none;
+  background-color: #ececec;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f4f4f4), to(#ececec));
+  background-image: -moz-linear-gradient(#f4f4f4, #ececec);
+  background-image: -ms-linear-gradient(#f4f4f4, #ececec);
+  background-image: -o-linear-gradient(#f4f4f4, #ececec);
+  background-image: linear-gradient(#f4f4f4, #ececec);
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  border-radius: 3px;
+  margin-right: 15px;
+  float: left;
+  width: 45px;
+  height: 18px;
+  box-sizing: unset;
+}
+.IMSActionButton:hover {
+  border-color: #3072b3;
+  border-bottom-color: #2a65a0;
+  text-decoration: none;
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.3);
+  color: #fff;
+  background-color: #3c8dde;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#599bdc), to(#3072b3));
+  background-image: -moz-linear-gradient(#599bdc, #3072b3);
+  background-image: -o-linear-gradient(#599bdc, #3072b3);
+  background-image: linear-gradient(#599bdc, #3072b3);
+}
+.IMSActionButton i {
+  background: url(https://ims.mediacdn.vn/Statics2/Themes/Cms/images/IMSNewsActionIcon.png) no-repeat scroll 0 0 transparent;
+  display: inline-block !important;
+  font-style: normal;
+  text-indent: -9999px;
+  width: 20px;
+  height: 17px;
+}
+#IMSListActionBar .IMSActionButton:hover i {
+  background-image: url(https://ims.mediacdn.vn/Statics2/ModuleExtensions/VTV/NewsListV2/Templates/images/IMSNewsActionIconHover.png);
+}
+#IMSListActionBarContent #IMSListAction_Preview i {
+  background-position: -140px 1px;
+}
+
+.IMSActionButtonGroup {
+  display: inline-block;
+  list-style: none;
+  float: left;
+  margin-right: 15px;
+}
+.IMSActionButtonGroup > .IMSActionButton.IMSFirstButton {
+  border-radius: 3px 0 0 3px !important;
+}
+.IMSActionButtonGroup .IMSActionButton {
+  margin: 0;
+  margin-left: -1px;
+}
+.IMSActionButtonGroup > .IMSActionButton.IMSMiddleButton {
+  border-radius: 0 !important;
+}
+.IMSActionButtonGroup > .IMSActionButton.IMSLastButton {
+  border-radius: 0px 3px 3px 0px !important;
+}
+#IMSListActionBarContent #IMSListAction_Return i {
+  background-position: -312px 0;
+}
+#IMSListActionBarContent #IMSListAction_Release i {
+  background-position: -382px 0;
+}
+#IMSListActionBarContent #IMSListAction_GetBack i {
+  background-position: 0px -1px;
+}
+#IMSListActionBarContent #IMSListAction_Receive i {
+  background-position: -76px -1px;
+}
+#IMSListActionBarContent #IMSListAction_Send i {
+  background-position: -453px 0;
+}
+#IMSListActionBarContent #IMSListAction_Publish i {
+  background-position: -453px 0;
+}
+#IMSListActionBarContent #IMSListAction_Restore i {
+  background-position: -313px -1px;
+}
+#IMSListActionBarContent #IMSListAction_RemoveNewsCache i {
+  background-position: -845px 0;
+}
+#CMSLibraryToolBar {
+  border:  none !important;
+}
+.IMSNewsItem_Category {
+  top: 1px;
+  color: #00aded;
+  cursor: pointer;
+  float: left;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 2px;
+  position: absolute;
+  right: 15px;
+}
+.IMSNewsItem {
+  border: none !important;
+  border-radius: 5px;
+}
+.IMSNewsItem:nth-of-type(odd) {
+  background: #f0f3f5;
+}
+.IMSNewsItem.IMSSelectedNewsItem {
+  background: none repeat scroll 0 0 #E8F4F7;
+  border: 2px solid #CCCCCC !important;
+}
+.IMSNewsItemTitle {
+  padding-right: 20px;
+  display: inline-block;
+  float: left;
+  font-size: 13px;
+  color: #444;
+  clear: right;
+  cursor: pointer;
+}
+.IMSNewsItem_Header {
+  margin: 0 !important;
+}
+.IMSNewsItem_Statistics {
+  color: #9F9F9F;
+}
+.IMSNewsItem_Statistics {
+  display: inline-block;
+  margin-top: 2px;
+  min-width: 265px;
+}
+.IMSNewsItem img {
+  width: 45px;
+  height: 45px;
+  padding: 2px;
+  border: solid 1px #ddd;
+  display: inline-block;
+  background: #fff;
+  float: left;
+  margin-right: 15px;
+  margin-left: 15px;
+}
+.IMSNewsItemAction {
+  display: block !important;
+  margin-left: 5px;
+}
+.IMSNewsItem_CreatedDate {
+  color: #444444;
+  float: right;
+  font-size: 11px;
+  margin-top: 2px;
+}
+.IMSNewsItemDateField {
+  display: inline-block;
+  text-align: right;
+  width: 135px;
+}
+.IMSNewsStatsSortColumn {
+  display: inline-block;
+  float: left;
+  margin-right: 7px;
+  color: #9F9F9F;
+}
+.IMSNewsItemTitle, .IMSNewsStatsSortColumn {
+  white-space: nowrap;
+}
+#IMSListActionBarContent #IMSListAction_Edit i {
+  background-position: -226px 0;
+}

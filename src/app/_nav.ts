@@ -76,6 +76,26 @@ export const navItems: NavData[] = [
                 url: '/posts/create',
                 icon: 'fa fa-plus-circle fa-lg'
             },
+            {
+                name: 'Bài lưu tạm',
+                url: '/posts/draft',
+                icon: 'fa fa-file-text-o fa-lg'
+            },
+            {
+                name: 'Bài chờ biên tập',
+                url: '/posts/editor',
+                icon: 'fa fa-file-text-o fa-lg'
+            },
+            {
+                name: 'Bài chờ xuất bản',
+                url: '/posts/publish',
+                icon: 'fa fa-file-text-o fa-lg'
+            },
+            {
+                name: 'Bài đã xuất bản',
+                url: '/posts/published',
+                icon: 'fa fa-file-text-o fa-lg'
+            },
         ]
     },
     {

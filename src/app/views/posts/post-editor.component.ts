@@ -90,4 +90,8 @@ export class PostEditorComponent implements OnInit {
             });
     }
 
+    eventClickEditNews() {
+        this.router.navigate(['posts', this.selected.id, 'edit']);
+    }
+
 }

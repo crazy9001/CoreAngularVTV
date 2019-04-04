@@ -5,6 +5,7 @@ import {PostDraftComponent} from './post-draft.component';
 import {PostEditorComponent} from './post-editor.component';
 import {PostPublishComponent} from './post-publish.component';
 import {PostPublishedComponent} from './post-published.component';
+import {PostEditComponent} from './post-edit.component';
 
 const routes: Routes = [{
     path: '',
@@ -45,6 +46,13 @@ const routes: Routes = [{
             component: PostPublishedComponent,
             data: {
                 title: 'Bài đã xuất bản'
+            }
+        },
+        {
+            path: ':id/edit',
+            component: PostEditComponent,
+            data: {
+                title: 'Chỉnh sửa bài viết'
             }
         }
     ]

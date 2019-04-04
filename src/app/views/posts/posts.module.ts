@@ -18,6 +18,7 @@ import { PostDraftComponent } from './post-draft.component';
 import { PostEditorComponent } from './post-editor.component';
 import { PostPublishComponent } from './post-publish.component';
 import { PostPublishedComponent } from './post-published.component';
+import { PostEditComponent } from './post-edit.component';
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { PostPublishedComponent } from './post-published.component';
         PostDraftComponent,
         PostEditorComponent,
         PostPublishComponent,
-        PostPublishedComponent
+        PostPublishedComponent,
+        PostEditComponent
     ],
     imports: [
         CommonModule,

@@ -79,7 +79,7 @@
                         <div class="form-group row">
                             <label class="col-md-3 col-form-label" for="select1">Chuyên mục chính</label>
                             <div class="col-md-9">
-                                <select id="select1" formControlName="category_id" class="form-control"
+                                <select id="select1" formControlName="categories" class="form-control"
                                         [(ngModel)]="video.category_id">
                                     <option [ngValue]="null">Chọn giá trị...</option>
                                     <option *ngFor="let category of categories" [ngValue]="category.id"

@@ -6,6 +6,7 @@ import {ICategory} from '../../model/type';
 import {HttpErrorResponse} from '@angular/common/http';
 import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'app-post-create',
@@ -23,6 +24,7 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
         '<a href="https://beta.vtvworld.vtv.vn" target="_blank" title="VTV World" rel="nofollow">VTV World !</a>' +
         '</b></p>';
     idStorage: number;
+    dataOutputMultyImage: any;
 
     @ViewChild('container') container: ElementRef;
 
@@ -31,7 +33,61 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
         this.mediumEditor = new MediumEditor(element, {
             toolbar: {
                 allowMultiParagraphSelection: true,
-                buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3', 'quote'],
+                buttons: [
+                    {
+                        name: 'bold',
+                        attrs: {
+                            'title': 'In đậm'
+                        }
+                    },
+                    {
+                        name: 'italic',
+                        attrs: {
+                            'title': 'In nghiêng'
+                        }
+                    },
+                    {
+                        name: 'underline',
+                        attrs: {
+                            'title': 'Gạch chân'
+                        }
+                    },
+                    {
+                        name: 'anchor',
+                        contentDefault: '<b class=" fa fa-link"></b>',
+                        attrs: {
+                            'title': 'Chèn link'
+                        }
+                    },
+                    {
+                        name: 'justifyLeft',
+                        contentDefault: '<b class="fa fa-align-left"></b>',
+                        attrs: {
+                            'title': 'Căn trái'
+                        }
+                    },
+                    {
+                        name: 'justifyCenter',
+                        contentDefault: '<b class="fa fa-align-center"></b>',
+                        attrs: {
+                            'title': 'Căn giữa'
+                        }
+                    },
+                    {
+                        name: 'justifyRight',
+                        contentDefault: '<b class="fa fa-align-right"></b>',
+                        attrs: {
+                            'title': 'Căn phải'
+                        }
+                    },
+                    {
+                        name: 'justifyFull',
+                        contentDefault: '<b class="fa fa-align-justify"></b>',
+                        attrs: {
+                            'title': 'Căn đều hai bên'
+                        }
+                    }
+                ],
                 diffLeft: 0,
                 diffTop: -10,
                 firstButtonClass: 'medium-editor-button-first',
@@ -42,6 +98,9 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
                 align: 'center',
                 sticky: false,
                 updateOnEmptySelection: false
+            },
+            anchor: {
+                placeholderText: 'Dán hoặc nhập liên kết',
             }
         });
     }
@@ -50,6 +109,7 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
         private formBuilder: FormBuilder,
         private categoryService: CategoryService,
         private videoService: VideoService,
+        private router: Router,
     ) {
     }
 
@@ -85,10 +145,8 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
 
     onSubmit() {
         this.createPostForm.controls['content'].setValue(this.mediumEditor.getContent());
-        console.log(this.createPostForm.value);
-
         this.videoService.createPost(this.createPostForm.value).subscribe(res => {
-            this.createPostForm.reset();
+            this.router.navigate(['posts', res.id, 'edit']);
         }, (errorRes: HttpErrorResponse) => {
             if (errorRes.status === 401) {
             }
@@ -97,6 +155,5 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
     eventReceiveImageInsert($event) {
         this.thumbnails = $event.thumbnails[2];
         this.idStorage = $event.id;
-        this.createPostForm.controls['thumbnails'].setValue($event.thumbnails[2]);
     }
 }

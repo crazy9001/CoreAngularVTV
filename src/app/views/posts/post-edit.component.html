@@ -1,0 +1,333 @@
+<div class="animated fadeIn">
+    <form [formGroup]="editPostForm">
+        <input
+                type="hidden"
+                formControlName="id"
+                [(ngModel)]="post.id"
+                required class="form-control">
+        <div class="row" id="CMSFullScreen">
+            <div id="IMSNewsEditWrapper">
+                <div class="col-sm-5" id="CMSTabEditor">
+                    <div id="NLEditorHeader">
+                        <div id="NLEditorToolbar">
+                            <ul>
+                                <li data-func="photo" title="Chèn ảnh" class=" notipsy">
+                                    <i class="fa fa-photo"></i>
+                                </li>
+                                <li data-func="video" title="Chèn video" class=" notipsy">
+                                    <i class="fa fa-play-circle"></i>
+                                </li>
+                                <li data-func="contentbox" title="Chèn box nội dung nổi bật" class=" notipsy">
+                                    <i class="fa fa-sticky-note"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div id="IMSNewsLayout">
+                        <div id="NLEditorOuter" [perfectScrollbar]>
+                            <div id="NLEditor" #container [innerHTML]="post.Content">
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-7" id="CMSTabInfo">
+                    <div id="IMSActionBar">
+                        <div class="NotPermission"
+                             [hidden]="!editPostForm.controls['categories'].invalid">
+                            Bạn chưa chọn chuyên mục chính!
+                        </div>
+                        <a *ngIf="post.Status == 'DRAFT'"
+                           class="IMSActionBtn btn btn-success btn-sm"
+                           data-action="Send"
+                           (click)="eventSendToEditor(post.id)"
+                        >
+                            Gửi biên tập
+                        </a>
+                        <a *ngIf="post.Status == 'WAITING_EDITOR' && ( role === 'Secretary' || role === 'Editor' )"
+                           class="IMSActionBtn btn btn-success btn-sm"
+                           data-action="Send"
+                           (click)="eventSendToPublish(post.id)"
+                        >
+                            Gửi xuất bản
+                        </a>
+                        <a
+                            class="IMSActionBtn btn btn-success btn-sm"
+                            data-action="Save"
+                           [hidden]="editPostForm.controls['categories'].invalid" (click)="eventUpdatePost()"
+                        >
+                            Lưu
+                        </a>
+
+                        <a *ngIf="post.Status != 'PUBLISHED' && role === 'Secretary'"
+                           class="IMSActionBtn btn btn-primary btn-sm"
+                           data-action="Publish"
+                           [hidden]="editPostForm.controls['categories'].invalid"
+                           (click)="eventPublish(post.id)"
+
+                        >
+                            Xuất bản
+                        </a>
+                        <a
+                            *ngIf="post.Status == 'DRAFT'"
+                            class="IMSActionBtn btn btn-danger btn-sm" data-action="Remove"
+                            (click)="eventDelete(post.id)"
+                        >
+                            Xóa
+                        </a>
+                        <a
+                                *ngIf="post.Status == 'PUBLISHED' && role === 'Secretary'"
+                                class="IMSActionBtn btn btn-danger btn-sm" data-action="Remove"
+                                (click)="eventUnPublish(post.id)"
+                        >
+                            Gỡ xuống
+                        </a>
+                        <a class="IMSActionBtn btn btn-default btn-sm" data-id="0" data-action="Close">Đóng</a>
+                    </div>
+                    <div id="IMSTabInfoDetail" [perfectScrollbar]>
+                        <div class="IMSInfoBlock" id="IMSNewsInfo">
+                            <div class="IMSInfoBlockName" style="top: 98px;">Thông tin cơ bản</div>
+                            <div class="IMSInfoBlockContent">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <label>Chuyên mục chính <span class="IMSRequireField">*</span></label>
+                                        <select
+                                                class="form-control FSelectField"
+                                                [ngClass]="{'is-invalid': editPostForm.controls['categories'].invalid && (editPostForm.controls['categories'].dirty || editPostForm.controls['categories'].touched) }"
+                                                id="IMS_FormEdit_PrimaryZone"
+                                                formControlName="categories"
+                                                data-placeholder="Chọn chuyên mục"
+                                                [(ngModel)]="post.Category"
+                                        >
+                                            <option value="">Chọn chuyên mục</option>
+                                            <option *ngFor="let category of categories"
+                                                    [ngValue]="category.id"
+                                                    [selected]="category.id == post.Category"
+                                            >
+                                                {{ category?.text }}
+                                            </option>
+                                        </select>
+                                    </div>
+
+                                    <!--<div class="form-group col-sm-12">
+                                        <label>Chuyên mục phụ</label>
+                                        <select class="form-control FSelectField" id="IMS_FormEdit_ZoneRelations" formControlName="sub_categories" ata-placeholder="Chọn chuyên mục" multiple="multiple">
+                                            <option value="87" parentid="0" data-parent="0" title=""> Văn hóa - Giải trí
+                                            </option>
+                                        </select>
+                                    </div>-->
+
+                                    <!--<div class="col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Tiêu đề phụ</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="IMS_RightLabel" id="IMS_SubTitle_RemainingWords">0/650 kí tự</p>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="IMS_FormGroup_Subtitle" class="form-group col-sm-12">
+                                                <input class="form-control" autocomplete="off" id="IMS_FormEdit_Subtitle" formControlName="sub_title" type="text" value="">
+                                            </div>
+                                        </div>
+                                    </div>-->
+
+                                    <div class="form-group col-sm-12" id="IMS_Title_Wrapper">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <label>Tiêu đề chính <span class="IMSRequireField">*</span> (Hiển thị ở
+                                                    tin chi
+                                                    tiết)</label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <p id="IMS_Title_RemainingWords" class="IMS_RightLabel">0/650 kí tự</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                        <textarea class="form-control"
+                                                  [ngClass]="{'is-invalid': editPostForm.controls['title'].invalid && (editPostForm.controls['title'].dirty || editPostForm.controls['title'].touched) }"
+                                                  id="IMS_FormEdit_Title"
+                                                  formControlName="title"
+                                                  placeholder="Tiêu đề bài viết dài tối đa 25 từ"
+                                                  type="text"
+                                                  [(ngModel)]='post.Title'
+                                        ></textarea>
+                                                <button class="btn btn-primary btn-sm" id="IMS_CheckTitle_Btn"
+                                                        original-title="Kiểm tra trùng lặp tiêu đề" type="button">
+                                                    <i class="fa fa-check"></i> Kiểm tra
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group col-sm-12" id="IMS_InitSapo_Wrapper">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Mô tả ngắn <span class="IMSRequireField">*</span></label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="IMS_RightLabel" id="IMS_InitSapo_RemainingWords">0/180 kí
+                                                    tự</p>
+                                            </div>
+                                        </div>
+                                        <textarea
+                                                class="form-control IMS_Textarea"
+                                                [ngClass]="{'is-invalid': editPostForm.controls['sub_description'].invalid && (editPostForm.controls['sub_description'].dirty || editPostForm.controls['sub_description'].touched) }"
+                                                id="IMS_FormEdit_InitTxtDes"
+                                                formControlName="sub_description"
+                                                type="text"
+                                                autocomplete="off"
+                                                [(ngModel)]='post.SubDescription'
+                                        ></textarea>
+                                    </div>
+
+                                    <div class="form-group col-sm-12" id="IMS_Sapo_Wrapper">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <label>Mô tả <span class="IMSRequireField">*</span></label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="IMS_RightLabel" id="IMS_Sapo_RemainingWords">9/180 kí tự</p>
+                                            </div>
+                                        </div>
+                                        <textarea
+                                                class="form-control IMS_Textarea"
+                                                [ngClass]="{'is-invalid': editPostForm.controls['description'].invalid && (editPostForm.controls['description'].dirty || editPostForm.controls['description'].touched) }"
+                                                id="IMS_FormEdit_TxtDes"
+                                                formControlName="description"
+                                                placeholder="Sapo dài tối đa 58 từ"
+                                                style="height: 63px; overflow-y: hidden;"
+                                                autocomplete="off"
+                                                [(ngModel)]='post.Description'
+                                        >VTV.vn - </textarea>
+                                    </div>
+
+                                    <div class="form-group col-sm-12" id="IMS_Avatar_Wrapper">
+                                        <label>Hình đại diện</label>
+                                        <div id="IMSSelectedAvatarList" class="large-screen">
+                                            <div class="ims-avatar-col" data-role="avatar"
+                                                 (click)="mediaImageModal.show()">
+                                                <div data-ratio="1.6" data-height="281" data-width="450"
+                                                     data-rel="#IMS_FormEdit_AvatarField" data-label="Avatar chính"
+                                                     data-title="Avatar chính" class="IMSNewsAvatarItem"
+                                                     original-title="Avatar chính - Avatar chính">
+                                                    <img [src]="environment.storage_url + post.Thumbnails">
+                                                    <input type="hidden" formControlName="thumbnails"
+                                                           [ngModel]="post.Thumbnails" class="form-control"
+                                                           autocomplete="off">
+                                                    <div class="cms_bm_view_full_avatar"></div>
+                                                    <div class="cms_bm_watermark_avatar"><i class="fa fa-copyright"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type="hidden" formControlName="storage_id" [ngModel]="post.Storage"
+                                                   class="form-control" autocomplete="off">
+                                            <div class="clearfix"></div>
+                                        </div>
+                                        <input class="hidden" id="IMS_FormEdit_AvatarField" name="Avatar" type="text"
+                                               value="">
+                                        <input class="hidden" id="IMS_FormEdit_AvatarCustom" name="AvatarCustom"
+                                               type="text"
+                                               value="">
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <label>Loại tin</label>
+                                        <select
+                                                class="form-control FSelectField"
+                                                id="IMS_FormEdit_NewsType" formControlName="type"
+                                                [(ngModel)]="post.Type"
+                                        >
+                                            <option value="post" [selected]="post.Type == 'post'">Thông thường</option>
+                                            <option value="video" [selected]="post.Type == 'post_video'">Bài video
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-12" id="IMS_DateDistribution_Wrapper">
+                                        <label><i class="fa fa-calendar"></i> Ngày xuất bản</label>
+                                        <input [owlDateTime]="dt1"
+                                               [owlDateTimeTrigger]="dt1"
+                                               id="IMS_FormEdit_Date"
+                                               [ngClass]="{'is-invalid': editPostForm.controls['publish_at'].invalid && (editPostForm.controls['publish_at'].dirty || editPostForm.controls['publish_at'].touched) }"
+                                               formControlName="publish_at"
+                                               autocomplete="off"
+                                               [(ngModel)]='post.PublishAt'
+                                        >
+                                        <owl-date-time #dt1></owl-date-time>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="IMSInfoBlock" id="IMSThirdInfoBlock">
+                            <div class="IMSInfoBlockName">Cài đặt SEO</div>
+                            <div class="IMSInfoBlockContent">
+                                <div class="row">
+                                    <div class="form-group col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <label>Tiêu đề hiển thị trên Google</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p class="IMS_RightLabel" id="IMS_Metatitle_RemainingWords">0/600 kí
+                                                    tự</p>
+                                            </div>
+                                        </div>
+                                        <input id="IMS_FormEdit_MetaTitle"
+                                               type="text"
+                                               class="form-control"
+                                               formControlName="seo_title"
+                                               [(ngModel)]='post.MetaTitle'
+                                        >
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <label>Mô tả hiển thị trên Google</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <p id="IMS_MetaDescription_RemainingWords" class="IMS_RightLabel">0/1500
+                                                    kí tự</p>
+                                            </div>
+                                        </div>
+                                        <textarea formControlName="seo_description" id="IMS_FormEdit_MetaDescription"
+                                                  type="text"
+                                                  class="form-control IMS_Textarea" placeholder="VTV.vn - "
+                                                  [(ngModel)]='post.MetaDescription'
+                                        ></textarea>
+                                    </div>
+
+                                    <div class="form-group col-sm-12">
+                                        <div class="row">
+                                            <div class="col-sm-7">
+                                                <label>Từ khóa chủ đạo</label>
+                                            </div>
+                                            <div class="col-sm-5">
+                                                <p class="IMS_RightLabel" id="KeywordFocusCount">Ít nhất 5 ký tự</p>
+                                            </div>
+                                        </div>
+                                        <input formControlName="seo_keywords" type="text" value="" class="form-control"
+                                               id="IMS_FormEdit_KeywordFocus"
+                                               placeholder="Hãy viết vào đây 1 từ khóa duy nhất mà bạn cho rằng nó quan trọng nhất bài (2 - 6 chữ)"
+                                               [(ngModel)]='post.MetaKeyWord'
+                                        >
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </form>
+</div>
+<app-modal-media-images #mediaImageModal
+                        (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>

@@ -89,4 +89,8 @@ export class PostDraftComponent implements OnInit {
             .catch(() => {
             });
     }
+
+    eventClickEditNews() {
+        this.router.navigate(['posts', this.selected.id, 'edit']);
+    }
 }

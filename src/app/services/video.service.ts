@@ -111,6 +111,15 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    getDetailNewsById(id: number) {
+        return this.httpClient.get(`${environment.api_url}` + '/post/' + id)
+            .toPromise()
+            .then((response) => {
+                return response as Video;
+            })
+            .catch(this.handleError);
+    }
+
     getVideosAtUrl(url: string): Promise<VideoPaginate> {
         return this.httpClient.get(url)
             .toPromise()

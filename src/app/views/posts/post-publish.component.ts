@@ -74,4 +74,8 @@ export class PostPublishComponent implements OnInit {
             });
     }
 
+    eventClickEditNews() {
+        this.router.navigate(['posts', this.selected.id, 'edit']);
+    }
+
 }

@@ -45,8 +45,7 @@
                         <span class="IMSActionButton" id="IMSListAction_Preview" title="Xem trước" style="display: block;">
                             <i>Preview</i>
                         </span>
-                        <span class="IMSActionButton" id="IMSListAction_Edit" title="Sửa"
-                              style="display: block;">
+                        <span class="IMSActionButton" id="IMSListAction_Edit" title="Sửa" (click)="eventClickEditNews()">
                             <i>Edit</i>
                         </span>
                         <div class="IMSActionButtonGroup">
@@ -107,7 +106,7 @@
                             </span>
                         </div>
                         <div class="IMSNewsItemImage">
-                            <img [src]="post && post.Thumbnails ? environment.storage_url + post.Thumbnails : 'https://vtv1.mediacdn.vn/zoom/50_50/2019/4/3/fg-1554265155174649288823.png' ">
+                            <img [src]="(post.multi_thumb &&  post.multi_thumb.thumbnails) ? environment.storage_url + post.multi_thumb.thumbnails[2] : environment.storage_url + post.Thumbnails ">
                         </div>
                         <div class="IMSNewsItemInfo">
                             <div class="IMSNewsItem_Header header">

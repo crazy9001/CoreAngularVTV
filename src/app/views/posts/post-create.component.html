@@ -6,7 +6,7 @@
                 <div id="NLEditorHeader">
                     <div id="NLEditorToolbar">
                         <ul>
-                            <li data-func="photo" title="Chèn ảnh" class=" notipsy">
+                            <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageModal.show()">
                                 <i class="fa fa-photo"></i>
                             </li>
                             <li data-func="video" title="Chèn video" class=" notipsy">
@@ -153,6 +153,7 @@
                                                  data-title="Avatar chính" class="IMSNewsAvatarItem"
                                                  original-title="Avatar chính - Avatar chính">
                                                 <img [src]="thumbnails ? environment.storage_url + thumbnails : 'https://vtv1.mediacdn.vn/2016/avatar1-1472207921942.gif'">
+                                                <input type="hidden" formControlName="thumbnails" [ngModel]="thumbnails" class="form-control" autocomplete="off">
                                                 <div class="cms_bm_view_full_avatar"></div>
                                                 <div class="cms_bm_watermark_avatar"><i class="fa fa-copyright"></i>
                                                 </div>

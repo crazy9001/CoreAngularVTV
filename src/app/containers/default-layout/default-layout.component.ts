@@ -14,6 +14,7 @@ export class DefaultLayoutComponent implements OnDestroy, OnInit {
   public sidebarMinimized = true;
   private changes: MutationObserver;
   public element: HTMLElement;
+  template: string = '<div class="CMSLoading"></div>';
   constructor(private authService: AuthService, private routeService: Router, @Inject(DOCUMENT) _document?: any) {
 
     this.changes = new MutationObserver((mutations) => {

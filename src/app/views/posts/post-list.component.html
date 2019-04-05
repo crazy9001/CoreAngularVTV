@@ -31,13 +31,13 @@
         </span>
         <div class="IMSNewsItem_Statistics description">
             <span class="IMSNewsStats IMSNewsStats_Sender">
-                Viết bởi: <b>{{ post ? post.element.user_created.FullName + ' - ': '' }}</b>
+                Viết bởi: <b>{{ post ? post.element.user_created.FullName : '' }}</b>
             </span>
             <span class="IMSNewsStats IMSNewsStats_Sender">
-                {{ post && post.element.user_editor ? 'Biên tập bởi: ' + post.element.user_editor.FullName + ' - ' : '' }}
+                {{ post && post.element.user_editor ? ' - Biên tập bởi: ' + post.element.user_editor.FullName : '' }}
             </span>
             <span class="IMSNewsStats IMSNewsStats_Sender">
-                {{ post && post.element.user_editor ? 'Xuất bản bởi: ' + post.element.user_publish.FullName : '' }}
+                {{ post && post.element.user_publish ? ' - Xuất bản bởi: ' + post.element.user_publish.FullName : '' }}
             </span>
 
         </div>

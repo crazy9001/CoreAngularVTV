@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth-service.service';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-post-draft',
@@ -19,6 +20,7 @@ export class PostDraftComponent implements OnInit {
     selectItemStatus: string;
 
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private videoService: VideoService,
         private router: Router,
         private authService: AuthService,
@@ -32,17 +34,29 @@ export class PostDraftComponent implements OnInit {
     }
 
     getDraftPost() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.getNewsDraft().then(posts => {
             this.posts = posts;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
 
     prevPage() {
-        this.videoService.getVideosAtUrl(this.posts.prev_page_url).then(posts => this.posts = posts);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.posts.prev_page_url).then(
+            posts => {
+                this.posts = posts;
+                this.ng4LoadingSpinnerService.hide();
+            }
+        );
     }
 
     nextPage() {
-        this.videoService.getVideosAtUrl(this.posts.next_page_url).then(posts => this.posts = posts);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.posts.next_page_url).then(posts => {
+            this.posts = posts;
+            this.ng4LoadingSpinnerService.hide();
+        });
     }
 
     isActive(item) {
@@ -59,9 +73,11 @@ export class PostDraftComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Gửi biên tập bài viết ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.changeNewsToEditor(this.selected.id).then(res => {
                         this.getDraftPost();
                         this.selectItem = false;
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
 
                     });
@@ -75,9 +91,11 @@ export class PostDraftComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Xuất bản bài viết ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.publishNews(this.selected.id).then(res => {
                         this.getDraftPost();
                         this.selectItem = false;
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
 
                     });

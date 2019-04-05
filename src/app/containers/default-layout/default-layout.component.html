@@ -38,6 +38,8 @@
         </ol>
         <div class="container-fluid">
             <router-outlet></router-outlet>
+            <!--<ng4-loading-spinner> </ng4-loading-spinner>-->
+            <ng4-loading-spinner [threshold]="1000" [template]="template" [zIndex]="999" ></ng4-loading-spinner>
         </div><!-- /.container-fluid -->
     </main>
     <app-aside [fixed]="true" [display]="false">

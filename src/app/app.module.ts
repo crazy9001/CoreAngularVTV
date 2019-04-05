@@ -57,6 +57,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { NgxSmartModalModule } from 'ngx-smart-modal';
 import { AutoLogoutComponent } from './views/auto-logout/auto-logout.component';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 @NgModule({
     imports: [
         BrowserModule,
@@ -76,7 +77,8 @@ import { AutoLogoutComponent } from './views/auto-logout/auto-logout.component';
         BrowserAnimationsModule, // required animations module
         ToastrModule.forRoot(), // ToastrModule added,
         NgbModule.forRoot(),
-        NgxSmartModalModule.forRoot()
+        NgxSmartModalModule.forRoot(),
+        Ng4LoadingSpinnerModule.forRoot()
     ],
     declarations: [
         AppComponent,
@@ -104,7 +106,7 @@ import { AutoLogoutComponent } from './views/auto-logout/auto-logout.component';
         ConfirmationDialogService
     ],
     entryComponents: [ ConfirmationDialogComponent ],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {
 }

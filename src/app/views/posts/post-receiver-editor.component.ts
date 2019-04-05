@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth-service.service';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-post-receiver-editor',
@@ -19,6 +20,7 @@ export class PostReceiverEditorComponent implements OnInit {
     selectItemStatus: string;
 
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private videoService: VideoService,
         private router: Router,
         private authService: AuthService,
@@ -32,17 +34,29 @@ export class PostReceiverEditorComponent implements OnInit {
     }
 
     getReceiverEditorPost() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.getReceiverNewsEditor().then(posts => {
             this.posts = posts;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
 
     prevPage() {
-        this.videoService.getVideosAtUrl(this.posts.prev_page_url).then(posts => this.posts = posts);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.posts.prev_page_url).then(
+            posts => {
+                this.posts = posts;
+                this.ng4LoadingSpinnerService.hide();
+            }
+        );
     }
 
     nextPage() {
-        this.videoService.getVideosAtUrl(this.posts.next_page_url).then(posts => this.posts = posts);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.posts.next_page_url).then(posts => {
+            this.posts = posts;
+            this.ng4LoadingSpinnerService.hide();
+        });
     }
 
     isActive(item) {
@@ -59,10 +73,12 @@ export class PostReceiverEditorComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Nhả bài viết ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.unReceiverPost(this.selected.id).then(res => {
                         if (res.success === true) {
                             this.getReceiverEditorPost();
                             this.selectItem = false;
+                            this.ng4LoadingSpinnerService.hide();
                         }
                     }, (errorRes: HttpErrorResponse) => {
 
@@ -93,9 +109,11 @@ export class PostReceiverEditorComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Xuất bản bài viết ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.publishNews(this.selected.id).then(res => {
                         this.getReceiverEditorPost();
                         this.selectItem = false;
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
 
                     });

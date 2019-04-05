@@ -1691,3 +1691,23 @@ input.hasDatepicker {
 #IMSListActionBarContent #IMSListAction_Edit i {
   background-position: -226px 0;
 }
+.custom-spinner-template {
+  height: 50% !important;
+  width: 50% !important;
+  top: 26% !important;
+  left: 24% !important;
+}
+
+.CMSLoading {
+  width: 250px;
+  height: 40px;
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  background: url(../assets/img/loading.svg) no-repeat #FFF;
+  z-index: 99999999999999999;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  line-height: 30px;
+  display: block;
+}

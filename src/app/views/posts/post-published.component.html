@@ -86,43 +86,12 @@
             </div>
 
             <ul class="messages" [perfectScrollbar] id="CMSListPostWrapper" *ngIf="posts">
-                <li class="message unread IMSNewsItem" *ngFor="let post of posts.data"
-                    [ngClass]="{IMSSelectedNewsItem: isActive(post)}" (click)="eventSelectItem(post)">
-                    <div class="IMSNewsItemContent">
-                        <div class="IMSNewsItemAction actions">
-                            <span class="action">
-                                <i class="fa fa-square-o"></i>
-                            </span>
-                            <span class="action">
-                                <i class="fa fa-star-o"></i>
-                            </span>
-                        </div>
-                        <div class="IMSNewsItemImage">
-                            <img [src]="post && post.Thumbnails ? environment.storage_url + post.Thumbnails : 'https://vtv1.mediacdn.vn/zoom/50_50/2019/4/3/fg-1554265155174649288823.png' ">
-                        </div>
-                        <div class="IMSNewsItemInfo">
-                            <div class="IMSNewsItem_Header header">
-                                <span class="IMSNewsItemTitle from">
-                                    {{ post ? post.Title : '' }}
-                                </span>
-                                <span class="IMSNewsItem_Category date">
-                                    {{ post ? post.category.name : '' }}
-                                </span>
-                            </div>
-                            <span class="IMSNewsItem_CreatedDate">
-                                <span class="IMSNewsItemDateField">Thứ Tư, 3/4/2019 12:08</span>
-                                <div class="IMSNewsStatsSortColumn">
-                                    <span class="IMSNewsStats IMSNewsStats_ViewCount">Lượt xem: <b>27</b></span>,
-                                    <span class="IMSNewsStats IMSNewsStats_ViewCountMobile">Mobile: <b>21</b></span>,
-                                    <span class="IMSNewsStats IMSNewsStats_Sender">Nhuận bút: <b>0</b></span>
-                                </div>
-                            </span>
-                            <div class="IMSNewsItem_Statistics description">
-                                <span class="IMSNewsStats IMSNewsStats_Sender">Viết bởi: <b>{{ post ? post.element.user_created.FullName : '' }}</b></span>
-                                <span class="IMSNewsStats IMSNewsStats_Sender">  Xuất bản bởi: <b>luonghue</b></span>
-                            </div>
-                        </div>
-                    </div>
+                <li class="message unread IMSNewsItem"
+                    *ngFor="let post of posts.data"
+                    [ngClass]="{IMSSelectedNewsItem: isActive(post)}"
+                    (click)="eventSelectItem(post)"
+                >
+                    <app-post-list [post]="post"></app-post-list>
                 </li>
 
             </ul>

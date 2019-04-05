@@ -4,7 +4,6 @@ import {VideoService} from '../../services/video.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth-service.service';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
-import {environment} from '../../../environments/environment.prod';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
@@ -12,8 +11,6 @@ import {HttpErrorResponse} from '@angular/common/http';
     templateUrl: './post-receiver-publish.component.html'
 })
 export class PostReceiverPublishComponent implements OnInit {
-
-    environment: any;
     posts: VideoPaginate;
     selected: any;
     selectItem = false;
@@ -26,7 +23,6 @@ export class PostReceiverPublishComponent implements OnInit {
         private authService: AuthService,
         private confirmationDialogService: ConfirmationDialogService,
     ) {
-        this.environment = environment;
     }
 
     ngOnInit() {

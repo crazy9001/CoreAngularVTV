@@ -21,6 +21,7 @@ import { PostPublishedComponent } from './post-published.component';
 import { PostEditComponent } from './post-edit.component';
 import { PostReceiverEditorComponent } from './post-receiver-editor.component';
 import { PostReceiverPublishComponent } from './post-receiver-publish.component';
+import { PostListComponent } from './post-list.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { PostReceiverPublishComponent } from './post-receiver-publish.component'
         PostPublishedComponent,
         PostEditComponent,
         PostReceiverEditorComponent,
-        PostReceiverPublishComponent
+        PostReceiverPublishComponent,
+        PostListComponent
     ],
     imports: [
         CommonModule,

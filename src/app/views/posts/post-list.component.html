@@ -1,0 +1,45 @@
+<div class="IMSNewsItemContent">
+    <div class="IMSNewsItemAction actions">
+        <span class="action">
+            <i class="fa fa-square-o"></i>
+        </span>
+        <span class="action">
+            <i class="fa fa-star-o"></i>
+        </span>
+    </div>
+    <div class="IMSNewsItemImage">
+        <img [src]="(post.multi_thumb &&  post.multi_thumb.thumbnails) ? environment.storage_url + post.multi_thumb.thumbnails[2] : environment.storage_url + post.Thumbnails ">
+    </div>
+    <div class="IMSNewsItemInfo">
+        <div class="IMSNewsItem_Header header">
+            <span class="IMSNewsItemTitle from">
+                {{ post ? post.Title : '' }}
+            </span>
+            <span class="IMSNewsItem_Category date">
+                {{ post ? post.category.name : '' }}
+            </span>
+        </div>
+        <span class="IMSNewsItem_CreatedDate">
+            <span class="IMSNewsItemDateField">
+                {{ post.element.CreatedAt | date : 'dd/MM/yyyy hh:mm:ss' }}
+            </span>
+            <div class="IMSNewsStatsSortColumn">
+                <span class="IMSNewsStats IMSNewsStats_ViewCount">Lượt xem: <b>27</b></span>,
+                <span class="IMSNewsStats IMSNewsStats_ViewCountMobile">Mobile: <b>21</b></span>,
+                <span class="IMSNewsStats IMSNewsStats_Sender">Nhuận bút: <b>0</b></span>
+            </div>
+        </span>
+        <div class="IMSNewsItem_Statistics description">
+            <span class="IMSNewsStats IMSNewsStats_Sender">
+                Viết bởi: <b>{{ post ? post.element.user_created.FullName + ' - ': '' }}</b>
+            </span>
+            <span class="IMSNewsStats IMSNewsStats_Sender">
+                {{ post && post.element.user_editor ? 'Biên tập bởi: ' + post.element.user_editor.FullName + ' - ' : '' }}
+            </span>
+            <span class="IMSNewsStats IMSNewsStats_Sender">
+                {{ post && post.element.user_editor ? 'Xuất bản bởi: ' + post.element.user_publish.FullName : '' }}
+            </span>
+
+        </div>
+    </div>
+</div>

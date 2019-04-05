@@ -78,4 +78,20 @@ export class PostPublishComponent implements OnInit {
         this.router.navigate(['posts', this.selected.id, 'edit']);
     }
 
+    eventReceiver() {
+        this.confirmationDialogService.confirm('Xác nhận', 'Nhận xuất bản bài viết ?').then((confirmed) => {
+            if (confirmed) {
+                this.videoService.receiverPost(this.selected.id).then(res => {
+                    if (res.success === true ) {
+                        this.getPublishNews();
+                        this.selectItem = false;
+                    }
+                }, (errorRes: HttpErrorResponse) => {
+                });
+            }
+        })
+            .catch(() => {
+            });
+    }
+
 }

@@ -61,9 +61,14 @@
                             <!--<span class="IMSActionButton" id="IMSListAction_GetBack" title="Rút lại">
                                 <i>Rút lại</i>
                             </span>-->
-                            <!--<span class="IMSActionButton" id="IMSListAction_Receive" title="Nhận">
+                            <span
+                                    *ngIf="role === 'Secretary'"
+                                    class="IMSActionButton"
+                                    id="IMSListAction_Receive" title="Nhận"
+                                    (click)="eventReceiver()"
+                            >
                                 <i>Nhận</i>
-                            </span>-->
+                            </span>
                             <span
                                     *ngIf="role === 'Secretary'"
                                     class="IMSActionButton IMSMiddleButton"

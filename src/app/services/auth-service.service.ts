@@ -22,6 +22,7 @@ export class AuthService {
                 localStorage.setItem(CONST.STORE_TOKEN, data.token);
                 localStorage.setItem(CONST.STORE_USER, (JSON.stringify(data.user)));
                 localStorage.setItem(CONST.STORE_ROLE, (data.user.roles[0].name));
+                localStorage.setItem(CONST.STORE_USER_SESSION, (data.user.id));
             });
     }
 
@@ -36,5 +37,9 @@ export class AuthService {
 
     getRoleUser() {
       return localStorage.getItem(CONST.STORE_ROLE) ? localStorage.getItem(CONST.STORE_ROLE) : null;
+    }
+
+    getIdUserCurent() {
+        return localStorage.getItem(CONST.STORE_USER_SESSION) ? localStorage.getItem(CONST.STORE_USER_SESSION) : null;
     }
 }

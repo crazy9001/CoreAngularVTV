@@ -6,6 +6,8 @@ import {PostEditorComponent} from './post-editor.component';
 import {PostPublishComponent} from './post-publish.component';
 import {PostPublishedComponent} from './post-published.component';
 import {PostEditComponent} from './post-edit.component';
+import {PostReceiverEditorComponent} from './post-receiver-editor.component';
+import {PostReceiverPublishComponent} from './post-receiver-publish.component';
 
 const routes: Routes = [{
     path: '',
@@ -53,6 +55,20 @@ const routes: Routes = [{
             component: PostEditComponent,
             data: {
                 title: 'Chỉnh sửa bài viết'
+            }
+        },
+        {
+            path: 'receiver/editor',
+            component: PostReceiverEditorComponent,
+            data: {
+                title: 'Bài đã nhận'
+            }
+        },
+        {
+            path: 'receiver/publish',
+            component: PostReceiverPublishComponent,
+            data: {
+                title: 'Bài đã nhận'
             }
         }
     ]

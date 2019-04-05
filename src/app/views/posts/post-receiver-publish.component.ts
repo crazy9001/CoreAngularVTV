@@ -8,17 +8,16 @@ import {environment} from '../../../environments/environment.prod';
 import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
-    selector: 'app-post-editor',
-    templateUrl: './post-editor.component.html'
+    selector: 'app-post-receiver-publish',
+    templateUrl: './post-receiver-publish.component.html'
 })
-export class PostEditorComponent implements OnInit {
+export class PostReceiverPublishComponent implements OnInit {
 
     environment: any;
     posts: VideoPaginate;
     selected: any;
     selectItem = false;
     role: string;
-    idUserLogin: any;
     selectItemStatus: string;
 
     constructor(
@@ -31,13 +30,12 @@ export class PostEditorComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getEditorPost();
+        this.getReceiverPublishPost();
         this.role = this.authService.getRoleUser();
-        this.idUserLogin = this.authService.getIdUserCurent();
     }
 
-    getEditorPost() {
-        this.videoService.getNewsEditor().then(posts => {
+    getReceiverPublishPost() {
+        this.videoService.getReceiverNewsPublish().then(posts => {
             this.posts = posts;
         });
     }
@@ -65,7 +63,7 @@ export class PostEditorComponent implements OnInit {
             .then((confirmed) => {
                 if (confirmed) {
                     this.videoService.changeNewsToPublish(this.selected.id).then(res => {
-                        this.getEditorPost();
+                        this.getReceiverPublishPost();
                         this.selectItem = false;
                     }, (errorRes: HttpErrorResponse) => {
 
@@ -81,7 +79,7 @@ export class PostEditorComponent implements OnInit {
             .then((confirmed) => {
                 if (confirmed) {
                     this.videoService.publishNews(this.selected.id).then(res => {
-                        this.getEditorPost();
+                        this.getReceiverPublishPost();
                         this.selectItem = false;
                     }, (errorRes: HttpErrorResponse) => {
 
@@ -94,38 +92,6 @@ export class PostEditorComponent implements OnInit {
 
     eventClickEditNews() {
         this.router.navigate(['posts', this.selected.id, 'edit']);
-    }
-
-    eventReceiver() {
-        this.confirmationDialogService.confirm('Xác nhận', 'Nhận biên tập bài viết ?').then((confirmed) => {
-            if (confirmed) {
-                this.videoService.receiverPost(this.selected.id).then(res => {
-                    if (res.success === true ) {
-                        this.getEditorPost();
-                        this.selectItem = false;
-                    }
-                }, (errorRes: HttpErrorResponse) => {
-                });
-            }
-        })
-            .catch(() => {
-            });
-    }
-
-    eventGetBackEditor() {
-        this.confirmationDialogService.confirm('Xác nhận', 'Rút lại bài viết ?').then((confirmed) => {
-            if (confirmed) {
-                this.videoService.getBackEditorPost(this.selected.id).then(res => {
-                    if (res.success === true ) {
-                        this.getEditorPost();
-                        this.selectItem = false;
-                    }
-                }, (errorRes: HttpErrorResponse) => {
-                });
-            }
-        })
-            .catch(() => {
-            });
     }
 
 }

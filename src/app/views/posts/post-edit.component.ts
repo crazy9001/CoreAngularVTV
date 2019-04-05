@@ -21,6 +21,7 @@ export class PostEditComponent implements OnInit, AfterViewInit {
     categories: Array<ICategory>;
     id: number;
     role: string;
+
     post = {
         id: '',
         Content: '',
@@ -61,6 +62,7 @@ export class PostEditComponent implements OnInit, AfterViewInit {
         this.getCategoryDefault();
         this.environment = environment;
         this.role = this.authService.getRoleUser();
+        this.receiverPost();
     }
 
     ngAfterViewInit() {
@@ -189,6 +191,12 @@ export class PostEditComponent implements OnInit, AfterViewInit {
     getCategoryDefault() {
         this.categoryService.getVideoCategoryByUser().then(categories => {
             this.categories = categories;
+        });
+    }
+
+    receiverPost() {
+        this.videoService.receiverPost(this.id).then(res => {
+        }, (errorRes: HttpErrorResponse) => {
         });
     }
 

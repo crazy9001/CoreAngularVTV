@@ -32,8 +32,10 @@
                                 {{ posts.from + ' đến ' + posts.to + ' trong tổng số ' + posts.total}}
                             </div>
                             <div class="IMSPagerButtonWrapper">
-                                <button (click)="prevPage()" [disabled]="posts && !posts.prev_page_url" class="IMSPager_Back" id="IMSPager_btnPrevPage"></button>
-                                <button (click)="nextPage()" [disabled]="posts && !posts.next_page_url" class="IMSPager_Next" id="IMSPager_btnNextPage"></button>
+                                <button (click)="prevPage()" [disabled]="posts && !posts.prev_page_url"
+                                        class="IMSPager_Back" id="IMSPager_btnPrevPage"></button>
+                                <button (click)="nextPage()" [disabled]="posts && !posts.next_page_url"
+                                        class="IMSPager_Next" id="IMSPager_btnNextPage"></button>
                             </div>
                         </div>
 
@@ -42,60 +44,34 @@
                 </div>
                 <div id="IMSListActionBar" *ngIf="selectItem">
                     <div id="IMSListActionBarContent">
-                        <span class="IMSActionButton" id="IMSListAction_Preview" title="Xem trước" style="display: block;">
+                        <span class="IMSActionButton" id="IMSListAction_Preview" title="Xem trước"
+                              style="display: block;">
                             <i>Preview</i>
                         </span>
-                        <span class="IMSActionButton" id="IMSListAction_Edit" title="Sửa" (click)="eventClickEditNews()">
+                        <span class="IMSActionButton" id="IMSListAction_Edit" title="Sửa"
+                              (click)="eventClickEditNews()">
                             <i>Edit</i>
                         </span>
                         <div class="IMSActionButtonGroup">
                             <!--<span class="IMSActionButton IMSFirstButton" id="IMSListAction_Return" title="Trả lại">
                                 <i>Trả lại</i>
                             </span>-->
-                            <!--<span class="IMSActionButton IMSMiddleButton" id="IMSListAction_Release" title="Nhả ra">
-                                <i>Nhả ra</i>
-                            </span>-->
                             <span
-                                    *ngIf="idUserLogin == selected.element.user_created.id"
-                                    class="IMSActionButton"
-                                    id="IMSListAction_GetBack"
-                                    title="Rút lại"
-                                    (click)="eventGetBackEditor()"
-                            >
-                                <i>Rút lại</i>
-                            </span>
-                            <span
-                                    *ngIf="role === 'Secretary' || role === 'Editor'"
-                                    class="IMSActionButton"
-                                    id="IMSListAction_Receive"
-                                    title="Nhận"
-                                    (click)="eventReceiver()"
-                            >
-                                <i>Nhận</i>
-                            </span>
-                            <span
-                                    *ngIf="selectItemStatus == 'WAITING_EDITOR' && (role === 'Secretary' || role === 'Editor')"
-                                    class="IMSActionButton"
-                                    id="IMSListAction_Send"
-                                    title="Gửi xuất bản"
-                                    (click)="eventSentToPublish()"
-                            >
-                                <i>Gửi xuất bản</i>
-                            </span>
-                            <span
-                                    *ngIf="role === 'Secretary'"
                                     class="IMSActionButton IMSMiddleButton"
-                                    id="IMSListAction_Publish"
-                                    title="Xuất bản"
-                                    (click)="eventPublish()"
+                                    id="IMSListAction_Release"
+                                    title="Nhả ra"
+                                    (click)="eventUnReceiver()"
                             >
-                                <i>Xuất bản</i>
+                                <i>Nhả ra</i>
                             </span>
+                            <!--<span class="IMSActionButton" id="IMSListAction_GetBack" title="Rút lại">
+                                <i>Rút lại</i>
+                            </span>-->
+                            <!--<span class="IMSActionButton" id="IMSListAction_Receive" title="Nhận">
+                                <i>Nhận</i>
+                            </span>-->
                             <!--<span class="IMSActionButton" id="IMSListAction_Restore" title="Phục hồi">
                                 <i>Phục hồi</i>
-                            </span>-->
-                            <!--<span class="IMSActionButton" id="IMSListAction_UnPublish" title="Gỡ xuống">
-                                <i>Gỡ xuống</i>
                             </span>-->
                             <!--<span class="IMSActionButton" id="IMSListAction_RemoveNewsCache" title="Xóa cache bài viết">
                                 <i></i>
@@ -107,7 +83,8 @@
             </div>
 
             <ul class="messages" [perfectScrollbar] id="CMSListPostWrapper" *ngIf="posts">
-                <li class="message unread IMSNewsItem" *ngFor="let post of posts.data" [ngClass]="{IMSSelectedNewsItem: isActive(post)}" (click)="eventSelectItem(post)">
+                <li class="message unread IMSNewsItem" *ngFor="let post of posts.data"
+                    [ngClass]="{IMSSelectedNewsItem: isActive(post)}" (click)="eventSelectItem(post)">
                     <div class="IMSNewsItemContent">
                         <div class="IMSNewsItemAction actions">
                             <span class="action">

@@ -146,7 +146,9 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
     onSubmit() {
         this.createPostForm.controls['content'].setValue(this.mediumEditor.getContent());
         this.videoService.createPost(this.createPostForm.value).subscribe(res => {
-            this.router.navigate(['posts', res.id, 'edit']);
+            if (res.success === true) {
+                this.router.navigate(['posts', res.data.id, 'edit']);
+            }
         }, (errorRes: HttpErrorResponse) => {
             if (errorRes.status === 401) {
             }

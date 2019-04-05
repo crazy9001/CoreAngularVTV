@@ -15,6 +15,9 @@ export class VideoService {
     ) {
     }
 
+    /**
+     * This function get list video draft
+     */
     getVideoDraft(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/draft')
             .toPromise()
@@ -24,6 +27,9 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * This function get list news draft
+     */
     getNewsDraft(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/post/draft')
             .toPromise()
@@ -33,6 +39,9 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * This function get list video editor
+     */
     getVideoEditor(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/waiting/editor')
             .toPromise()
@@ -42,6 +51,9 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * This function get list news editor
+     */
     getNewsEditor(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/post/waiting/editor')
             .toPromise()
@@ -52,6 +64,65 @@ export class VideoService {
     }
 
 
+    /**
+     * This function receiver post
+     * @param id
+     */
+    receiverPost (id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/receiver', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
+    /**
+     * This function unreceiver post
+     * @param id
+     */
+    unReceiverPost(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/unReceiver', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
+    getBackEditorPost(id: number) {
+        return this.httpClient.post<any>(`${environment.api_url}` + '/post/editor/getBack', {id: id})
+            .toPromise()
+            .then((response) => {
+                return response;
+            });
+    }
+
+    /**
+     * This function get list news receiver editor
+     */
+    getReceiverNewsEditor(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/post/receiver/editor')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+    /**
+     * This function get list news  receiver publish
+     */
+    getReceiverNewsPublish(): Promise<VideoPaginate> {
+        return this.httpClient.get(`${environment.api_url}` + '/post/receiver/publish')
+            .toPromise()
+            .then((response) => {
+                return response as VideoPaginate;
+            })
+            .catch(this.handleError);
+    }
+
+    /**
+     * This function get list video publish
+     */
     getVideoPublish(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/waiting/publish')
             .toPromise()
@@ -61,6 +132,9 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * This function get list news publish
+     */
     getNewsPublish(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/post/waiting/publish')
             .toPromise()
@@ -71,6 +145,9 @@ export class VideoService {
     }
 
 
+    /**
+     * This function get list video published
+     */
     getVideoPublished(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/published')
             .toPromise()
@@ -79,6 +156,10 @@ export class VideoService {
             })
             .catch(this.handleError);
     }
+
+    /**
+     * This function get list news published
+     */
 
     getNewsPublished(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/post/published')
@@ -89,10 +170,17 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * This function get list video publish to highlight
+     * @param page
+     */
     getVideoPublishedPaginate(page: number = 1) {
         return this.httpClient.get(`${environment.api_url}` + `/video/paginate/published?page=${page}`);
     }
 
+    /**
+     * Thif function get list video trash
+     */
     getVideoTrashed(): Promise<VideoPaginate> {
         return this.httpClient.get(`${environment.api_url}` + '/video/trashed')
             .toPromise()
@@ -102,6 +190,10 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * Get detail video by id
+     * @param id
+     */
     getDetailVideoById(id: number) {
         return this.httpClient.get(`${environment.api_url}` + '/video/' + id)
             .toPromise()
@@ -111,6 +203,10 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * Get detail news by id
+     * @param id
+     */
     getDetailNewsById(id: number) {
         return this.httpClient.get(`${environment.api_url}` + '/post/' + id)
             .toPromise()
@@ -120,6 +216,10 @@ export class VideoService {
             .catch(this.handleError);
     }
 
+    /**
+     * Paginate
+     * @param url
+     */
     getVideosAtUrl(url: string): Promise<VideoPaginate> {
         return this.httpClient.get(url)
             .toPromise()
@@ -234,4 +334,5 @@ export class VideoService {
         console.error('An error occurred', error); // for demo purposes only
         return Promise.reject(error.message || error);
     }
+
 }

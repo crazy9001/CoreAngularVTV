@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener} from '@angular/core';
 import MediumEditor from 'medium-editor';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/category.service';
@@ -29,6 +29,7 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
     isHovering = false;
 
     @ViewChild('container') container: ElementRef;
+    @ViewChild('preViewMode') preViewMode: ElementRef;
 
     ngAfterViewInit() {
         const element = this.container.nativeElement;
@@ -163,20 +164,45 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
 
 
     eventReceiveImageMultipleInsert($event) {
-        const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false"  (mouseenter)="mouseHovering()" (mouseleave)="mouseLeft()">' +
+        const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
                             '<div>' +
                                 '<img src="' +  this.environment.storage_url + $event.thumbnails[2] + '"> ' +
                             '</div>' +
                             '<div class="PhotoCMS_Caption" contenteditable="false">' +
                                 '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
-                            '</div>' +
-                            '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px;width: 165px;display: block;"><ul><li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li><li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li><li data-func="photo-watermark" title="Đóng logo"><i class="fa fa-copyright"></i></li><li data-func="elm-line-before" title="Tạo dòng bên trên"><i class="fa fa-chevron-up"></i></li><li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li></ul></div>' +
-                            '<div id="NLFuncEnter" contenteditable="false" title="Tạo dòng mới" style="display: block;"></div>' +
+                            '</div>'  +
                         '</div>';
-        MediumEditor.util.insertHTMLCommand(window.document, html);
+        //MediumEditor.util.insertHTMLCommand(window.document, html);
+        document.execCommand('insertHTML', true, html);
+        const test = this.container.nativeElement.querySelector('.VCSortableInPreviewMode');
+
+            test.removeEventListener('mouseenter', function (event) {
+                return;
+            });
+            const funcImage = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px;width: 165px;display: block;"><ul><li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li><li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li><li data-func="photo-watermark" title="Đóng logo"><i class="fa fa-copyright"></i></li><li data-func="elm-line-before" title="Tạo dòng bên trên"><i class="fa fa-chevron-up"></i></li><li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li></ul></div>' +
+                '<div id="NLFuncEnter" contenteditable="false" title="Tạo dòng mới" style="display: block;"></div>';
+            let div;
+
+            test.addEventListener('mouseenter', function(event) {
+                div = document.createElement('div');
+                div.innerHTML = funcImage;
+                this.appendChild(div);
+            });
+            const _this = this;
+            const nodeFnc = this.container.nativeElement.querySelector('#NLElementFunc');
+            test.addEventListener('mouseout', function(event) {
+                if (div && div.parentNode) {
+                    div.parentNode.removeChild(div);
+                }
+            });
+    }
+
+    @HostListener('mouseenter') onMouseEnter() {
+
     }
 
     mouseHovering() {
+        console.log('ahihi');
         this.isHovering = true;
         console.log(this.isHovering);
     }

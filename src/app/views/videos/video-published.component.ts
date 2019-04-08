@@ -7,6 +7,7 @@ import {AuthService} from '../../services/auth-service.service';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ModalVideoHighlightComponent} from '../modals/modal-video-highlight.component';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-video-published',
@@ -22,6 +23,7 @@ export class VideoPublishedComponent implements OnInit {
     selected: any;
     role: string;
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private videoService: VideoService,
         private router: Router,
         private authService: AuthService,
@@ -36,17 +38,27 @@ export class VideoPublishedComponent implements OnInit {
     }
 
     getPublishedVideo() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.getVideoPublished().then(videos => {
             this.videos = videos;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
 
     prevPage() {
-        this.videoService.getVideosAtUrl(this.videos.prev_page_url).then(videos => this.videos = videos);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.videos.prev_page_url).then(videos => {
+            this.videos = videos;
+            this.ng4LoadingSpinnerService.hide();
+        });
     }
 
     nextPage() {
-        this.videoService.getVideosAtUrl(this.videos.next_page_url).then(videos => this.videos = videos);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.videos.next_page_url).then(videos => {
+            this.videos = videos;
+            this.ng4LoadingSpinnerService.hide();
+        });
     }
 
     eventViewDetailVideo(id) {
@@ -66,8 +78,10 @@ export class VideoPublishedComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Gỡ video xuống ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.removeVideo(this.selected.id).then(res => {
                         this.getPublishedVideo();
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
                     });
                 }

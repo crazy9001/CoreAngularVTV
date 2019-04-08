@@ -10,6 +10,7 @@ import {AuthService} from '../../services/auth-service.service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import { Location } from '@angular/common';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-video-edit',
@@ -41,6 +42,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     public thumbnails;
 
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private confirmationDialogService: ConfirmationDialogService,
         private route: ActivatedRoute,
         private videoService: VideoService,
@@ -65,6 +67,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
 
     /* Get detail video by id */
     getDetailVideo() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.getDetailVideoById(this.id).then(video => {
             this.video.id = video.id;
             this.video.content = video.content.Content;
@@ -80,6 +83,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
             this.video.storage_id = video.storage[0].pivot.storage_id;
             this.thumbnails = Object.keys(video.storage[0].thumbnails).map(key => ({type: key, value: video.storage[0].thumbnails[key]}));
             this.video.status = video.Status;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
 
@@ -120,8 +124,10 @@ export class VideoEditComponent implements OnInit, OnDestroy {
 
     /* Update video */
     eventUpdateVideo() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.update(this.editVideoForm.value).subscribe(res => {
             this.notificationService.showSuccess('Đã cập nhật dữ liệu', 'Success');
+            this.ng4LoadingSpinnerService.hide();
         });
     }
 

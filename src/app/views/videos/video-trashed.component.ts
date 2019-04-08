@@ -11,6 +11,8 @@ export class VideoTrashedComponent implements OnInit {
 
     environment: any;
     videos: VideoPaginate;
+    selected: any;
+    selectItem = false;
 
     constructor(
         private videoService: VideoService,
@@ -39,6 +41,15 @@ export class VideoTrashedComponent implements OnInit {
 
     eventViewDetailVideo(id) {
         this.router.navigate(['videos/edit', id], { queryParams: id, skipLocationChange: true});
+    }
+
+    selectVideo(item) {
+        this.selectItem = true;
+        this.selected = item;
+    }
+
+    isActive(item) {
+        return this.selected === item;
     }
 
 }

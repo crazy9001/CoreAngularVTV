@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../services/auth-service.service';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 @Component({
     selector: 'app-video-editor',
     templateUrl: './video-editor.component.html',
@@ -18,6 +20,7 @@ export class VideoEditorComponent implements OnInit {
     selected: any;
     role: string;
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private videoService: VideoService,
         private router: Router,
         private authService: AuthService,
@@ -32,16 +35,26 @@ export class VideoEditorComponent implements OnInit {
     }
 
     getEditorVideo() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.getVideoEditor().then(videos => {
             this.videos = videos;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
     prevPage() {
-      this.videoService.getVideosAtUrl(this.videos.prev_page_url).then(videos => this.videos = videos);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.videos.prev_page_url).then(videos => {
+            this.videos = videos;
+            this.ng4LoadingSpinnerService.hide();
+        });
     }
 
     nextPage() {
-      this.videoService.getVideosAtUrl(this.videos.next_page_url).then(videos => this.videos = videos);
+        this.ng4LoadingSpinnerService.show();
+        this.videoService.getVideosAtUrl(this.videos.next_page_url).then(videos => {
+            this.videos = videos;
+            this.ng4LoadingSpinnerService.hide();
+        });
     }
 
     eventViewDetailVideo(id) {
@@ -61,8 +74,10 @@ export class VideoEditorComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Gửi lên xuất bản ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.changeVideoToPublish(this.selected.id).then(res => {
                         this.getEditorVideo();
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
                     });
                 }
@@ -75,8 +90,10 @@ export class VideoEditorComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Xuất bản video ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.publishVideo(this.selected.id).then(res => {
                         this.getEditorVideo();
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
                     });
                 }
@@ -89,8 +106,10 @@ export class VideoEditorComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Gỡ video xuống ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.videoService.removeVideo(this.selected.id).then(res => {
                         this.getEditorVideo();
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
                     });
                 }

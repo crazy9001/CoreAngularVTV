@@ -5,6 +5,7 @@ import {NgxSmartModalService} from 'ngx-smart-modal';
 import {environment} from '../../../environments/environment.prod';
 import {ConfirmationDialogService} from '../confirmation-dialog/confirmation-dialog.service';
 import {HttpErrorResponse} from '@angular/common/http';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-program',
@@ -16,6 +17,7 @@ export class ProgramComponent implements OnInit {
     environment: any;
 
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private formBuilder: FormBuilder,
         private programService: ProgramService,
         public ngxSmartModalService: NgxSmartModalService,
@@ -29,8 +31,10 @@ export class ProgramComponent implements OnInit {
     }
 
     getAllProgram() {
+        this.ng4LoadingSpinnerService.show();
         this.programService.getAllProgram().then(program => {
             this.listProgram = program;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
 
@@ -45,9 +49,11 @@ export class ProgramComponent implements OnInit {
         this.confirmationDialogService.confirm('Xác nhận', 'Xóa chương trình ?')
             .then((confirmed) => {
                 if (confirmed) {
+                    this.ng4LoadingSpinnerService.show();
                     this.programService.removeProgram(id).then(res => {
                         console.log(res);
                         this.getAllProgram();
+                        this.ng4LoadingSpinnerService.hide();
                     }, (errorRes: HttpErrorResponse) => {
                     });
                 }

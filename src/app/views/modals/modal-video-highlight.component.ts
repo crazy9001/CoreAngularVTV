@@ -6,6 +6,8 @@ import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
 import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag-drop';
 import {SettingService} from '../../services/setting.service';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+
 @Component({
     selector: 'app-modal-video-highlight',
     templateUrl: './modal-video-highlight.component.html',
@@ -30,6 +32,7 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
     private currentPage = 1;
 
     constructor(
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private http: HttpClient,
         private videoService: VideoService,
         private settingService: SettingService
@@ -66,10 +69,12 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
     }
 
     public onScrollDown(): void {
+        this.ng4LoadingSpinnerService.show();
         this.getVideosPublished(
             this.currentPage,
             (news) => {
                 this.videos = this.videos.concat(news);
+                this.ng4LoadingSpinnerService.hide();
             });
     }
 
@@ -86,13 +91,17 @@ export class ModalVideoHighlightComponent implements OnInit, AfterViewInit {
         });
     }
     private getVideoHighLight() {
+        this.ng4LoadingSpinnerService.show();
         this.videoService.getVideoHighLight().then(videos => {
             this.videosHighLight = videos;
+            this.ng4LoadingSpinnerService.hide();
         });
     }
     eventSaveHighlight() {
+        this.ng4LoadingSpinnerService.show();
         this.listItemSelected = this.getIds();
         this.settingService.updateHighLightHome(this.listItemSelected).subscribe(res => {
+            this.ng4LoadingSpinnerService.hide();
         }, (errorRes: HttpErrorResponse) => {
             if (errorRes.status === 401) {
 

@@ -7,6 +7,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
 import {Router} from '@angular/router';
+declare var $;
 
 @Component({
     selector: 'app-post-create',
@@ -25,6 +26,7 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
         '</b></p>';
     idStorage: number;
     dataOutputMultyImage: any;
+    isHovering = false;
 
     @ViewChild('container') container: ElementRef;
 
@@ -157,5 +159,29 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
     eventReceiveImageInsert($event) {
         this.thumbnails = $event.thumbnails[2];
         this.idStorage = $event.id;
+    }
+
+
+    eventReceiveImageMultipleInsert($event) {
+        const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false"  (mouseenter)="mouseHovering()" (mouseleave)="mouseLeft()">' +
+                            '<div>' +
+                                '<img src="' +  this.environment.storage_url + $event.thumbnails[2] + '"> ' +
+                            '</div>' +
+                            '<div class="PhotoCMS_Caption" contenteditable="false">' +
+                                '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
+                            '</div>' +
+                            '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px;width: 165px;display: block;"><ul><li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li><li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li><li data-func="photo-watermark" title="Đóng logo"><i class="fa fa-copyright"></i></li><li data-func="elm-line-before" title="Tạo dòng bên trên"><i class="fa fa-chevron-up"></i></li><li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li></ul></div>' +
+                            '<div id="NLFuncEnter" contenteditable="false" title="Tạo dòng mới" style="display: block;"></div>' +
+                        '</div>';
+        MediumEditor.util.insertHTMLCommand(window.document, html);
+    }
+
+    mouseHovering() {
+        this.isHovering = true;
+        console.log(this.isHovering);
+    }
+
+    mouseLeaving() {
+        this.isHovering = false;
     }
 }

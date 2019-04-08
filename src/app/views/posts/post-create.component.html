@@ -6,7 +6,7 @@
                 <div id="NLEditorHeader">
                     <div id="NLEditorToolbar">
                         <ul>
-                            <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageModal.show()">
+                            <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageMultipleModal.show()">
                                 <i class="fa fa-photo"></i>
                             </li>
                             <li data-func="video" title="Chèn video" class=" notipsy">
@@ -248,3 +248,4 @@
     </form>
 </div>
 <app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>
+<app-multi-media-images #mediaImageMultipleModal (messageEventInsertImageMultiple)="eventReceiveImageMultipleInsert($event)"> </app-multi-media-images>

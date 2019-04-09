@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, Input} from '@angular/core';
 import {environment} from '../../../environments/environment.prod';
 
 @Component({
@@ -8,8 +8,10 @@ import {environment} from '../../../environments/environment.prod';
 })
 export class AvatarComponent implements OnInit {
     environment: any;
-    thumbnails = '';
-    idStorage: number;
+    @Input() oldImage: string;
+    @Output() dataOutputImage = new EventEmitter<string>();
+    @Output() dataOutputStorage = new EventEmitter<string>();
+    outputImage = '';
     constructor() {
     }
 
@@ -18,8 +20,9 @@ export class AvatarComponent implements OnInit {
     }
 
     eventReceiveImageInsert($event) {
-        this.thumbnails = $event.thumbnails[2];
-        this.idStorage = $event.id;
+        this.outputImage = $event.thumbnails[2];
+        this.dataOutputImage.emit($event.thumbnails[2]);
+        this.dataOutputStorage.emit($event.id);
     }
 
 }

@@ -1119,7 +1119,6 @@ input[type=checkbox].IMSCheckbox + label.IMSCheckboxLabel {
   position: relative;
 }
 #CMSTabInfo {
-  z-index: 999;
   padding: 52px 0;
   float: left;
   height: 100%;
@@ -1221,7 +1220,6 @@ input[type=checkbox].IMSCheckbox + label.IMSCheckboxLabel {
   position: absolute;
   left: 0;
   right: 0;
-  z-index: 9999;
   bottom: 0;
   display: block;
   padding: 10px;

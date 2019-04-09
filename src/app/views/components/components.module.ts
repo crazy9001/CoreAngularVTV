@@ -8,22 +8,27 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import { AvatarComponent } from './avatar.component';
+import { SeoInformationComponent } from './seo-information.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
 };
 
 @NgModule({
-    declarations: [EditorToolbarComponent, EditorContainerComponent, AvatarComponent],
+    declarations: [EditorToolbarComponent, EditorContainerComponent, AvatarComponent, SeoInformationComponent],
     imports: [
         CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
         MediaModule,
         PerfectScrollbarModule,
     ],
     exports: [
         EditorToolbarComponent,
         EditorContainerComponent,
-        AvatarComponent
+        AvatarComponent,
+        SeoInformationComponent
     ]
 })
 export class ComponentsModule {

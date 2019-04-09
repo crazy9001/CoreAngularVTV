@@ -1,5 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
-import MediumEditor from 'medium-editor';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/category.service';
 import {ICategory} from '../../model/type';
@@ -7,6 +6,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
 import {Router} from '@angular/router';
+import {EditorContainerComponent} from '../components/editor-container.component';
 declare var $;
 
 @Component({
@@ -17,17 +17,14 @@ export class PostCreateComponent implements OnInit {
 
     createPostForm: FormGroup;
     categories: Array<ICategory>;
-    mediumEditor: any;
-    thumbnails = '';
     environment: any;
     content = '<p></p>' +
         '<p><b>* Invite readers to follow the broadcast programs of Vtv world on ' +
         '<a href="https://beta.vtvworld.vtv.vn" target="_blank" title="VTV World" rel="nofollow">VTV World !</a>' +
         '</b></p>';
-    idStorage: number;
-
+    oldImage = '';
     @ViewChild('container') container: ElementRef;
-    @ViewChild('preViewMode') preViewMode: ElementRef;
+    @ViewChild('editorContainer') editorContainer: EditorContainerComponent;
 
 
     constructor(
@@ -59,7 +56,7 @@ export class PostCreateComponent implements OnInit {
             seo_description: ['', ''],
             content: ['', ''],
             thumbnails: ['', Validators.required],
-            storage_id: ['', ''],
+            storage_id: ['', Validators.required],
         });
     }
     getCategoryDefault() {
@@ -69,7 +66,7 @@ export class PostCreateComponent implements OnInit {
     }
 
     onSubmit() {
-        this.createPostForm.controls['content'].setValue(this.mediumEditor.getContent());
+        this.createPostForm.controls['content'].setValue(this.editorContainer.mediumEditor.getContent());
         this.videoService.createPost(this.createPostForm.value).subscribe(res => {
             if (res.success === true) {
                 this.router.navigate(['posts', res.data.id, 'edit']);
@@ -79,10 +76,14 @@ export class PostCreateComponent implements OnInit {
             }
         });
     }
-    eventReceiveImageInsert($event) {
-        this.thumbnails = $event.thumbnails[2];
-        this.idStorage = $event.id;
-    }
+
+	OutputAvatar(data) {
+		this.createPostForm.controls['thumbnails'].setValue(data);
+	}
+
+	OutputStorage(data) {
+		this.createPostForm.controls['storage_id'].setValue(data);
+	}
 
     OutputImage(data) {
         const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +

@@ -1,0 +1,40 @@
+<div class="form-group col-sm-12">
+    <div class="row">
+        <div class="col-sm-8">
+            <label>Tiêu đề hiển thị trên Google</label>
+        </div>
+        <div class="col-sm-4">
+            <p class="IMS_RightLabel" id="IMS_Metatitle_RemainingWords">0/600 kí tự</p>
+        </div>
+    </div>
+    <input id="IMS_FormEdit_MetaTitle" value="" type="text"
+           class="form-control" formControlName="seo_title">
+</div>
+
+<div class="form-group col-sm-12">
+    <div class="row">
+        <div class="col-sm-8">
+            <label>Mô tả hiển thị trên Google</label>
+        </div>
+        <div class="col-sm-4">
+            <p id="IMS_MetaDescription_RemainingWords" class="IMS_RightLabel">0/1500 kí
+                tự</p>
+        </div>
+    </div>
+    <textarea formControlName="seo_description" id="IMS_FormEdit_MetaDescription" type="text"
+              class="form-control IMS_Textarea" placeholder="VTV.vn - "></textarea>
+</div>
+
+<div class="form-group col-sm-12">
+    <div class="row">
+        <div class="col-sm-7">
+            <label>Từ khóa chủ đạo</label>
+        </div>
+        <div class="col-sm-5">
+            <p class="IMS_RightLabel" id="KeywordFocusCount">Ít nhất 5 ký tự</p>
+        </div>
+    </div>
+    <input formControlName="seo_keywords" type="text" value="" class="form-control"
+           id="IMS_FormEdit_KeywordFocus"
+           placeholder="Hãy viết vào đây 1 từ khóa duy nhất mà bạn cho rằng nó quan trọng nhất bài (2 - 6 chữ)">
+</div>

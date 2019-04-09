@@ -1,25 +1,20 @@
-<div class="form-group col-sm-12" id="IMS_Avatar_Wrapper">
-    <label>Hình đại diện</label>
-    <div id="IMSSelectedAvatarList" class="large-screen">
-        <div class="ims-avatar-col" data-role="avatar" (click)="mediaImageModal.show()">
-            <div data-ratio="1.6" data-height="281" data-width="450"
-                 data-rel="#IMS_FormEdit_AvatarField" data-label="Avatar chính"
-                 data-title="Avatar chính" class="IMSNewsAvatarItem"
-                 original-title="Avatar chính - Avatar chính">
-                <img [src]="thumbnails ? environment.storage_url + thumbnails : 'https://vtv1.mediacdn.vn/2016/avatar1-1472207921942.gif'">
-                <!--<input type="hidden" formControlName="thumbnails" [ngModel]="thumbnails" class="form-control"
-                       autocomplete="off">-->
-                <div class="cms_bm_view_full_avatar"></div>
-                <div class="cms_bm_watermark_avatar"><i class="fa fa-copyright"></i>
-                </div>
+<label>Hình đại diện</label>
+<div id="IMSSelectedAvatarList" class="large-screen">
+    <div class="ims-avatar-col" data-role="avatar" (click)="mediaImageModal.show()">
+        <div data-ratio="1.6" data-height="281" data-width="450"
+             data-rel="#IMS_FormEdit_AvatarField" data-label="Avatar chính"
+             data-title="Avatar chính" class="IMSNewsAvatarItem"
+             original-title="Avatar chính - Avatar chính">
+            <img [src]="oldImage ? environment.storage_url + oldImage : (outputImage ? environment.storage_url + outputImage : 'https://vtv1.mediacdn.vn/2016/avatar1-1472207921942.gif')">
+            <div class="cms_bm_view_full_avatar"></div>
+            <div class="cms_bm_watermark_avatar"><i class="fa fa-copyright"></i>
             </div>
         </div>
-        <!--<input type="hidden" formControlName="storage_id" [ngModel]="idStorage" class="form-control" autocomplete="off">-->
-        <div class="clearfix"></div>
     </div>
-    <input class="hidden" id="IMS_FormEdit_AvatarField" name="Avatar" type="text"
-           value="">
-    <input class="hidden" id="IMS_FormEdit_AvatarCustom" name="AvatarCustom" type="text"
-           value="">
+    <div class="clearfix"></div>
 </div>
+<input class="hidden" id="IMS_FormEdit_AvatarField" name="Avatar" type="text"
+       value="">
+<input class="hidden" id="IMS_FormEdit_AvatarCustom" name="AvatarCustom" type="text"
+       value="">
 <app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>

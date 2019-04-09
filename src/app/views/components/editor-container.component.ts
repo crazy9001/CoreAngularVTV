@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
 import MediumEditor from 'medium-editor';
 declare var $;
 
@@ -10,12 +10,8 @@ declare var $;
 export class EditorContainerComponent implements OnInit, AfterViewInit {
 
     @ViewChild('container') container: ElementRef;
+    @Input() contentEditor: string;
     mediumEditor: any;
-
-    content = '<p></p>' +
-        '<p><b>* Invite readers to follow the broadcast programs of Vtv world on ' +
-        '<a href="https://beta.vtvworld.vtv.vn" target="_blank" title="VTV World" rel="nofollow">VTV World !</a>' +
-        '</b></p>';
 
     constructor() {
     }

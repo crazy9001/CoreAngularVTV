@@ -4,26 +4,11 @@
         <div id="IMSNewsEditWrapper">
             <div class="col-sm-5" id="CMSTabEditor">
                 <div id="NLEditorHeader">
-                    <div id="NLEditorToolbar">
-                        <ul>
-                            <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageMultipleModal.show()">
-                                <i class="fa fa-photo"></i>
-                            </li>
-                            <li data-func="video" title="Chèn video" class=" notipsy">
-                                <i class="fa fa-play-circle"></i>
-                            </li>
-                            <li data-func="contentbox" title="Chèn box nội dung nổi bật" class=" notipsy">
-                                <i class="fa fa-sticky-note"></i>
-                            </li>
-                        </ul>
-                    </div>
+                    <app-editor-toolbar (dataOutputImage)="OutputImage($event)"></app-editor-toolbar>
                 </div>
 
                 <div id="IMSNewsLayout">
-                    <div id="NLEditorOuter" [perfectScrollbar]>
-                        <div id="NLEditor" #container [innerHTML]="content">
-                        </div>
-                    </div>
+                   <app-editor-container></app-editor-container>
                 </div>
             </div>
             <div class="col-sm-7" id="CMSTabInfo">
@@ -248,4 +233,3 @@
     </form>
 </div>
 <app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>
-<app-multi-media-images #mediaImageMultipleModal (messageEventInsertImageMultiple)="eventReceiveImageMultipleInsert($event)"> </app-multi-media-images>

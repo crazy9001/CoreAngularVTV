@@ -22,6 +22,7 @@ import { PostEditComponent } from './post-edit.component';
 import { PostReceiverEditorComponent } from './post-receiver-editor.component';
 import { PostReceiverPublishComponent } from './post-receiver-publish.component';
 import { PostListComponent } from './post-list.component';
+import {ComponentsModule} from '../components/components.module';
 
 @NgModule({
     declarations: [
@@ -44,7 +45,8 @@ import { PostListComponent } from './post-list.component';
         OwlNativeDateTimeModule,
         PerfectScrollbarModule,
         PostsRoutingModule,
-        MediaModule
+        MediaModule,
+        ComponentsModule
     ]
 })
 export class PostsModule {

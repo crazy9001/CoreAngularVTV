@@ -1,0 +1,14 @@
+<div id="NLEditorToolbar">
+    <ul>
+        <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageModal.show()">
+            <i class="fa fa-photo"></i>
+        </li>
+        <li data-func="video" title="Chèn video" class=" notipsy">
+            <i class="fa fa-play-circle"></i>
+        </li>
+        <li data-func="contentbox" title="Chèn box nội dung nổi bật" class=" notipsy">
+            <i class="fa fa-sticky-note"></i>
+        </li>
+    </ul>
+</div>
+<app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>

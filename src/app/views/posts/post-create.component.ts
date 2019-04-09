@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild, ElementRef, AfterViewInit, HostListener} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef, AfterViewInit} from '@angular/core';
 import MediumEditor from 'medium-editor';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/category.service';
@@ -13,7 +13,7 @@ declare var $;
     selector: 'app-post-create',
     templateUrl: './post-create.component.html',
 })
-export class PostCreateComponent implements OnInit, AfterViewInit {
+export class PostCreateComponent implements OnInit {
 
     createPostForm: FormGroup;
     categories: Array<ICategory>;
@@ -25,88 +25,10 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
         '<a href="https://beta.vtvworld.vtv.vn" target="_blank" title="VTV World" rel="nofollow">VTV World !</a>' +
         '</b></p>';
     idStorage: number;
-    dataOutputMultyImage: any;
-    isHovering = false;
 
     @ViewChild('container') container: ElementRef;
     @ViewChild('preViewMode') preViewMode: ElementRef;
 
-    ngAfterViewInit() {
-        const element = this.container.nativeElement;
-        this.mediumEditor = new MediumEditor(element, {
-            toolbar: {
-                allowMultiParagraphSelection: true,
-                buttons: [
-                    {
-                        name: 'bold',
-                        attrs: {
-                            'title': 'In đậm'
-                        }
-                    },
-                    {
-                        name: 'italic',
-                        attrs: {
-                            'title': 'In nghiêng'
-                        }
-                    },
-                    {
-                        name: 'underline',
-                        attrs: {
-                            'title': 'Gạch chân'
-                        }
-                    },
-                    {
-                        name: 'anchor',
-                        contentDefault: '<b class=" fa fa-link"></b>',
-                        attrs: {
-                            'title': 'Chèn link'
-                        }
-                    },
-                    {
-                        name: 'justifyLeft',
-                        contentDefault: '<b class="fa fa-align-left"></b>',
-                        attrs: {
-                            'title': 'Căn trái'
-                        }
-                    },
-                    {
-                        name: 'justifyCenter',
-                        contentDefault: '<b class="fa fa-align-center"></b>',
-                        attrs: {
-                            'title': 'Căn giữa'
-                        }
-                    },
-                    {
-                        name: 'justifyRight',
-                        contentDefault: '<b class="fa fa-align-right"></b>',
-                        attrs: {
-                            'title': 'Căn phải'
-                        }
-                    },
-                    {
-                        name: 'justifyFull',
-                        contentDefault: '<b class="fa fa-align-justify"></b>',
-                        attrs: {
-                            'title': 'Căn đều hai bên'
-                        }
-                    }
-                ],
-                diffLeft: 0,
-                diffTop: -10,
-                firstButtonClass: 'medium-editor-button-first',
-                lastButtonClass: 'medium-editor-button-last',
-                relativeContainer: null,
-                standardizeSelectionStart: false,
-                static: false,
-                align: 'center',
-                sticky: false,
-                updateOnEmptySelection: false
-            },
-            anchor: {
-                placeholderText: 'Dán hoặc nhập liên kết',
-            }
-        });
-    }
 
     constructor(
         private formBuilder: FormBuilder,
@@ -162,52 +84,57 @@ export class PostCreateComponent implements OnInit, AfterViewInit {
         this.idStorage = $event.id;
     }
 
-
-    eventReceiveImageMultipleInsert($event) {
+    OutputImage(data) {
         const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
                             '<div>' +
-                                '<img src="' +  this.environment.storage_url + $event.thumbnails[2] + '"> ' +
+                                '<img src="' +  this.environment.storage_url + data + '"> ' +
                             '</div>' +
                             '<div class="PhotoCMS_Caption" contenteditable="false">' +
                                 '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
                             '</div>'  +
                         '</div>';
-        //MediumEditor.util.insertHTMLCommand(window.document, html);
         document.execCommand('insertHTML', true, html);
-        const test = this.container.nativeElement.querySelector('.VCSortableInPreviewMode');
+        const _this = this;
 
-            test.removeEventListener('mouseenter', function (event) {
-                return;
-            });
-            const funcImage = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px;width: 165px;display: block;"><ul><li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li><li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li><li data-func="photo-watermark" title="Đóng logo"><i class="fa fa-copyright"></i></li><li data-func="elm-line-before" title="Tạo dòng bên trên"><i class="fa fa-chevron-up"></i></li><li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li></ul></div>' +
-                '<div id="NLFuncEnter" contenteditable="false" title="Tạo dòng mới" style="display: block;"></div>';
-            let div;
-
-            test.addEventListener('mouseenter', function(event) {
-                div = document.createElement('div');
-                div.innerHTML = funcImage;
-                this.appendChild(div);
-            });
-            const _this = this;
-            const nodeFnc = this.container.nativeElement.querySelector('#NLElementFunc');
-            test.addEventListener('mouseout', function(event) {
-                if (div && div.parentNode) {
-                    div.parentNode.removeChild(div);
-                }
-            });
+        $('#NLEditor .VCSortableInPreviewMode').unbind('mouseenter mouseleave');
+        $('#NLEditor .VCSortableInPreviewMode').off('mouseenter mouseleave');
+        $('#NLEditor .VCSortableInPreviewMode').hover(function (evt) {
+            const $this = $(this);
+            $this.addClass('active');
+            _this.ShowFunctions($this);
+        }, function () {
+            $('#NLElementFunc').hide();
+            $('#NLFuncEnter').hide();
+        });
     }
 
-    @HostListener('mouseenter') onMouseEnter() {
+    ShowFunctions(obj) {
+        const NL = this;
+        const type = $(obj).attr('type');
+        let func = '';
+        $('#NLEditor > br').remove();
+
+        func += this.GetObjectFunction(obj, type);
+        const divEnter = '<div id="NLFuncEnter" contenteditable="false" title="Tạo dòng mới"></div>';
+        $('#NLElementFunc').remove();
+        $('#NLFuncEnter').remove();
+        $(obj).append(func);
+        $(obj).append(divEnter);
 
     }
 
-    mouseHovering() {
-        console.log('ahihi');
-        this.isHovering = true;
-        console.log(this.isHovering);
-    }
-
-    mouseLeaving() {
-        this.isHovering = false;
+    GetObjectFunction(obj, type) {
+        let func = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px"><ul>';
+        switch (type) {
+            case 'photo':
+                func += '<li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li>';
+                func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
+                break;
+            default:
+                func += '<li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li>';
+                break;
+        }
+        func += '</ul></div>';
+        return func;
     }
 }

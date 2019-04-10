@@ -7,6 +7,8 @@ import {VideoService} from '../../services/video.service';
 import {environment} from '../../../environments/environment.prod';
 import {Router} from '@angular/router';
 import {EditorContainerComponent} from '../components/editor-container.component';
+import * as rangy from 'rangy';
+
 declare var $;
 
 @Component({
@@ -59,6 +61,7 @@ export class PostCreateComponent implements OnInit {
             storage_id: ['', Validators.required],
         });
     }
+
     getCategoryDefault() {
         this.categoryService.getVideoCategoryByUser().then(category => {
             this.categories = category;
@@ -66,7 +69,8 @@ export class PostCreateComponent implements OnInit {
     }
 
     onSubmit() {
-        this.createPostForm.controls['content'].setValue(this.editorContainer.mediumEditor.getContent());
+        const contentAfterprocess = this.ProcessInputContent(this.editorContainer.mediumEditor.getContent());
+        this.createPostForm.controls['content'].setValue(contentAfterprocess);
         this.videoService.createPost(this.createPostForm.value).subscribe(res => {
             if (res.success === true) {
                 this.router.navigate(['posts', res.data.id, 'edit']);
@@ -77,13 +81,34 @@ export class PostCreateComponent implements OnInit {
         });
     }
 
-	OutputAvatar(data) {
-		this.createPostForm.controls['thumbnails'].setValue(data);
-	}
+    ProcessInputContent(data) {
+        const obj = $('<div>' + data + '</div>');
+        $('#NLElementFunc', obj).remove();
+        $('#NLFuncEnter', obj).remove();
+        $('.PhotoCMS_Caption', obj).each(function () {
+            $(this).attr('contenteditable', 'false');
+            $('p', $(this)).length === 0 ? (
+                $(this).html('<p contenteditable="true" data-placeholder="[nhập chú thích]">' + $.trim($(this).text()) + '</p>')
+            ) : (
+                $('p', $(this)).attr('contenteditable', true)
+            );
+            if ($(this).text() === '') {
+                $('p', $(this)).remove();
+                console.log($(this));
+            } else {
+                $('p', $(this)).attr('contenteditable', false);
+            }
+        });
+        return obj.html();
+    }
 
-	OutputStorage(data) {
-		this.createPostForm.controls['storage_id'].setValue(data);
-	}
+    OutputAvatar(data) {
+        this.createPostForm.controls['thumbnails'].setValue(data);
+    }
+
+    OutputStorage(data) {
+        this.createPostForm.controls['storage_id'].setValue(data);
+    }
 
     OutputImage(data) {
         const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
@@ -94,48 +119,53 @@ export class PostCreateComponent implements OnInit {
                                 '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
                             '</div>'  +
                         '</div>';
-        document.execCommand('insertHTML', true, html);
-        const _this = this;
-
-        $('#NLEditor .VCSortableInPreviewMode').unbind('mouseenter mouseleave');
-        $('#NLEditor .VCSortableInPreviewMode').off('mouseenter mouseleave');
-        $('#NLEditor .VCSortableInPreviewMode').hover(function (evt) {
-            const $this = $(this);
-            $this.addClass('active');
-            _this.ShowFunctions($this);
-        }, function () {
-            $('#NLElementFunc').hide();
-            $('#NLFuncEnter').hide();
-        });
+        this.ProcessHTMLBeforInsert(html);
     }
 
-    ShowFunctions(obj) {
-        const NL = this;
-        const type = $(obj).attr('type');
-        let func = '';
-        $('#NLEditor > br').remove();
+    GetSelection = function () {
+        return rangy.getSelection();
+    };
 
-        func += this.GetObjectFunction(obj, type);
-        const divEnter = '<div id="NLFuncEnter" contenteditable="false" title="Tạo dòng mới"></div>';
-        $('#NLElementFunc').remove();
-        $('#NLFuncEnter').remove();
-        $(obj).append(func);
-        $(obj).append(divEnter);
-
-    }
-
-    GetObjectFunction(obj, type) {
-        let func = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px"><ul>';
-        switch (type) {
-            case 'photo':
-                func += '<li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li>';
-                func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
-                break;
-            default:
-                func += '<li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li>';
-                break;
+    InsertHtmlAt (obj, html) {
+        const selection = rangy.getSelection();
+        if (selection.rangeCount > 0)  {
+            selection.removeAllRanges();
         }
-        func += '</ul></div>';
-        return func;
+        const range = rangy.createRange();
+        range.selectNode($(obj)[0]);
+        selection.addRange(range);
+        /*$(obj).remove();*/
+        document.execCommand('insertHTML', true, html);
+    }
+
+    ProcessHTMLBeforInsert = (html) => {
+        const _html = $('<div>' + html + '</div>');
+        const type = _html[0].querySelector('.VCSortableInPreviewMode').getAttribute('type');
+        const _ranges = this.GetSelection()._ranges;
+        if (_ranges.length > 0) {
+            const $commonAncestorContainer = $(_ranges[0].commonAncestorContainer);
+            const selector = $commonAncestorContainer.parents('.VCSortableInPreviewMode[type="' + type + '"]');
+            console.log(selector.length);
+            if (selector.length === 0) {
+                if ($commonAncestorContainer.is('p') && $commonAncestorContainer.parents('.VCSortableInPreviewMode').length === 0) {
+                    console.log('insert case 0');
+                    this.InsertHtmlAt($commonAncestorContainer, html + '<p></p>');
+                    return;
+                } else {
+                    const $parent = $commonAncestorContainer.parent();
+                    if ($parent.is('p') && $parent.parents('.VCSortableInPreviewMode').length === 0) {
+                        console.log('insert case 1');
+                        if ($parent.next().length === 0) {
+                            $parent.after('<p></p>');
+                        }
+                        this.InsertHtmlAt($parent.next(), html);
+                        return;
+                    } else {
+                        console.log('insert case 2');
+                        document.execCommand('insertHTML', true, html);
+                    }
+                }
+            }
+        }
     }
 }

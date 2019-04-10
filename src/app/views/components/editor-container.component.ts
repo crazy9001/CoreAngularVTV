@@ -94,10 +94,6 @@ export class EditorContainerComponent implements OnInit, AfterViewInit {
                 placeholderText: 'Dán hoặc nhập liên kết',
             }
         });
-        $(element).mediumInsert({
-            'editor': this.mediumEditor,
-            'images': true
-        });
     }
 
 

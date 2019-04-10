@@ -1,10 +1,12 @@
 $(document).on({
     mouseenter: function (e) {
         const $this = $(this);
+        console.log($this);
         $this.addClass('active');
         ShowFunctions($this);
     },
     mouseleave: function (e) {
+        $(this).removeClass('active');
         $('#NLElementFunc').hide();
         $('#NLFuncEnter').hide();
     }
@@ -25,12 +27,12 @@ function ShowFunctions(obj) {
     $(obj).append(divEnter);
 
     $(document).on('click', '#NLElementFunc li', function (e) {
-        console.log(obj);
         var _this = $(this);
+        console.log(obj);
         var func = _this.attr('data-func');
         switch (func) {
             case 'elm-remove':
-                $(obj).remove();
+                $('.VCSortableInPreviewMode.active').remove();
                 $('#NLParagraphFunc').hide();
                 $('#NLElementFunc').remove();
                 break;

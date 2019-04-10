@@ -134,7 +134,7 @@ export class PostCreateComponent implements OnInit {
         const range = rangy.createRange();
         range.selectNode($(obj)[0]);
         selection.addRange(range);
-        /*$(obj).remove();*/
+        $(obj).remove();
         document.execCommand('insertHTML', true, html);
     }
 

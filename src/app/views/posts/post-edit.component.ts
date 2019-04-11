@@ -1,22 +1,23 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {VideoService} from '../../services/video.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CategoryService} from '../../services/category.service';
 import {ICategory} from '../../model/type';
-import MediumEditor from 'medium-editor';
 import {environment} from '../../../environments/environment.prod';
 import {HttpErrorResponse} from '@angular/common/http';
 import {AuthService} from '../../services/auth-service.service';
+import {EditorContainerComponent} from '../components/editor-container.component';
+import {EditorService} from '../../services/editor.service';
 
 @Component({
     selector: 'app-post-edit',
     templateUrl: './post-edit.component.html'
 })
-export class PostEditComponent implements OnInit, AfterViewInit {
+export class PostEditComponent implements OnInit {
 
     @ViewChild('container') container: ElementRef;
-
+    @ViewChild('editorContainer') editorContainer: EditorContainerComponent;
     editPostForm: FormGroup;
     categories: Array<ICategory>;
     id: number;
@@ -42,7 +43,6 @@ export class PostEditComponent implements OnInit, AfterViewInit {
     };
     private sub: any;
     environment: any;
-    mediumEditor: any;
     constructor(
         private route: ActivatedRoute,
         private videoService: VideoService,
@@ -50,6 +50,7 @@ export class PostEditComponent implements OnInit, AfterViewInit {
         private categoryService: CategoryService,
         private router: Router,
         private authService: AuthService,
+        private editorService: EditorService,
     ) {
     }
 
@@ -64,87 +65,6 @@ export class PostEditComponent implements OnInit, AfterViewInit {
         this.role = this.authService.getRoleUser();
         this.receiverPost();
     }
-
-    ngAfterViewInit() {
-        const element = this.container.nativeElement;
-        this.mediumEditor = new MediumEditor(element, {
-            placeholder: {
-                text: '',
-            },
-            toolbar: {
-                allowMultiParagraphSelection: true,
-                buttons: [
-                    {
-                        name: 'bold',
-                        attrs: {
-                            'title': 'In đậm'
-                        }
-                    },
-                    {
-                        name: 'italic',
-                        attrs: {
-                            'title': 'In nghiêng'
-                        }
-                    },
-                    {
-                        name: 'underline',
-                        attrs: {
-                            'title': 'Gạch chân'
-                        }
-                    },
-                    {
-                        name: 'anchor',
-                        contentDefault: '<b class=" fa fa-link"></b>',
-                        attrs: {
-                            'title': 'Chèn link'
-                        }
-                    },
-                    {
-                        name: 'justifyLeft',
-                        contentDefault: '<b class="fa fa-align-left"></b>',
-                        attrs: {
-                            'title': 'Căn trái'
-                        }
-                    },
-                    {
-                        name: 'justifyCenter',
-                        contentDefault: '<b class="fa fa-align-center"></b>',
-                        attrs: {
-                            'title': 'Căn giữa'
-                        }
-                    },
-                    {
-                        name: 'justifyRight',
-                        contentDefault: '<b class="fa fa-align-right"></b>',
-                        attrs: {
-                            'title': 'Căn phải'
-                        }
-                    },
-                    {
-                        name: 'justifyFull',
-                        contentDefault: '<b class="fa fa-align-justify"></b>',
-                        attrs: {
-                            'title': 'Căn đều hai bên'
-                        }
-                    }
-                ],
-                diffLeft: 0,
-                diffTop: -10,
-                firstButtonClass: 'medium-editor-button-first',
-                lastButtonClass: 'medium-editor-button-last',
-                relativeContainer: null,
-                standardizeSelectionStart: false,
-                static: false,
-                align: 'center',
-                sticky: false,
-                updateOnEmptySelection: false
-            },
-            anchor: {
-                placeholderText: 'Dán hoặc nhập liên kết',
-            }
-        });
-    }
-
     getDetailNews() {
         this.videoService.getDetailNewsById(this.id).then(post => {
             if (post.Type === 'video') {
@@ -194,24 +114,38 @@ export class PostEditComponent implements OnInit, AfterViewInit {
         });
     }
 
+    OutputImage(data) {
+        const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
+            '<div>' +
+            '<img src="' +  this.environment.storage_url + data + '"> ' +
+            '</div>' +
+            '<div class="PhotoCMS_Caption" contenteditable="false">' +
+            '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
+            '</div>'  +
+            '</div>';
+        this.editorService.ProcessHTMLBeforInsert(html);
+    }
     receiverPost() {
         this.videoService.receiverPost(this.id).then(res => {
         }, (errorRes: HttpErrorResponse) => {
         });
     }
 
-    eventReceiveImageInsert($event) {
-        this.post.Thumbnails = $event.thumbnails[2];
-        this.post.Storage = $event.id;
-    }
-
     eventUpdatePost() {
-        this.editPostForm.controls['content'].setValue(this.mediumEditor.getContent());
+        const contentAfterprocess = this.editorService.ProcessInputContent(this.editorContainer.mediumEditor.getContent());
+        this.editPostForm.controls['content'].setValue(contentAfterprocess);
         this.videoService.update(this.editPostForm.value).subscribe(res => {
             this.router.navigate(['posts', res.id, 'edit']);
         });
     }
 
+    OutputAvatar(data) {
+        this.post.Thumbnails = data;
+    }
+
+    OutputStorage(data) {
+        this.post.Storage = data;
+    }
 
     eventSendToEditor(id: number) {
         this.videoService.changeNewsToEditor(id).then(res => {

@@ -9,27 +9,11 @@
             <div id="IMSNewsEditWrapper">
                 <div class="col-sm-5" id="CMSTabEditor">
                     <div id="NLEditorHeader">
-                        <div id="NLEditorToolbar">
-                            <ul>
-                                <li data-func="photo" title="Chèn ảnh" class=" notipsy">
-                                    <i class="fa fa-photo"></i>
-                                </li>
-                                <li data-func="video" title="Chèn video" class=" notipsy">
-                                    <i class="fa fa-play-circle"></i>
-                                </li>
-                                <li data-func="contentbox" title="Chèn box nội dung nổi bật" class=" notipsy">
-                                    <i class="fa fa-sticky-note"></i>
-                                </li>
-                            </ul>
-                        </div>
+                        <app-editor-toolbar (dataOutputImage)="OutputImage($event)"></app-editor-toolbar>
                     </div>
                     <div class="clearfix"></div>
                     <div id="IMSNewsLayout">
-                        <div id="NLEditorOuter" [perfectScrollbar]>
-                            <div id="NLEditor" #container [innerHTML]="post.Content">
-                                <p></p>
-                            </div>
-                        </div>
+                        <app-editor-container #editorContainer [contentEditor]="post.Content"></app-editor-container>
                     </div>
                 </div>
                 <div class="col-sm-7" id="CMSTabInfo">
@@ -183,32 +167,13 @@
                                     </div>
 
                                     <div class="form-group col-sm-12" id="IMS_Avatar_Wrapper">
-                                        <label>Hình đại diện</label>
-                                        <div id="IMSSelectedAvatarList" class="large-screen">
-                                            <div class="ims-avatar-col" data-role="avatar"
-                                                 (click)="mediaImageModal.show()">
-                                                <div data-ratio="1.6" data-height="281" data-width="450"
-                                                     data-rel="#IMS_FormEdit_AvatarField" data-label="Avatar chính"
-                                                     data-title="Avatar chính" class="IMSNewsAvatarItem"
-                                                     original-title="Avatar chính - Avatar chính">
-                                                    <img [src]="environment.storage_url + post.Thumbnails">
-                                                    <input type="hidden" formControlName="thumbnails"
-                                                           [ngModel]="post.Thumbnails" class="form-control"
-                                                           autocomplete="off">
-                                                    <div class="cms_bm_view_full_avatar"></div>
-                                                    <div class="cms_bm_watermark_avatar"><i class="fa fa-copyright"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <input type="hidden" formControlName="storage_id" [ngModel]="post.Storage"
-                                                   class="form-control" autocomplete="off">
-                                            <div class="clearfix"></div>
-                                        </div>
-                                        <input class="hidden" id="IMS_FormEdit_AvatarField" name="Avatar" type="text"
-                                               value="">
-                                        <input class="hidden" id="IMS_FormEdit_AvatarCustom" name="AvatarCustom"
-                                               type="text"
-                                               value="">
+                                        <app-avatar (dataOutputImage)="OutputAvatar($event)" (dataOutputStorage)="OutputStorage($event)" [oldImage]="post.Thumbnails"></app-avatar>
+                                        <input type="hidden" formControlName="thumbnails"
+                                               [(ngModel)]="post.Thumbnails"
+                                               required class="form-control">
+                                        <input type="hidden" formControlName="storage_id"
+                                               [(ngModel)]="post.Storage"
+                                               required class="form-control">
                                     </div>
 
                                     <div class="form-group col-sm-12">
@@ -305,5 +270,3 @@
         </div>
     </form>
 </div>
-<app-modal-media-images #mediaImageModal
-                        (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>

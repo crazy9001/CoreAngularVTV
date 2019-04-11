@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import * as rangy from 'rangy';
+import {PlayerService} from './player.service';
 declare var $;
 
 @Injectable({
@@ -7,7 +8,9 @@ declare var $;
 })
 export class EditorService {
 
-    constructor() {
+    constructor(
+        private playerService: PlayerService
+    ) {
     }
 
     ProcessHTMLBeforInsert = (html) => {
@@ -76,6 +79,64 @@ export class EditorService {
             }
         });
         return obj.html();
+    }
+
+
+    /**
+     * Chuẩn hóa dữ liệu đầu vào
+     * @param html
+     * @constructor
+     */
+    ProcessInputContent2(html) {
+        const NL = this;
+        const $obj = $('<div>' + html + '</div>');
+        $('.VCSortableInPreviewMode', $obj).each(function () {
+            const $this = $(this);
+            const type = $this.attr('type');
+            if (typeof (type) !== 'undefined') {
+                switch (type.toLowerCase()) {
+                    case 'photo':
+                        if ($this.find('.PhotoCMS_Caption').length === 0 && $this.find('div').length > 1) {
+                            $this.find('div:eq(2)').addClass('PhotoCMS_Caption');
+                        }
+                        $('.PhotoCMS_Caption', $this).attr('contenteditable', false);
+                        $('.PhotoCMS_Caption p', $this).attr('contenteditable', false);
+                        break;
+                    case 'videostream':
+                        if ($this.find('.VideoCMS_Caption').length === 0 && $this.find('div').length > 1) {
+                            $this.find('div:eq(1)').addClass('VideoCMS_Caption');
+                        }
+                        $('.VideoCMS_Caption', $this).attr('contenteditable', false);
+                        $('.VideoCMS_Caption p', $this).attr('contenteditable', false);
+                        /*const url = $(this).attr('data-vid');
+                        const element = $('video', $this);
+                        NL.playerService.initPlayer(element[0], url);*/
+                        break;
+                }
+            }
+        });
+        $('.PhotoCMS_Caption, .VideoCMS_Caption', $obj).each(function () {
+            $(this).attr('contenteditable', 'false');
+            if ($('p', $(this)).length === 0) {
+                $(this).html('<p contenteditable="false" placeholder="[nhập chú thích]">' + $.trim($(this).text()) + '</p>');
+            } else {
+                $('p', $(this)).attr('contenteditable', false);
+            }
+            const divJustify = $('div', $(this));
+            if (divJustify.length > 0) {
+                $(this).remove('p');
+            }
+        });
+        return $obj.html();
+    }
+
+
+    InsertHtmlWithDataProcess(inputHtml) {
+        const NL = this;
+        const _ranges = NL.GetSelection()._ranges;
+        const $commonAncestorContainer = $(_ranges[0].commonAncestorContainer);
+        NL.ProcessHTMLBeforInsert(inputHtml);
+
     }
 
 }

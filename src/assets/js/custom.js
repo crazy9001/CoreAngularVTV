@@ -43,11 +43,13 @@ function ShowFunctions(obj) {
 
 function GetObjectFunction(obj, type) {
     let func = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px"><ul>';
-    switch (type) {
+    switch (type.toLowerCase()) {
         case 'photo':
             func += '<li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li>';
             func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
             break;
+        case 'videostream':
+            func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
         default:
             func += '<li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li>';
             break;

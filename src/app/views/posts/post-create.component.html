@@ -4,7 +4,7 @@
         <div id="IMSNewsEditWrapper">
             <div class="col-sm-5" id="CMSTabEditor">
                 <div id="NLEditorHeader">
-                    <app-editor-toolbar (dataOutputImage)="OutputImage($event)"></app-editor-toolbar>
+                    <app-editor-toolbar (dataOutputImage)="OutputImage($event)" (dataOutputVideo)="OutputVideo($event)"></app-editor-toolbar>
                 </div>
 
                 <div id="IMSNewsLayout">
@@ -187,4 +187,5 @@
         </div>
     </div>
     </form>
+
 </div>

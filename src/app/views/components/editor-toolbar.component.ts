@@ -6,6 +6,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 })
 export class EditorToolbarComponent implements OnInit {
     @Output() dataOutputImage = new EventEmitter<string>();
+    @Output() dataOutputVideo = new EventEmitter<string>();
+
     constructor() {
     }
 
@@ -15,4 +17,9 @@ export class EditorToolbarComponent implements OnInit {
     eventReceiveImageInsert($event) {
         this.dataOutputImage.emit($event.thumbnails[2]);
     }
+
+    eventReceiveVideoInsert($event) {
+        this.dataOutputVideo.emit($event);
+    }
+
 }

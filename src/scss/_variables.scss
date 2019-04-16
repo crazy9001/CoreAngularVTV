@@ -1828,3 +1828,6 @@ input.hasDatepicker {
   top: 0;
   width: 80px;
 }
+.overlay.nsm-overlay-open {
+  z-index: 1060 !important;
+}

@@ -117,9 +117,16 @@ export class VideoEditComponent implements OnInit, OnDestroy {
 
     /* Output video from media video */
     eventReceiveVideoInsert($event) {
-        this.video.content = $event.path;
+        /*this.video.content = $event.path;
         this.video.storage_id = $event.id;
-        this.thumbnails = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));
+        this.thumbnails = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));*/
+        if ($event.type === 'video') {
+            this.video.content = $event.data.path;
+            this.video.storage_id = $event.data.id;
+            this.thumbnails = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
+        } else {
+
+        }
     }
 
     /* Update video */

@@ -40,9 +40,16 @@ export class VideoCreateComponent implements OnInit {
     }
 
     eventReceiveVideoInsert($event) {
-        this.urlVideoInsert = $event.path;
+        /*this.urlVideoInsert = $event.path;
         this.idStorage = $event.id;
-        this.listThumbs = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));
+        this.listThumbs = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));*/
+        if ($event.type === 'video') {
+            this.urlVideoInsert = $event.data.path;
+            this.idStorage = $event.data.id;
+            this.listThumbs = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
+        } else {
+            console.log($event);
+        }
     }
 
     createForm() {

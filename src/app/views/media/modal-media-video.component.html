@@ -13,6 +13,9 @@
                             <i class="fa fa-video-camera fa-lg" title="Danh sách video"></i>
                         </a>
                         <a class="media-menu-item">
+                            <i class="fa fa-upload fa-lg" title="Tải video từ máy tính"></i>
+                        </a>
+                        <a class="media-menu-item" (click)="mediaVideoYoutube.show()">
                             <i class="fa fa-cloud-upload fa-lg" title="Tải video từ youtube"></i>
                         </a>
                     </div>
@@ -128,3 +131,4 @@
 
 
 </div><!-- /.modal -->
+<app-modal-video-youtube #mediaVideoYoutube (messageEventOutputVideoYoutube)="eventOutputYoutubeLink($event)"></app-modal-video-youtube>

@@ -1,0 +1,20 @@
+<div bsModal #mediaVideoYoutube="bs-modal" class="modal fade" tabindex="9" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div id="CMSPopupAddVideoYoutube" class="modal-dialog ui-dialog" role="document">
+        <form [formGroup]="embedOutputForm">
+            <div class="modal-content">
+                <div class="modal-header ui-dialog-titlebar ui-helper-clearfix IMSWidgetFlatPopupTitleBar">
+                    <span id="ui-id-22" class="ui-dialog-title">Nhập đường link youtube</span>
+                    <button type="button" class="ui-dialog-titlebar-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="VMRemoteUrlInput" formControlName="link"></textarea>
+                    <div id="VMRemoteUploadNote">Example: https://www.youtube.com/watch?v=1ZkpLF8QJQk</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" [disabled]="embedOutputForm.invalid" (click)="onSubmit()">Upload</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

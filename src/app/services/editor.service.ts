@@ -24,7 +24,7 @@ export class EditorService {
             if (selector.length === 0) {
                 if ($commonAncestorContainer.is('p') && $commonAncestorContainer.parents('.VCSortableInPreviewMode').length === 0) {
                     console.log('insert case 0');
-                    this.InsertHtmlAt($commonAncestorContainer, html + '<p></p>');
+                    this.InsertHtmlAt($commonAncestorContainer, html);
                     return;
                 } else {
                     const $parent = $commonAncestorContainer.parent();

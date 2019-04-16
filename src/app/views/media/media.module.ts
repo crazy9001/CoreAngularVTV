@@ -18,6 +18,8 @@ import {PerfectScrollbarModule} from 'ngx-perfect-scrollbar';
 import {PERFECT_SCROLLBAR_CONFIG} from 'ngx-perfect-scrollbar';
 import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import { MultiMediaImagesComponent } from './multi-media-images.component';
+import {ModalVideoYoutubeComponent} from './modal-video-youtube.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -41,7 +43,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         MediaVideoDetailComponent,
         ModalMediaImagesComponent,
         MediaImageDetailComponent,
-        MultiMediaImagesComponent
+        MultiMediaImagesComponent,
+        ModalVideoYoutubeComponent
     ],
     imports: [
         CommonModule,
@@ -50,6 +53,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalModule.forRoot(),
         TabsModule,
         PerfectScrollbarModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     providers: [
         {

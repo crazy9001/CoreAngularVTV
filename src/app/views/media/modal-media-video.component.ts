@@ -59,7 +59,7 @@ export class ModalMediaVideoComponent implements OnInit {
     }
 
     eventInsertVideo() {
-        this.messageEventInsertVideo.emit(this.selected);
+        this.messageEventInsertVideo.emit({type: 'video', data: this.selected});
         this.loadDetail = false;
         this.hide();
     }
@@ -71,4 +71,9 @@ export class ModalMediaVideoComponent implements OnInit {
     reloadMediaVideo() {
         this.loadMedia();
     }
+    eventOutputYoutubeLink($event) {
+        this.messageEventInsertVideo.emit({type: 'embed', data: $event});
+        this.hide();
+    }
+
 }

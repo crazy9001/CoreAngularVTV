@@ -26,15 +26,29 @@ export class PlayerService {
         }
     };
 
-    initPlayer(element?: string, url?: string) {
-        this.player = videojs(element, this.controls);
-        let source = '';
-        if ( environment.hls ) {
-            source = environment.server_hls + url + '/playlist.m3u8';
+    initPlayer(element?: string, url?: string, type?: string) {
+        let src: any;
+        let sources: any;
+        if (type === 'video') {
+            if ( environment.hls ) {
+                src = environment.server_hls + url + '/playlist.m3u8';
+            } else {
+                src = environment.storage_url + url ;
+            }
+            sources = [
+                {
+                    'src': src
+                }
+            ];
         } else {
-            source = environment.storage_url + url ;
+            sources = [
+                {
+                    'type': 'video/youtube',
+                    'src': url
+                }
+            ];
         }
-        const sources = [{'src': source}];
+        this.player = videojs(element, this.controls);
         this.player.src(sources);
         this.player.play();
     }

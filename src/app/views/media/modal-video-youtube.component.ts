@@ -13,7 +13,7 @@ export class ModalVideoYoutubeComponent implements OnInit {
     embedOutputForm: FormGroup;
 
     @ViewChild('mediaVideoYoutube') public mediaVideoYoutube: ModalDirective;
-    @Output() messageEventOutputVideoYoutube = new EventEmitter<string>();
+    @Output() messageEventOutputVideoYoutube = new EventEmitter<any>();
     constructor(
         private formBuilder: FormBuilder,
         private _sanitizer: DomSanitizer
@@ -30,9 +30,8 @@ export class ModalVideoYoutubeComponent implements OnInit {
         });
     }
     onSubmit() {
-        let link = this.embedOutputForm.controls['link'].value;
-        link = this._sanitizer.bypassSecurityTrustResourceUrl(link);
-        this.messageEventOutputVideoYoutube.emit(link);
+        const link = this.embedOutputForm.controls['link'].value;
+        this.messageEventOutputVideoYoutube.emit({path: link});
         this.hide();
         this.embedOutputForm.reset();
     }

@@ -34,7 +34,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
         thumbnails: '',
         category_id: '',
         storage_id: '',
-        status: ''
+        status: '',
+        type: ''
     };
     editVideoForm: FormGroup;
     categories: Array<ICategory>;
@@ -83,6 +84,7 @@ export class VideoEditComponent implements OnInit, OnDestroy {
             this.video.storage_id = video.storage[0].pivot.storage_id;
             this.thumbnails = Object.keys(video.storage[0].thumbnails).map(key => ({type: key, value: video.storage[0].thumbnails[key]}));
             this.video.status = video.Status;
+            this.video.type = video.Type;
             this.ng4LoadingSpinnerService.hide();
         });
     }
@@ -120,12 +122,13 @@ export class VideoEditComponent implements OnInit, OnDestroy {
         /*this.video.content = $event.path;
         this.video.storage_id = $event.id;
         this.thumbnails = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));*/
+        this.video.content = $event.data.path;
+        this.video.type = $event.type;
         if ($event.type === 'video') {
-            this.video.content = $event.data.path;
             this.video.storage_id = $event.data.id;
             this.thumbnails = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
         } else {
-
+            console.log($event);
         }
     }
 

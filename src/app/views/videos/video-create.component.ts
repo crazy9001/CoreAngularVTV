@@ -24,6 +24,7 @@ export class VideoCreateComponent implements OnInit {
     categories: Array<ICategory>;
     programs: Array<ICategory>;
     customThumb = '';
+    typeVideo: string;
     constructor(
         private viewContainerRef: ViewContainerRef,
         private formBuilder: FormBuilder,
@@ -40,11 +41,13 @@ export class VideoCreateComponent implements OnInit {
     }
 
     eventReceiveVideoInsert($event) {
+        console.log($event);
         /*this.urlVideoInsert = $event.path;
         this.idStorage = $event.id;
         this.listThumbs = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));*/
+        this.typeVideo = $event.type;
+        this.urlVideoInsert = $event.data.path;
         if ($event.type === 'video') {
-            this.urlVideoInsert = $event.data.path;
             this.idStorage = $event.data.id;
             this.listThumbs = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
         } else {

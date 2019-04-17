@@ -39,7 +39,7 @@ export class MediaVideoDetailComponent implements OnInit, OnChanges {
             .filter(data => data.first)
             .map(data => data.first)
             .subscribe(element => {
-                this.playerService.initPlayer(element.nativeElement, this.videoUrl);
+                this.playerService.initPlayer(element.nativeElement, this.videoUrl, 'video');
             });
     }
 

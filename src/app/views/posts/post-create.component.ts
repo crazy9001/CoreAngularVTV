@@ -101,14 +101,19 @@ export class PostCreateComponent implements OnInit {
         this.editorService.ProcessHTMLBeforInsert(html);
     }
 
-    OutputVideo(data) {
-        let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + data.path + '">' +
-            '<div style="width: 100%">' +
-            '<video controls id="VideoPlayer_Init_' + data.id + '"> <source src="' + environment.storage_url + data.path + '" type="video/mp4"> </video>' +
-            '</div>' +
-            '<div></div>' +
-            '</div>';
-        html = this.editorService.ProcessInputContent2(html);
-        this.editorService.ProcessHTMLBeforInsert(html);
+    OutputVideo($event) {
+        if ($event.type === 'video') {
+            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +
+                '<div>' +
+                '<video controls id="VideoPlayer_Init_' + $event.data.id + '"> <source src="' + environment.storage_url + $event.data.path + '" type="video/mp4"></video>' +
+                '</div>' +
+                '<div></div>' +
+                '</div>';
+            html = this.editorService.ProcessInputContent2(html);
+            this.editorService.ProcessHTMLBeforInsert(html);
+        } else {
+            alert('Chức năng đang trong quá trình xây dựng. Sử dụng sau');
+        }
+
     }
 }

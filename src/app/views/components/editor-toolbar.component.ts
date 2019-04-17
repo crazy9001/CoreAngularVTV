@@ -5,8 +5,8 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
     templateUrl: './editor-toolbar.component.html'
 })
 export class EditorToolbarComponent implements OnInit {
-    @Output() dataOutputImage = new EventEmitter<string>();
-    @Output() dataOutputVideo = new EventEmitter<string>();
+    @Output() dataOutputImage = new EventEmitter<any>();
+    @Output() dataOutputVideo = new EventEmitter<any>();
 
     constructor() {
     }

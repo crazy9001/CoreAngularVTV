@@ -29,7 +29,6 @@ export class PreviewVideoComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
         if (!changes['urlVideoInsert'].isFirstChange()) {
             this.playerService.initPlayer('preview_video_content', changes['urlVideoInsert'].currentValue);
         }

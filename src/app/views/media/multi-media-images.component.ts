@@ -6,7 +6,8 @@ import {environment} from '../../../environments/environment.prod';
 
 @Component({
     selector: 'app-multi-media-images',
-    templateUrl: './multi-media-images.component.html'
+    templateUrl: './multi-media-images.component.html',
+    styleUrls: ['./modal-media.component.scss']
 })
 export class MultiMediaImagesComponent implements OnInit {
 

@@ -5,6 +5,7 @@ import {PlayerService} from '../../services/player.service';
 @Component({
     selector: 'app-media-video-detail',
     templateUrl: './media-video-detail.component.html',
+    styleUrls: ['./modal-media.component.scss']
 })
 export class MediaVideoDetailComponent implements OnInit, OnChanges {
 

@@ -6,11 +6,12 @@ import {ModalDirective} from 'ngx-bootstrap';
 
 @Component({
     selector: 'app-modal-media-images',
-    templateUrl: './modal-media-images.component.html'
+    templateUrl: './modal-media-images.component.html',
+    styleUrls: ['./modal-media.component.scss']
 })
 export class ModalMediaImagesComponent implements OnInit {
     @ViewChild('mediaImageModal') public mediaImageModal: ModalDirective;
-    @Output() messageEventInsertImage = new EventEmitter<string>();
+    @Output() messageEventInsertImage = new EventEmitter<any>();
     media: MediaPaginateModel;
     environment: any;
     selected: any;

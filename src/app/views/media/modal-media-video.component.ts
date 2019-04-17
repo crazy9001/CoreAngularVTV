@@ -7,10 +7,11 @@ import {environment} from './../../../environments/environment.prod';
 @Component({
     selector: 'app-modal-media-video',
     templateUrl: './modal-media-video.component.html',
+    styleUrls: ['./modal-media.component.scss']
 })
 export class ModalMediaVideoComponent implements OnInit {
     @ViewChild('mediaVideoModal') public mediaVideoModal: ModalDirective;
-    @Output() messageEventInsertVideo = new EventEmitter<string>();
+    @Output() messageEventInsertVideo = new EventEmitter<any>();
     media: MediaPaginateModel;
     selected: any;
     environment: any;

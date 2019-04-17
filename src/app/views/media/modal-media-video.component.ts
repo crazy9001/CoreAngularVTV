@@ -73,7 +73,7 @@ export class ModalMediaVideoComponent implements OnInit {
         this.loadMedia();
     }
     eventOutputYoutubeLink($event) {
-        this.messageEventInsertVideo.emit({type: 'embed', data: $event});
+        this.messageEventInsertVideo.emit({type: 'youtube', data: $event});
         this.hide();
     }
 

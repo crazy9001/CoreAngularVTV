@@ -106,7 +106,8 @@ export class VideoEditComponent implements OnInit, OnDestroy {
             seo_keywords: ['', null],
             seo_description: ['', null],
             highlight: ['', null],
-            categories: [null, [Validators.required]]
+            categories: [null, [Validators.required]],
+            type: ['', '']
         });
     }
 
@@ -119,14 +120,11 @@ export class VideoEditComponent implements OnInit, OnDestroy {
 
     /* Output video from media video */
     eventReceiveVideoInsert($event) {
-        /*this.video.content = $event.path;
-        this.video.storage_id = $event.id;
-        this.thumbnails = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));*/
         this.video.content = $event.data.path;
         this.video.type = $event.type;
+        this.thumbnails = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
         if ($event.type === 'video') {
             this.video.storage_id = $event.data.id;
-            this.thumbnails = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
         } else {
             console.log($event);
         }

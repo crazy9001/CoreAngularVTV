@@ -41,15 +41,11 @@ export class VideoCreateComponent implements OnInit {
     }
 
     eventReceiveVideoInsert($event) {
-        console.log($event);
-        /*this.urlVideoInsert = $event.path;
-        this.idStorage = $event.id;
-        this.listThumbs = Object.keys($event.thumbnails).map(key => ({type: key, value: $event.thumbnails[key]}));*/
         this.typeVideo = $event.type;
         this.urlVideoInsert = $event.data.path;
+        this.listThumbs = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
         if ($event.type === 'video') {
             this.idStorage = $event.data.id;
-            this.listThumbs = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
         } else {
             console.log($event);
         }
@@ -70,7 +66,8 @@ export class VideoCreateComponent implements OnInit {
             seo_keywords: ['', null],
             seo_description: ['', null],
             highlight: ['', null],
-            categories: [null, null]
+            categories: [null, null],
+            type: ['', '']
         });
     }
     getCategoryDefault() {
@@ -85,13 +82,14 @@ export class VideoCreateComponent implements OnInit {
         });
     }
     onSubmit() {
-        this.videoService.create(this.createVideoForm.value).subscribe(res => {
+        console.log(this.createVideoForm.value);
+        /*this.videoService.create(this.createVideoForm.value).subscribe(res => {
             this.createVideoForm.reset();
         }, (errorRes: HttpErrorResponse) => {
             if (errorRes.status === 401) {
 
             }
-        });
+        });*/
     }
     eventReceiveImageInsert(event) {
         if (event) {

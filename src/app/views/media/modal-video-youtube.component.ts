@@ -31,7 +31,11 @@ export class ModalVideoYoutubeComponent implements OnInit {
     }
     onSubmit() {
         const link = this.embedOutputForm.controls['link'].value;
-        this.messageEventOutputVideoYoutube.emit({path: link});
+        const idYoutube = this.ytVidId(link);
+        const thumbnails = [
+            'https://img.youtube.com/vi/' + idYoutube + '/hqdefault.jpg',
+        ];
+        this.messageEventOutputVideoYoutube.emit({path: link, thumbnails: thumbnails});
         this.hide();
         this.embedOutputForm.reset();
     }
@@ -41,5 +45,10 @@ export class ModalVideoYoutubeComponent implements OnInit {
 
     hide() {
         this.mediaVideoYoutube.hide();
+    }
+
+    ytVidId(url) {
+        const p = /^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        return (url.match(p)) ? RegExp.$1 : false;
     }
 }

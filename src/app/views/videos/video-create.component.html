@@ -19,6 +19,7 @@
                             </div>
                             <div *ngIf="urlVideoInsert">
                                 <app-preview-video [urlVideoInsert]="urlVideoInsert" [typeVideo]="typeVideo"></app-preview-video>
+                                <input type="hidden" [(ngModel)]="typeVideo" formControlName="type">
                             </div>
                         </div>
                     </div>
@@ -34,11 +35,13 @@
                             <ul id="CMSVideoEditItemAvatarChoose">
                                 <li *ngFor="let thumb of listThumbs;  let idx = index">
                                     <label for="VMVideoEditItemAvatarChoose0">
-                                        <img src="{{ environment.storage_url + thumb.value }}">
+                                        <img src="{{ typeVideo === 'video' ? environment.storage_url + thumb.value : thumb.value  }}">
                                     </label>
                                     <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0" autocomplete="off"
                                            [checked]="idx === 0"
-                                           [(value)]="thumb.value">
+                                           [(ngModel)]="listThumbs[0].value"
+                                           [value]="thumb.value"
+                                    >
                                 </li>
                                 <li id="VMVideoEditOtherAvatar">
                                     <label>

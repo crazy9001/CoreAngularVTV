@@ -23,6 +23,7 @@
                                 </div>
                             </div>
                             <app-preview-video *ngIf="video" [urlVideoInsert]="video.content" [typeVideo]="video.type"></app-preview-video>
+                            <input type="hidden" [(ngModel)]="video.type" formControlName="type">
                         </div>
                     </div>
                 </div>

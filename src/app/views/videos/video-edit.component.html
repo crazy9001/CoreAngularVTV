@@ -36,14 +36,14 @@
                     <div class="card-body">
                         <div class="CMSCreateBoxContent">
                             <ul id="CMSVideoEditItemAvatarChoose">
-                                <li *ngFor="let thumb of thumbnails;  let idx = index">
+                                <li *ngFor="let thumb of storageThumbnails;  let idx = index">
                                     <label for="VMVideoEditItemAvatarChoose0">
-                                        <img src="{{ environment.storage_url + thumb.value }}">
+                                        <img src="{{ video.type === 'video' ? environment.storage_url + thumb : thumb }}">
                                     </label>
                                     <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0"
                                            autocomplete="off" [(ngModel)]="video.thumbnails"
-                                           [checked]="thumb.value === video.thumbnails"
-                                           [value]="thumb.value">
+                                           [checked]="thumb === video.thumbnails"
+                                           [value]="thumb">
                                 </li>
                             </ul>
                         </div>

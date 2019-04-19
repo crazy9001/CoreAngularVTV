@@ -54,7 +54,7 @@
                     </div>
                     <div class="CMSVideoItemAvatarWrapper">
                         <img class="CMSVideoItem_Avatar"
-                             [src]="video.Thumbnails ? environment.storage_url + video.Thumbnails : ''"
+                             [src]="video.Type === 'video' ? environment.storage_url + video.Thumbnails : video.Thumbnails"
                              alt="{{ video.Title }}">
                     </div>
                     <div class="CMSVideoItemInfoWrapper">

@@ -9,93 +9,96 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {ModalMediaImagesComponent} from '../media/modal-media-images.component';
 
 @Component({
-    selector: 'app-video-create',
-    templateUrl: './video-create.component.html',
+	selector: 'app-video-create',
+	templateUrl: './video-create.component.html',
 })
 export class VideoCreateComponent implements OnInit {
 
-    @ViewChild('mediaVideoModal') mediaVideoModal: ModalMediaVideoComponent;
-    @ViewChild('mediaImageModal') mediaImageModal: ModalMediaImagesComponent;
-    urlVideoInsert: string;
-    idStorage: number;
-    listThumbs: any;
-    environment: any;
-    createVideoForm: FormGroup;
-    categories: Array<ICategory>;
-    programs: Array<ICategory>;
-    customThumb = '';
-    typeVideo: string;
-    constructor(
-        private viewContainerRef: ViewContainerRef,
-        private formBuilder: FormBuilder,
-        private videoService: VideoService,
-        private categoryService: CategoryService
-    ) {
-        this.environment = environment;
-    }
+	@ViewChild('mediaVideoModal') mediaVideoModal: ModalMediaVideoComponent;
+	@ViewChild('mediaImageModal') mediaImageModal: ModalMediaImagesComponent;
+	urlVideoInsert: string;
+	idStorage: number;
+	storageThumbnails: any;
+	environment: any;
+	createVideoForm: FormGroup;
+	categories: Array<ICategory>;
+	programs: Array<ICategory>;
+	customThumb = '';
+	typeVideo: string;
 
-    ngOnInit() {
-        this.createForm();
-        this.getCategoryDefault();
-        this.getProgramDefault();
-    }
+	constructor(
+		private viewContainerRef: ViewContainerRef,
+		private formBuilder: FormBuilder,
+		private videoService: VideoService,
+		private categoryService: CategoryService
+	) {
+		this.environment = environment;
+	}
 
-    eventReceiveVideoInsert($event) {
-        this.typeVideo = $event.type;
-        this.urlVideoInsert = $event.data.path;
-        this.listThumbs = Object.keys($event.data.thumbnails).map(key => ({type: key, value: $event.data.thumbnails[key]}));
-        if ($event.type === 'video') {
-            this.idStorage = $event.data.id;
-        } else {
-            console.log($event);
-        }
-    }
+	ngOnInit() {
+		this.createForm();
+		this.getCategoryDefault();
+		this.getProgramDefault();
+	}
 
-    createForm() {
-        this.createVideoForm = this.formBuilder.group({
-            title: [null, [Validators.required]],
-            description: [null, [Validators.required]],
-            publish_at: [null, null],
-            sub_category: [null, null],
-            thumbnails: [null, [Validators.required]],
-            tags: [null, null],
-            source: [null, null],
-            content: [null, [Validators.required]],
-            storage_id: ['', null],
-            seo_title: ['', null],
-            seo_keywords: ['', null],
-            seo_description: ['', null],
-            highlight: ['', null],
-            categories: [null, null],
-            type: ['', '']
-        });
-    }
-    getCategoryDefault() {
-        this.categoryService.getVideoCategoryByUser().then(category => {
-            this.categories = category;
-        });
-    }
+	eventReceiveVideoInsert($event) {
+		this.typeVideo = $event.type;
+		this.urlVideoInsert = $event.data.path;
+		this.storageThumbnails = $event.data.thumbnails;
+		if ($event.type === 'video') {
+			this.idStorage = $event.data.id;
+		} else {
+			this.idStorage = 0;
+		}
+	}
 
-    getProgramDefault() {
-        this.categoryService.getProgramByUser().then(programs => {
-            this.programs = programs;
-        });
-    }
-    onSubmit() {
-        console.log(this.createVideoForm.value);
-        /*this.videoService.create(this.createVideoForm.value).subscribe(res => {
-            this.createVideoForm.reset();
-        }, (errorRes: HttpErrorResponse) => {
-            if (errorRes.status === 401) {
+	createForm() {
+		this.createVideoForm = this.formBuilder.group({
+			title: [null, [Validators.required]],
+			description: [null, [Validators.required]],
+			publish_at: [null, null],
+			sub_category: [null, null],
+			thumbnails: [null, [Validators.required]],
+			tags: [null, null],
+			source: [null, null],
+			content: [null, [Validators.required]],
+			storage_id: ['', null],
+			seo_title: ['', null],
+			seo_keywords: ['', null],
+			seo_description: ['', null],
+			highlight: ['', null],
+			categories: [null, null],
+			type: ['', '']
+		});
+	}
 
-            }
-        });*/
-    }
-    eventReceiveImageInsert(event) {
-        if (event) {
-            this.customThumb = event.thumbnails[0];
-            this.createVideoForm.controls['thumbnails'].setValue(event.thumbnails[0]);
-        }
+	getCategoryDefault() {
+		this.categoryService.getVideoCategoryByUser().then(category => {
+			this.categories = category;
+		});
+	}
 
-    }
+	getProgramDefault() {
+		this.categoryService.getProgramByUser().then(programs => {
+			this.programs = programs;
+		});
+	}
+
+	onSubmit() {
+		this.videoService.create(this.createVideoForm.value).subscribe(res => {
+			this.createVideoForm.reset();
+		}, (errorRes: HttpErrorResponse) => {
+			if (errorRes.status === 401) {
+
+			}
+		});
+	}
+
+	eventReceiveImageInsert(event) {
+		if (event) {
+			this.customThumb = event.thumbnails[0];
+			this.createVideoForm.controls['thumbnails'].setValue(event.thumbnails[0]);
+		}
+
+	}
 }

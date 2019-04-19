@@ -26,21 +26,21 @@
                 </div>
 
 
-                <div class="card" *ngIf="urlVideoInsert">
+                <div class="card" *ngIf="storageThumbnails">
                     <div class="card-header">
                         <strong>Ảnh đại diện</strong>
                     </div>
                     <div class="card-body">
                         <div class="CMSCreateBoxContent">
                             <ul id="CMSVideoEditItemAvatarChoose">
-                                <li *ngFor="let thumb of listThumbs;  let idx = index">
+                                <li *ngFor="let thumb of storageThumbnails;  let idx = index;">
                                     <label for="VMVideoEditItemAvatarChoose0">
-                                        <img src="{{ typeVideo === 'video' ? environment.storage_url + thumb.value : thumb.value  }}">
+                                        <img src="{{ typeVideo === 'video' ? environment.storage_url + thumb : thumb  }}">
                                     </label>
                                     <input type="radio" formControlName="thumbnails" id="VMVideoEditItemAvatarChoose0" autocomplete="off"
-                                           [checked]="idx === 0"
-                                           [(ngModel)]="listThumbs[0].value"
-                                           [value]="thumb.value"
+                                           [checked]="idx == 0"
+                                           [(ngModel)]="storageThumbnails[0]"
+                                           [value]="thumb"
                                     >
                                 </li>
                                 <li id="VMVideoEditOtherAvatar">

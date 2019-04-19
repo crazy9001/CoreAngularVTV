@@ -84,7 +84,7 @@ export class PostEditComponent implements OnInit {
             this.post.Category = post.category.id;
             this.post.Type = post.Type;
             this.post.Status = post.Status;
-            this.post.Storage = post.storage[0].pivot.storage_id;
+            this.post.Storage = post.storage.id;
         });
     }
 

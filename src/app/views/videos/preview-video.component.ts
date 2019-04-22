@@ -27,20 +27,20 @@ export class PreviewVideoComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     ngOnInit() {
-        /*if (this.videoUrl && this.videoUrl !== '') {
+        if (this.videoUrl && this.videoUrl !== '') {
             this.playerService.initPlayer('preview_video_content', this.videoUrl, this.typeVideo);
-        }*/
+        }
        // this.playerService.initPlayer('preview_video_content', this.videoUrl, this.typeVideo);
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        console.log(changes);
         if (!changes['urlVideoInsert'].isFirstChange() || !changes['typeVideo'].isFirstChange()) {
             this.playerService.initPlayer('preview_video_content', changes['urlVideoInsert'].currentValue, this.typeVideo);
-        } else {
+        } /*else {
+            console.log('case 2');
             this.typeVideo = changes['typeVideo'].currentValue;
             this.playerService.initPlayer('preview_video_content', changes['urlVideoInsert'].currentValue, this.typeVideo);
-        }
+        }*/
     }
     ngOnDestroy() {
         this.playerService.dispose();

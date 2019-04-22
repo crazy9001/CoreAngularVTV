@@ -1,0 +1,70 @@
+.IMSWidgetFlatPopupTitleBar {
+  color: #696969;
+  background: url(https://ims.mediacdn.vn/micro/widget/statics/images/background-header-popup.png) repeat scroll center bottom !important;
+  border: 0 !important;
+  height: 40px !important;
+  line-height: 25px !important;
+  font-size: 14px !important;
+  text-transform: uppercase;
+  font-weight: 700 !important;
+  border-radius: 0;
+  padding: 0;
+}
+.IMSWidgetFlatPopupTitleBar .ui-dialog-titlebar-close {
+  right: 0;
+  border-bottom: none !important;
+  background: rgba(0, 0, 0, 0) url(https://ims.mediacdn.vn/micro/widget/statics/images/close-icon-29.png) no-repeat scroll center 12px / 15px 15px !important;
+  border-left: none !important;
+  border-radius: 0;
+  border-right: none !important;
+  border-top: none !important;
+  height: 42px !important;
+  margin: 0;
+  opacity: 0.6 !important;
+  padding: 0 !important;
+  top: 0 !important;
+  width: 40px !important;
+  cursor: pointer;
+  outline: none;
+}
+.ui-dialog-titlebar {
+  padding: .4em 1em;
+  position: relative;
+}
+.IMSWidgetFlatPopupTitleBar .modal-title {
+  margin: 0;
+}
+#VMRemoteUrlInput {
+  border: solid 1px #e5e5e5;
+  width: 454px;
+  height: 146px;
+  padding: 2px;
+}
+#VMRemoteUploadNote {
+  color: #444;
+  font-style: italic;
+  margin-top: 10px;
+  text-align: center;
+}
+.modal-content {
+  border-radius: 0;
+}
+
+#CMSPopupAddVideoYoutube .btn.btn-primary {
+  background: #5870cb !important;
+}
+#CMSPopupAddVideoYoutube .btn {
+  border: none !important;
+  outline: none !important;
+  border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  -ms-border-radius: 0 !important;
+  -webkit-border-radius: 0 !important;
+  color: #FFF !important;
+  text-shadow: none !important;
+  padding: 5px 10px;
+  font-size: 12px;
+}
+.modal {
+  z-index: 1061 !important;
+}

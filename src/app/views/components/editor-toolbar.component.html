@@ -6,7 +6,11 @@
         <li data-func="video" title="Chèn video" class=" notipsy" (click)="mediaVideoModal.show()">
             <i class="fa fa-play-circle"></i>
         </li>
+        <li data-func="video" title="Chèn Iframe" class=" notipsy" (click)="mediaIframe.show()">
+            <i class="fa fa-file-code-o"></i>
+        </li>
     </ul>
 </div>
 <app-modal-media-images #mediaImageModal (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>
 <app-modal-media-video #mediaVideoModal (messageEventInsertVideo)="eventReceiveVideoInsert($event)"></app-modal-media-video>
+<app-modal-iframe #mediaIframe (eventOutPutIframe)="eventReceiveIframe($event)"></app-modal-iframe>

@@ -71,7 +71,6 @@ export class VideoEditComponent implements OnInit, OnDestroy {
     /* Get detail video by id */
     getDetailVideo() {
         this.videoService.getDetailVideoById(this.id).then(video => {
-            console.log(video);
             this.video.id = video.id;
             this.video.content = video.content.Content;
             this.video.category_id = video.category.id;

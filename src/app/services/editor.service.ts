@@ -17,6 +17,7 @@ export class EditorService {
         const _html = $('<div>' + html + '</div>');
         const type = _html[0].querySelector('.VCSortableInPreviewMode').getAttribute('type');
         const _ranges = this.GetSelection()._ranges;
+        console.log(_ranges);
         if (_ranges.length > 0) {
             const $commonAncestorContainer = $(_ranges[0].commonAncestorContainer);
             const selector = $commonAncestorContainer.parents('.VCSortableInPreviewMode[type="' + type + '"]');
@@ -28,6 +29,7 @@ export class EditorService {
                     return;
                 } else {
                     const $parent = $commonAncestorContainer.parent();
+                    console.log($parent);
                     if ($parent.is('p') && $parent.parents('.VCSortableInPreviewMode').length === 0) {
                         console.log('insert case 1');
                         if ($parent.next().length === 0) {
@@ -37,6 +39,7 @@ export class EditorService {
                         return;
                     } else {
                         console.log('insert case 2');
+                        console.log(html);
                         document.execCommand('insertHTML', true, html);
                     }
                 }
@@ -112,10 +115,17 @@ export class EditorService {
                         const element = $('video', $this);
                         NL.playerService.initPlayer(element[0], url);*/
                         break;
+                    case 'iframe' :
+                        if ($this.find('.IframeCMS_Caption').length === 0 && $this.find('div').length > 1) {
+                            $this.find('div:eq(1)').addClass('IframeCMS_Caption');
+                        }
+                        $('.IframeCMS_Caption', $this).attr('contenteditable', false);
+                        $('.IframeCMS_Caption p', $this).attr('contenteditable', false);
+                        break;
                 }
             }
         });
-        $('.PhotoCMS_Caption, .VideoCMS_Caption', $obj).each(function () {
+        $('.PhotoCMS_Caption, .VideoCMS_Caption, .IframeCMS_Caption', $obj).each(function () {
             $(this).attr('contenteditable', 'false');
             if ($('p', $(this)).length === 0) {
                 $(this).html('<p contenteditable="false" placeholder="[nhập chú thích]">' + $.trim($(this).text()) + '</p>');

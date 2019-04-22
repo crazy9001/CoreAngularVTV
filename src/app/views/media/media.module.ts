@@ -21,6 +21,7 @@ import { MultiMediaImagesComponent } from './multi-media-images.component';
 import {ModalVideoYoutubeComponent} from './modal-video-youtube.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MatTabsModule } from '@angular/material';
+import { ModalIframeComponent } from './modal-iframe.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -45,7 +46,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         ModalMediaImagesComponent,
         MediaImageDetailComponent,
         MultiMediaImagesComponent,
-        ModalVideoYoutubeComponent
+        ModalVideoYoutubeComponent,
+        ModalIframeComponent
     ],
     imports: [
         CommonModule,
@@ -73,7 +75,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
         MediaVideoDetailComponent,
         ModalMediaImagesComponent,
         MediaImageDetailComponent,
-        MultiMediaImagesComponent
+        MultiMediaImagesComponent,
+        ModalIframeComponent
     ]
 })
 export class MediaModule {

@@ -1,0 +1,21 @@
+<div bsModal #mediaIframe="bs-modal" class="modal fade" tabindex="9" role="dialog" aria-labelledby="myModalLabel"
+     aria-hidden="true" [config]="{backdrop: 'static',  keyboard: false}">
+    <div id="CMSPopupAddVideoYoutube" class="modal-dialog ui-dialog" role="document">
+        <form [formGroup]="IframeOutputForm">
+            <div class="modal-content">
+                <div class="modal-header ui-dialog-titlebar ui-helper-clearfix IMSWidgetFlatPopupTitleBar">
+                    <span id="ui-id-22" class="ui-dialog-title">Nhập nội dung</span>
+                    <button type="button" class="ui-dialog-titlebar-close" data-dismiss="modal" aria-label="Close"
+                            (click)="hide()"></button>
+                </div>
+                <div class="modal-body">
+                    <textarea id="VMRemoteUrlInput" formControlName="content" unselectable="on"></textarea>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" [disabled]="IframeOutputForm.invalid" (click)="onSubmit()">Chèn</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="hide()">Hủy</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

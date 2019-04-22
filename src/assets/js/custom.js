@@ -50,6 +50,10 @@ function GetObjectFunction(obj, type) {
             break;
         case 'videostream':
             func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
+            break;
+        case 'iframe':
+            func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
+            break;
         default:
             func += '<li data-func="elm-cog" title="Cấu hình"><i class="fa fa-cog"></i></li>';
             break;

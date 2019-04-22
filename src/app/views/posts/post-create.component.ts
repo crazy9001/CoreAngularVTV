@@ -101,6 +101,17 @@ export class PostCreateComponent implements OnInit {
         this.editorService.ProcessHTMLBeforInsert(html);
     }
 
+    OutputIframe(data) {
+        let html = '<div class="VCSortableInPreviewMode" type="Iframe" contenteditable="false">' +
+            '<div>' + data +
+            '</div>' +
+            '<div class="IframeCMS_Caption" contenteditable="false">' +
+            '</div>' +
+            '</div>';
+        html = this.editorService.ProcessInputContent2(html);
+        this.editorService.ProcessHTMLBeforInsert(html);
+    }
+
     OutputVideo($event) {
         if ($event.type === 'video') {
             let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +

@@ -9,6 +9,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {AuthService} from '../../services/auth-service.service';
 import {EditorContainerComponent} from '../components/editor-container.component';
 import {EditorService} from '../../services/editor.service';
+import {PlayerService} from '../../services/player.service';
 
 @Component({
     selector: 'app-post-edit',
@@ -51,6 +52,7 @@ export class PostEditComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private editorService: EditorService,
+        private playerService: PlayerService
     ) {
     }
 
@@ -140,11 +142,14 @@ export class PostEditComponent implements OnInit {
         if ($event.type === 'video') {
             let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +
                 '<div>' +
-                '<video controls id="VideoPlayer_Init_' + $event.data.id + '"> <source src="' + environment.storage_url + $event.data.path + '" type="video/mp4"></video>' +
-                '</div><div></div>' +
+                '<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + $event.data.id + '"></video>' +
+                '</div>' +
+                '<div></div>' +
                 '</div>';
             html = this.editorService.ProcessInputContent2(html);
             this.editorService.ProcessHTMLBeforInsert(html);
+            const playerInstant = '#VideoPlayer_Init_' + $event.data.id;
+            this.playerService.initPlayer(playerInstant, $event.data.path, 'video');
         } else {
             alert('Chức năng đang trong quá trình xây dựng. Sử dụng sau');
         }

@@ -17,13 +17,14 @@ export class PlayerService {
         controls: true,
         height: 280,
         preload: true,
-        controlBar: {
+        fluid: true,
+        /*controlBar: {
             volumePanel: {
                 vertical: true,
                 inline: false,
                 volumeLevel: true
             }
-        }
+        }*/
     };
 
     initPlayer(element?: string, url?: string, type?: string) {

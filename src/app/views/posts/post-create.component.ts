@@ -8,6 +8,7 @@ import {environment} from '../../../environments/environment.prod';
 import {Router} from '@angular/router';
 import {EditorContainerComponent} from '../components/editor-container.component';
 import {EditorService} from '../../services/editor.service';
+import {PlayerService} from '../../services/player.service';
 
 declare var $;
 
@@ -31,6 +32,7 @@ export class PostCreateComponent implements OnInit {
         private videoService: VideoService,
         private editorService: EditorService,
         private router: Router,
+        private playerService: PlayerService
     ) {
     }
 
@@ -110,11 +112,14 @@ export class PostCreateComponent implements OnInit {
         if ($event.type === 'video') {
             let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +
                 '<div>' +
-                '<video controls id="VideoPlayer_Init_' + $event.data.id + '"> <source src="' + environment.storage_url + $event.data.path + '" type="video/mp4"></video>' +
-                '</div><div></div>' +
+                '<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + $event.data.id + '"></video>' +
+                '</div>' +
+                '<div></div>' +
                 '</div>';
             html = this.editorService.ProcessInputContent2(html);
             this.editorService.ProcessHTMLBeforInsert(html);
+            const playerInstant = '#VideoPlayer_Init_' + $event.data.id;
+            this.playerService.initPlayer(playerInstant, $event.data.path, 'video');
         } else {
             alert('Chức năng đang trong quá trình xây dựng. Sử dụng sau');
         }

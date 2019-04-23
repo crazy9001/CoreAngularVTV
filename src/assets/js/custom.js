@@ -37,10 +37,53 @@ function ShowFunctions(obj) {
         }
     })
 
+
+    $('#NLFuncEnter').off('click').on('click', function (evt) {
+        $(obj).after('<p>aaa</p>');
+        var ed = $(obj).attr('contenteditable');
+        if (typeof (ed) != "undefined") {
+            $(obj).attr('data-contenteditable', ed);
+        }
+        $(obj).attr('contenteditable', 'false');
+        var $p = $(obj).next('p');
+        var p = $p.get(0);
+        var s = window.getSelection(), r = document.createRange();
+        //p.innerHTML = '\u00a0';
+        p.innerHTML = '';
+        r.selectNodeContents(p);
+        s.removeAllRanges();
+        s.addRange(r);
+        //return;
+        //document.execCommand('delete', false, null);
+        setTimeout(function () {
+            //NL.PlaceCaretAtEnd($(obj).next('p'));
+            //$(obj).next('p').focus();
+            var oldEd = $(obj).attr('data-contenteditable');
+            if (typeof (oldEd) != "undefined") {
+                $(obj).attr('contenteditable', oldEd);
+            }
+            $(obj).removeAttr('data-contenteditable');
+            $(obj).next('p').trigger('mouseup');
+            ScrollTo($(obj).next('p'));
+        }, 100);
+        evt.preventDefault();
+    });
+
+
 }
 
+ScrollTo = function (obj) {
+    var isScroll = true;
+    if ($(obj).is('.alignLeft,.alignRight')) {
+        isScroll = false;
+    }
+    if (isScroll) {
+        $('#IMSNewsLayout').animate({'scrollTop': $('#IMSNewsLayout').scrollTop() + 30});
+    }
+};
+
 function GetObjectFunction(obj, type) {
-    let func = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px"><ul>';
+    let func = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 50%; margin-left: -15px"><ul>';
     switch (type.toLowerCase()) {
         case 'photo':
             func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';

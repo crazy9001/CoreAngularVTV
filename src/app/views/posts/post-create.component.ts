@@ -20,10 +20,7 @@ export class PostCreateComponent implements OnInit {
     createPostForm: FormGroup;
     categories: Array<ICategory>;
     environment: any;
-    content = '<p></p>' +
-        '<p><b>* Invite readers to follow the broadcast programs of Vtv world on ' +
-        '<a href="https://beta.vtvworld.vtv.vn" target="_blank" title="VTV World" rel="nofollow">VTV World !</a>' +
-        '</b></p>';
+    content = '<p></p>';
     oldImage = '';
     @ViewChild('container') container: ElementRef;
     @ViewChild('editorContainer') editorContainer: EditorContainerComponent;
@@ -90,23 +87,20 @@ export class PostCreateComponent implements OnInit {
     }
 
     OutputImage(data) {
-        const html = '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
+        let html = '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
             '<div>' +
-            '<img src="' + this.environment.storage_url + data + '"> ' +
-            '</div>' +
-            '<div class="PhotoCMS_Caption" contenteditable="false">' +
-            '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
-            '</div>' +
+            '<img src="' + this.environment.storage_url + data + '">' +
+            '</div><div></div>' +
             '</div>';
+        html = this.editorService.ProcessInputContent2(html);
         this.editorService.ProcessHTMLBeforInsert(html);
     }
 
     OutputIframe(data) {
         let html = '<div class="VCSortableInPreviewMode" type="Iframe" contenteditable="false">' +
-            '<div>' + data +
-            '</div>' +
-            '<div class="IframeCMS_Caption" contenteditable="false">' +
-            '</div>' +
+            '<div>' +
+             data +
+            '</div><div></div>' +
             '</div>';
         html = this.editorService.ProcessInputContent2(html);
         this.editorService.ProcessHTMLBeforInsert(html);
@@ -117,8 +111,7 @@ export class PostCreateComponent implements OnInit {
             let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +
                 '<div>' +
                 '<video controls id="VideoPlayer_Init_' + $event.data.id + '"> <source src="' + environment.storage_url + $event.data.path + '" type="video/mp4"></video>' +
-                '</div>' +
-                '<div></div>' +
+                '</div><div></div>' +
                 '</div>';
             html = this.editorService.ProcessInputContent2(html);
             this.editorService.ProcessHTMLBeforInsert(html);

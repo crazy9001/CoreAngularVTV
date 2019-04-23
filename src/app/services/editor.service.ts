@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import * as rangy from 'rangy';
 import {PlayerService} from './player.service';
+import MediumEditor from 'medium-editor';
+
 declare var $;
 
 @Injectable({
@@ -13,15 +15,20 @@ export class EditorService {
     ) {
     }
 
+    CurrentSelection: any;
+    CaptionAutoFormatObjectTypes: ['photo', 'video', 'videostream', 'iframe'];
+
     ProcessHTMLBeforInsert = (html) => {
+        if (!this.RestoreSelection()) {
+            console.log('selection not found!');
+            return;
+        }
         const _html = $('<div>' + html + '</div>');
         const type = _html[0].querySelector('.VCSortableInPreviewMode').getAttribute('type');
         const _ranges = this.GetSelection()._ranges;
-        console.log(_ranges);
         if (_ranges.length > 0) {
             const $commonAncestorContainer = $(_ranges[0].commonAncestorContainer);
             const selector = $commonAncestorContainer.parents('.VCSortableInPreviewMode[type="' + type + '"]');
-            console.log(selector.length);
             if (selector.length === 0) {
                 if ($commonAncestorContainer.is('p') && $commonAncestorContainer.parents('.VCSortableInPreviewMode').length === 0) {
                     console.log('insert case 0');
@@ -29,7 +36,6 @@ export class EditorService {
                     return;
                 } else {
                     const $parent = $commonAncestorContainer.parent();
-                    console.log($parent);
                     if ($parent.is('p') && $parent.parents('.VCSortableInPreviewMode').length === 0) {
                         console.log('insert case 1');
                         if ($parent.next().length === 0) {
@@ -39,8 +45,7 @@ export class EditorService {
                         return;
                     } else {
                         console.log('insert case 2');
-                        console.log(html);
-                        document.execCommand('insertHTML', true, html);
+                        MediumEditor.util.insertHTMLCommand(window.document, html);
                     }
                 }
             }
@@ -51,16 +56,17 @@ export class EditorService {
         return rangy.getSelection();
     };
 
-    InsertHtmlAt (obj, html) {
+    InsertHtmlAt(obj, html) {
         const selection = rangy.getSelection();
-        if (selection.rangeCount > 0)  {
+        if (selection.rangeCount > 0) {
             selection.removeAllRanges();
         }
         const range = rangy.createRange();
         range.selectNode($(obj)[0]);
         selection.addRange(range);
+        this.SaveSelection();
         $(obj).remove();
-        document.execCommand('insertHTML', true, html);
+        this.ProcessHTMLBeforInsert(html);
     }
 
     ProcessInputContent(data) {
@@ -85,11 +91,21 @@ export class EditorService {
     }
 
 
-    /**
-     * Chuẩn hóa dữ liệu đầu vào
-     * @param html
-     * @constructor
-     */
+    SaveSelection() {
+        this.CurrentSelection = rangy.getSelection().getAllRanges();
+        const node = rangy.getSelection().anchorNode;
+        return this.CurrentSelection;
+    }
+
+    RestoreSelection() {
+        if (this.CurrentSelection.length > 0) {
+            rangy.getSelection().setRanges(this.CurrentSelection);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     ProcessInputContent2(html) {
         const NL = this;
         const $obj = $('<div>' + html + '</div>');
@@ -100,27 +116,24 @@ export class EditorService {
                 switch (type.toLowerCase()) {
                     case 'photo':
                         if ($this.find('.PhotoCMS_Caption').length === 0 && $this.find('div').length > 1) {
-                            $this.find('div:eq(2)').addClass('PhotoCMS_Caption');
+                            $this.find('div:eq(1)').addClass('PhotoCMS_Caption');
                         }
                         $('.PhotoCMS_Caption', $this).attr('contenteditable', false);
-                        $('.PhotoCMS_Caption p', $this).attr('contenteditable', false);
+                        $('.PhotoCMS_Caption p', $this).attr('contenteditable', true);
                         break;
                     case 'videostream':
                         if ($this.find('.VideoCMS_Caption').length === 0 && $this.find('div').length > 1) {
                             $this.find('div:eq(1)').addClass('VideoCMS_Caption');
                         }
                         $('.VideoCMS_Caption', $this).attr('contenteditable', false);
-                        $('.VideoCMS_Caption p', $this).attr('contenteditable', false);
-                        /*const url = $(this).attr('data-vid');
-                        const element = $('video', $this);
-                        NL.playerService.initPlayer(element[0], url);*/
+                        $('.VideoCMS_Caption p', $this).attr('contenteditable', true);
                         break;
                     case 'iframe' :
                         if ($this.find('.IframeCMS_Caption').length === 0 && $this.find('div').length > 1) {
                             $this.find('div:eq(1)').addClass('IframeCMS_Caption');
                         }
                         $('.IframeCMS_Caption', $this).attr('contenteditable', false);
-                        $('.IframeCMS_Caption p', $this).attr('contenteditable', false);
+                        $('.IframeCMS_Caption p', $this).attr('contenteditable', true);
                         break;
                 }
             }
@@ -128,9 +141,9 @@ export class EditorService {
         $('.PhotoCMS_Caption, .VideoCMS_Caption, .IframeCMS_Caption', $obj).each(function () {
             $(this).attr('contenteditable', 'false');
             if ($('p', $(this)).length === 0) {
-                $(this).html('<p contenteditable="false" placeholder="[nhập chú thích]">' + $.trim($(this).text()) + '</p>');
+                $(this).html('<p contenteditable="true" placeholder="[nhập chú thích]" class="NLPlaceholderShow">' + $.trim($(this).text()) + '</p>');
             } else {
-                $('p', $(this)).attr('contenteditable', false);
+                $('p', $(this)).attr('contenteditable', true);
             }
             const divJustify = $('div', $(this));
             if (divJustify.length > 0) {
@@ -140,7 +153,24 @@ export class EditorService {
         return $obj.html();
     }
 
+    IsChrome () {
+        return navigator.userAgent.toLowerCase().indexOf('chrome') > -1;
+    }
 
+    GetContentEditableType(obj) {
+        if (obj !== '') {
+            if (this.IsChrome() && $(obj).attr('type') !== 'content') {
+                return 'plaintext-only';
+            } else {
+                return 'true';
+            }
+        } else {
+            if (this.IsChrome()) {
+                return 'plaintext-only';
+            }
+        }
+        return 'true';
+    }
     InsertHtmlWithDataProcess(inputHtml) {
         const NL = this;
         const _ranges = NL.GetSelection()._ranges;

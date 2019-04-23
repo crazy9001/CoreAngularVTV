@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {EditorService} from '../../services/editor.service';
 
 @Component({
     selector: 'app-editor-toolbar',
@@ -9,7 +10,9 @@ export class EditorToolbarComponent implements OnInit {
     @Output() dataOutputVideo = new EventEmitter<any>();
     @Output() dataOutputIframe = new EventEmitter<any>();
 
-    constructor() {
+    constructor(
+        private editorServidce: EditorService
+    ) {
     }
 
     ngOnInit() {
@@ -25,6 +28,10 @@ export class EditorToolbarComponent implements OnInit {
 
     eventReceiveIframe($event) {
         this.dataOutputIframe.emit($event);
+    }
+
+    callModal() {
+        this.editorServidce.SaveSelection();
     }
 
 }

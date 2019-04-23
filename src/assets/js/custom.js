@@ -1,7 +1,6 @@
 $(document).on({
     mouseenter: function (e) {
         const $this = $(this);
-        console.log($this);
         $this.addClass('active');
         ShowFunctions($this);
     },
@@ -28,7 +27,6 @@ function ShowFunctions(obj) {
 
     $(document).on('click', '#NLElementFunc li', function (e) {
         var _this = $(this);
-        console.log(obj);
         var func = _this.attr('data-func');
         switch (func) {
             case 'elm-remove':
@@ -45,7 +43,6 @@ function GetObjectFunction(obj, type) {
     let func = '<div id="NLElementFunc" contenteditable="false" class="NLNoTrackChange" style="left: 245px"><ul>';
     switch (type.toLowerCase()) {
         case 'photo':
-            func += '<li data-func="photo-edit" title="Chỉnh sửa ảnh"><i class="fa fa-object-group"></i></li>';
             func += '<li data-func="elm-remove" title="Xóa"><i class="fa fa-remove"></i></li>';
             break;
         case 'videostream':

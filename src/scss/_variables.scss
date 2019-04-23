@@ -1763,11 +1763,16 @@ input.hasDatepicker {
 .VCSortableInPreviewMode video {
   width: 100% !important;
 }
-#NLEditor .PhotoCMS_Caption, #NLEditor .PhotoCMS_Caption p {
+.VCSortableInPreviewMode iframe {
+  width: 100%;
+  border: none;
+}
+#NLEditor .PhotoCMS_Caption, #NLEditor .PhotoCMS_Caption p, #NLEditor .VideoCMS_Caption, #NLEditor .VideoCMS_Caption p, #NLEditor .IframeCMS_Caption, #NLEditor .IframeCMS_Caption p {
   color: #666;
   font-size: 13px;
   font-style: italic;
   margin: 0;
+  outline: none;
 }
 #NLEditor * {
   box-sizing: border-box;

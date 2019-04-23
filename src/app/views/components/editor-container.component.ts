@@ -1,5 +1,6 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input, SecurityContext, OnChanges} from '@angular/core';
 import MediumEditor from 'medium-editor';
+import {DomSanitizer} from '@angular/platform-browser';
 declare var $;
 
 @Component({
@@ -7,16 +8,23 @@ declare var $;
     templateUrl: './editor-container.component.html',
     styleUrls: ['./editor-container.component.scss']
 })
-export class EditorContainerComponent implements OnInit, AfterViewInit {
+
+export class EditorContainerComponent implements OnInit, AfterViewInit, OnChanges {
 
     @ViewChild('container') container: ElementRef;
     @Input() contentEditor: string;
+    contentSave: any;
     mediumEditor: any;
 
-    constructor() {
+    constructor(private sanitizer: DomSanitizer) {
+
     }
 
     ngOnInit() {
+    }
+
+    ngOnChanges() {
+        this.contentSave = this.sanitizer.bypassSecurityTrustHtml(this.contentEditor);
     }
 
     ngAfterViewInit() {

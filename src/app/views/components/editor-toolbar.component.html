@@ -1,12 +1,12 @@
 <div id="NLEditorToolbar">
     <ul>
-        <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageModal.show()">
+        <li data-func="photo" title="Chèn ảnh" class=" notipsy" (click)="mediaImageModal.show(); callModal()">
             <i class="fa fa-photo"></i>
         </li>
-        <li data-func="video" title="Chèn video" class=" notipsy" (click)="mediaVideoModal.show()">
+        <li data-func="video" title="Chèn video" class=" notipsy" (click)="mediaVideoModal.show(); callModal()">
             <i class="fa fa-play-circle"></i>
         </li>
-        <li data-func="video" title="Chèn Iframe" class=" notipsy" (click)="mediaIframe.show()">
+        <li data-func="video" title="Chèn Iframe" class=" notipsy" (click)="mediaIframe.show(); callModal()">
             <i class="fa fa-file-code-o"></i>
         </li>
     </ul>

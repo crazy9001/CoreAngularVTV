@@ -13,7 +13,7 @@ export class EditorContainerComponent implements OnInit, AfterViewInit, OnChange
 
     @ViewChild('container') container: ElementRef;
     @Input() contentEditor: string;
-    contentSave: any;
+    contentTrustHtml: any;
     mediumEditor: any;
 
     constructor(private sanitizer: DomSanitizer) {
@@ -24,7 +24,7 @@ export class EditorContainerComponent implements OnInit, AfterViewInit, OnChange
     }
 
     ngOnChanges() {
-        this.contentSave = this.sanitizer.bypassSecurityTrustHtml(this.contentEditor);
+        this.contentTrustHtml = this.sanitizer.bypassSecurityTrustHtml(this.contentEditor);
     }
 
     ngAfterViewInit() {

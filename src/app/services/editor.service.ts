@@ -82,7 +82,6 @@ export class EditorService {
             );
             if ($(this).text() === '') {
                 $('p', $(this)).remove();
-                console.log($(this));
             } else {
                 $('p', $(this)).attr('contenteditable', false);
             }
@@ -90,6 +89,32 @@ export class EditorService {
         return obj.html();
     }
 
+    GetDataForSave() {
+        const $obj = $('<div>' + $('#NLEditor').html() + '</div>');
+        $('.VCSortableInPreviewMode', $obj).each(function (index) {
+            const $this = $(this);
+            const type = $this.attr('type');
+            if (typeof (type) !== 'undefined') {
+                switch (type.toLowerCase()) {
+                    case 'videostream' :
+                        const videoId = $this.attr('data-id');
+                        const playerInstant = $('#VideoPlayer_Init_' + videoId, $(this));
+                        if (playerInstant.length > 0) {
+                            playerInstant.remove();
+                        }
+                    break;
+                }
+            }
+        });
+
+        $('#NLFuncEnter', $obj).remove();
+        $('#NLElementFunc', $obj).remove();
+        $('#NLParagraphFunc', $obj).remove();
+        let newHtml = $obj.html();
+        newHtml = newHtml.replace(/\r\n/gi, ' ');
+        newHtml = newHtml.replace(/\n/gi, ' ');
+        return newHtml;
+    }
 
     SaveSelection() {
         this.CurrentSelection = rangy.getSelection().getAllRanges();

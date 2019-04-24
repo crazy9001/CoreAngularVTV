@@ -68,7 +68,8 @@ export class PostCreateComponent implements OnInit {
     }
 
     onSubmit() {
-        const contentAfterprocess = this.editorService.ProcessInputContent(this.editorContainer.mediumEditor.getContent());
+        const newHtml = this.editorService.GetDataForSave();
+        const contentAfterprocess = this.editorService.ProcessInputContent(newHtml/*this.editorContainer.mediumEditor.getContent()*/);
         this.createPostForm.controls['content'].setValue(contentAfterprocess);
         this.videoService.createPost(this.createPostForm.value).subscribe(res => {
             if (res.success === true) {
@@ -110,7 +111,7 @@ export class PostCreateComponent implements OnInit {
 
     OutputVideo($event) {
         if ($event.type === 'video') {
-            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +
+            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '" data-id="' + $event.data.id + '">' +
                 '<div>' +
                 '<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + $event.data.id + '"></video>' +
                 '</div>' +

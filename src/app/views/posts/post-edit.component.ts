@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {VideoService} from '../../services/video.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -10,6 +10,7 @@ import {AuthService} from '../../services/auth-service.service';
 import {EditorContainerComponent} from '../components/editor-container.component';
 import {EditorService} from '../../services/editor.service';
 import {PlayerService} from '../../services/player.service';
+declare var $;
 
 @Component({
     selector: 'app-post-edit',
@@ -66,6 +67,29 @@ export class PostEditComponent implements OnInit {
         this.environment = environment;
         this.role = this.authService.getRoleUser();
         this.receiverPost();
+
+    }
+
+    loadPlayer() {
+        const $obj = $('<div>' + $('#NLEditor').html() + '</div>');
+        $('.VCSortableInPreviewMode', $obj).each(function (index) {
+            const $this = $(this);
+            console.log($this);
+            const type = $this.attr('type');
+            console.log(type);
+            if (typeof (type) !== 'undefined') {
+                switch (type.toLowerCase()) {
+                    case 'videostream' :
+                        const videoId = $this.attr('data-id');
+                        console.log(videoId);
+                        const videoUrl = $this.attr('data-vid');
+                        console.log(videoUrl);
+                        //$this.find('div:eq(1)').append('<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + videoId + '"></video>');
+                        const playerInstant = $('#VideoPlayer_Init_' + videoId, $(this));
+                        this.playerService.initPlayer(playerInstant, videoUrl, 'video');
+                }
+            }
+        });
     }
     getDetailNews() {
         this.videoService.getDetailNewsById(this.id).then(post => {
@@ -87,6 +111,7 @@ export class PostEditComponent implements OnInit {
             this.post.Type = post.Type;
             this.post.Status = post.Status;
             this.post.Storage = post.storage.id;
+            this.loadPlayer();
         });
     }
 
@@ -140,7 +165,7 @@ export class PostEditComponent implements OnInit {
 
     OutputVideo($event) {
         if ($event.type === 'video') {
-            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '">' +
+            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '" data-id="' + $event.data.id + '">' +
                 '<div>' +
                 '<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + $event.data.id + '"></video>' +
                 '</div>' +
@@ -163,10 +188,14 @@ export class PostEditComponent implements OnInit {
     }
 
     eventUpdatePost() {
-        const contentAfterprocess = this.editorService.ProcessInputContent(this.editorContainer.mediumEditor.getContent());
+        //const contentAfterprocess = this.editorService.ProcessInputContent(this.editorContainer.mediumEditor.getContent());
+        const newHtml = this.editorService.GetDataForSave();
+        const contentAfterprocess = this.editorService.ProcessInputContent(newHtml/*this.editorContainer.mediumEditor.getContent()*/);
         this.editPostForm.controls['content'].setValue(contentAfterprocess);
         this.videoService.update(this.editPostForm.value).subscribe(res => {
-            this.router.navigate(['posts', res.id, 'edit']);
+            if (res.success === true) {
+                this.router.navigate(['posts', res.data.id, 'edit']);
+            }
         });
     }
 

@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input, SecurityContext, OnChanges} from '@angular/core';
 import MediumEditor from 'medium-editor';
 import {DomSanitizer} from '@angular/platform-browser';
+import {PlayerService} from '../../services/player.service';
 declare var $;
 
 @Component({
@@ -16,7 +17,10 @@ export class EditorContainerComponent implements OnInit, AfterViewInit, OnChange
     contentTrustHtml: any;
     mediumEditor: any;
 
-    constructor(private sanitizer: DomSanitizer) {
+    constructor(
+        private sanitizer: DomSanitizer,
+        private playerService: PlayerService
+    ) {
 
     }
 
@@ -24,7 +28,25 @@ export class EditorContainerComponent implements OnInit, AfterViewInit, OnChange
     }
 
     ngOnChanges() {
+        const _this = this;
         this.contentTrustHtml = this.sanitizer.bypassSecurityTrustHtml(this.contentEditor);
+        $(document).ready(function() {
+            $('.VCSortableInPreviewMode').each(function (index) {
+                const $this = $(this);
+                const type = $this.attr('type');
+                if (typeof (type) !== 'undefined') {
+                    switch (type.toLowerCase()) {
+                        case 'videostream' :
+                            const videoId = $this.attr('data-id');
+                            const videoUrl = $this.attr('data-vid');
+                            const divFisrt = $this.find('div:eq(0)');
+                            divFisrt.append('<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + videoId + '"></video>');
+                            const playerInstant = '#VideoPlayer_Init_' + videoId;
+                            _this.playerService.initPlayer(playerInstant, videoUrl, 'video');
+                    }
+                }
+            });
+        });
     }
 
     ngAfterViewInit() {

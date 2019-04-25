@@ -10,6 +10,8 @@ import {AuthService} from '../../services/auth-service.service';
 import {EditorContainerComponent} from '../components/editor-container.component';
 import {EditorService} from '../../services/editor.service';
 import {PlayerService} from '../../services/player.service';
+import {Observable} from 'rxjs';
+
 declare var $;
 
 @Component({
@@ -45,6 +47,7 @@ export class PostEditComponent implements OnInit {
     };
     private sub: any;
     environment: any;
+
     constructor(
         private route: ActivatedRoute,
         private videoService: VideoService,
@@ -70,27 +73,6 @@ export class PostEditComponent implements OnInit {
 
     }
 
-    loadPlayer() {
-        const $obj = $('<div>' + $('#NLEditor').html() + '</div>');
-        $('.VCSortableInPreviewMode', $obj).each(function (index) {
-            const $this = $(this);
-            console.log($this);
-            const type = $this.attr('type');
-            console.log(type);
-            if (typeof (type) !== 'undefined') {
-                switch (type.toLowerCase()) {
-                    case 'videostream' :
-                        const videoId = $this.attr('data-id');
-                        console.log(videoId);
-                        const videoUrl = $this.attr('data-vid');
-                        console.log(videoUrl);
-                        //$this.find('div:eq(1)').append('<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + videoId + '"></video>');
-                        const playerInstant = $('#VideoPlayer_Init_' + videoId, $(this));
-                        this.playerService.initPlayer(playerInstant, videoUrl, 'video');
-                }
-            }
-        });
-    }
     getDetailNews() {
         this.videoService.getDetailNewsById(this.id).then(post => {
             if (post.Type === 'video') {
@@ -111,7 +93,6 @@ export class PostEditComponent implements OnInit {
             this.post.Type = post.Type;
             this.post.Status = post.Status;
             this.post.Storage = post.storage.id;
-            this.loadPlayer();
         });
     }
 
@@ -142,13 +123,13 @@ export class PostEditComponent implements OnInit {
     }
 
     OutputImage(data) {
-        const html =    '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
+        const html = '<div class="VCSortableInPreviewMode" type="photo" contenteditable="false">' +
             '<div>' +
-            '<img src="' +  this.environment.storage_url + data + '"> ' +
+            '<img src="' + this.environment.storage_url + data + '"> ' +
             '</div>' +
             '<div class="PhotoCMS_Caption" contenteditable="false">' +
             '<p contenteditable="true" data-placeholder="[nhập chú thích]" class="NLPlaceholderShow"></p>' +
-            '</div>'  +
+            '</div>' +
             '</div>';
         this.editorService.ProcessHTMLBeforInsert(html);
     }
@@ -188,7 +169,6 @@ export class PostEditComponent implements OnInit {
     }
 
     eventUpdatePost() {
-        //const contentAfterprocess = this.editorService.ProcessInputContent(this.editorContainer.mediumEditor.getContent());
         const newHtml = this.editorService.GetDataForSave();
         const contentAfterprocess = this.editorService.ProcessInputContent(newHtml/*this.editorContainer.mediumEditor.getContent()*/);
         this.editPostForm.controls['content'].setValue(contentAfterprocess);

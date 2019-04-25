@@ -51,7 +51,7 @@ export class PlayerService {
         }
         this.player = videojs(element, this.controls);
         this.player.src(sources);
-        this.player.play();
+       // this.player.play();
     }
 
     dispose() {

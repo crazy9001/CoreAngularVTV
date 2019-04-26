@@ -11,6 +11,7 @@ import {EditorContainerComponent} from '../components/editor-container.component
 import {EditorService} from '../../services/editor.service';
 import {PlayerService} from '../../services/player.service';
 import {Observable} from 'rxjs';
+import {NotificationService} from '../../services/notification.service';
 
 declare var $;
 
@@ -56,7 +57,8 @@ export class PostEditComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private editorService: EditorService,
-        private playerService: PlayerService
+        private playerService: PlayerService,
+        private notificationService: NotificationService
     ) {
     }
 
@@ -173,8 +175,13 @@ export class PostEditComponent implements OnInit {
         const contentAfterprocess = this.editorService.ProcessInputContent(newHtml/*this.editorContainer.mediumEditor.getContent()*/);
         this.editPostForm.controls['content'].setValue(contentAfterprocess);
         this.videoService.update(this.editPostForm.value).subscribe(res => {
+            console.log(res);
             if (res.success === true) {
                 this.router.navigate(['posts', res.data.id, 'edit']);
+            }
+        }, (errorRes: HttpErrorResponse) => {
+            this.notificationService.showError(errorRes.error.message, 'Error');
+            if (errorRes.status === 401) {
             }
         });
     }

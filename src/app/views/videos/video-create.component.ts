@@ -9,6 +9,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 import {ModalMediaImagesComponent} from '../media/modal-media-images.component';
 import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 import {Router} from '@angular/router';
+import {NotificationService} from '../../services/notification.service';
 
 @Component({
     selector: 'app-video-create',
@@ -34,7 +35,8 @@ export class VideoCreateComponent implements OnInit {
         private formBuilder: FormBuilder,
         private videoService: VideoService,
         private categoryService: CategoryService,
-        private router: Router
+        private router: Router,
+        private notificationService: NotificationService
     ) {
         this.environment = environment;
     }
@@ -97,6 +99,7 @@ export class VideoCreateComponent implements OnInit {
             this.createVideoForm.reset();
             this.router.navigate(['/videos/draft']);
         }, (errorRes: HttpErrorResponse) => {
+            this.notificationService.showError(errorRes.error.error, 'Error');
             if (errorRes.status === 401) {
 
             }

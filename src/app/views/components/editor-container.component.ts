@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input, SecurityContext, OnChanges} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild, Input, OnDestroy, OnChanges} from '@angular/core';
 import MediumEditor from 'medium-editor';
 import {DomSanitizer} from '@angular/platform-browser';
 import {PlayerService} from '../../services/player.service';
@@ -6,11 +6,10 @@ declare var $;
 
 @Component({
     selector: 'app-editor-container',
-    templateUrl: './editor-container.component.html',
-    styleUrls: ['./editor-container.component.scss']
+    templateUrl: './editor-container.component.html'
 })
 
-export class EditorContainerComponent implements OnInit, AfterViewInit, OnChanges {
+export class EditorContainerComponent implements OnInit, AfterViewInit, OnChanges, OnDestroy {
 
     @ViewChild('container') container: ElementRef;
     @Input() contentEditor: string;
@@ -47,6 +46,10 @@ export class EditorContainerComponent implements OnInit, AfterViewInit, OnChange
                 }
             });
         });
+    }
+
+    ngOnDestroy() {
+        this.playerService.dispose();
     }
 
     ngAfterViewInit() {

@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {Router} from '@angular/router';
 import {HttpErrorResponse} from '@angular/common/http';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+import {NotificationService} from '../../services/notification.service';
 @Component({
     selector: 'app-dashboard',
     templateUrl: 'login.component.html'
@@ -18,7 +19,8 @@ export class LoginComponent implements OnInit {
         private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
         private formBuilder: FormBuilder,
         private authService: AuthService,
-        private routerService: Router
+        private routerService: Router,
+        private notificationService: NotificationService
     ) {
 
     }
@@ -36,6 +38,7 @@ export class LoginComponent implements OnInit {
             this.ng4LoadingSpinnerService.hide();
             this.routerService.navigate(['dashboard']);
         }, (errorRes: HttpErrorResponse) => {
+            this.notificationService.showError(errorRes.error.error, 'Error');
             if (errorRes.status === 401) {
                 this.ng4LoadingSpinnerService.hide();
                 this.errorCredentials = true;

@@ -8,7 +8,7 @@ declare var videojs: any;
 })
 export class PlayerService {
 
-    player: any;
+    players: any;
 
     constructor() {
     }
@@ -28,6 +28,10 @@ export class PlayerService {
     };
 
     initPlayer(element?: string, url?: string, type?: string) {
+        let arrayPlay = [];
+        if (this.players) {
+            arrayPlay = this.players;
+        }
         let src: any;
         let sources: any;
         if (type === 'video') {
@@ -49,12 +53,19 @@ export class PlayerService {
                 }
             ];
         }
-        this.player = videojs(element, this.controls);
-        this.player.src(sources);
-       // this.player.play();
+        const player = videojs(element, this.controls);
+        player.src(sources);
+        arrayPlay.push(player);
+        this.players = arrayPlay;
     }
 
     dispose() {
-        this.player.dispose();
+        if ( this.players ) {
+            this.players.forEach(function(player) {
+                player.dispose();
+            });
+            this.players = null;
+        }
+
     }
 }

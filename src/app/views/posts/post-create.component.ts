@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 import {EditorContainerComponent} from '../components/editor-container.component';
 import {EditorService} from '../../services/editor.service';
 import {PlayerService} from '../../services/player.service';
+import {NotificationService} from '../../services/notification.service';
 
 declare var $;
 
@@ -32,7 +33,8 @@ export class PostCreateComponent implements OnInit {
         private videoService: VideoService,
         private editorService: EditorService,
         private router: Router,
-        private playerService: PlayerService
+        private playerService: PlayerService,
+        private notificationService: NotificationService
     ) {
     }
 
@@ -76,6 +78,7 @@ export class PostCreateComponent implements OnInit {
                 this.router.navigate(['posts', res.data.id, 'edit']);
             }
         }, (errorRes: HttpErrorResponse) => {
+            this.notificationService.showError(errorRes.error.error, 'Error');
             if (errorRes.status === 401) {
             }
         });
@@ -111,15 +114,16 @@ export class PostCreateComponent implements OnInit {
 
     OutputVideo($event) {
         if ($event.type === 'video') {
-            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '" data-id="' + $event.data.id + '">' +
+            const elementID = $event.data.id + Date.now ( );
+            let html = '<div class="VCSortableInPreviewMode" type="VideoStream" contenteditable="false" data-vid="' + $event.data.path + '" data-id="' + elementID + '">' +
                 '<div>' +
-                '<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + $event.data.id + '"></video>' +
+                '<video class="video-js vjs-big-play-centered" id="VideoPlayer_Init_' + elementID + '"></video>' +
                 '</div>' +
                 '<div></div>' +
                 '</div>';
             html = this.editorService.ProcessInputContent2(html);
             this.editorService.ProcessHTMLBeforInsert(html);
-            const playerInstant = '#VideoPlayer_Init_' + $event.data.id;
+            const playerInstant = '#VideoPlayer_Init_' + elementID;
             this.playerService.initPlayer(playerInstant, $event.data.path, 'video');
         } else {
             alert('Chức năng đang trong quá trình xây dựng. Sử dụng sau');

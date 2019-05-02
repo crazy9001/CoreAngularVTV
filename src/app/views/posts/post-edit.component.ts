@@ -76,25 +76,28 @@ export class PostEditComponent implements OnInit {
     }
 
     getDetailNews() {
-        this.videoService.getDetailNewsById(this.id).then(post => {
-            if (post.Type === 'video') {
-                this.router.navigate(['404']);
+        this.videoService.getDetailNewsById(this.id).then(result => {
+            console.log(result);
+            if ( result.success === true) {
+                if (result.data.Type === 'video') {
+                    this.router.navigate(['404']);
+                }
+                this.post.id = result.data.id;
+                this.post.Title = result.data.Title;
+                this.post.Content = result.data.content.Content;
+                this.post.Description = result.data.Description;
+                this.post.SubDescription = result.data.Description;
+                this.post.PublishAt = result.data.element.PublishAt;
+                this.post.Source = result.data.Source;
+                this.post.MetaTitle = result.data.seo.MetaTitle;
+                this.post.MetaDescription = result.data.seo.MetaDescription;
+                this.post.MetaKeyWord = result.data.seo.MetaKeyWords;
+                this.post.Thumbnails = result.data.Thumbnails;
+                this.post.Category = result.data.category.id;
+                this.post.Type = result.data.Type;
+                this.post.Status = result.data.Status;
+                this.post.Storage = result.data.storage.id;
             }
-            this.post.id = post.id;
-            this.post.Title = post.Title;
-            this.post.Content = post.content.Content;
-            this.post.Description = post.Description;
-            this.post.SubDescription = post.Description;
-            this.post.PublishAt = post.element.PublishAt;
-            this.post.Source = post.Source;
-            this.post.MetaTitle = post.seo.MetaTitle;
-            this.post.MetaDescription = post.seo.MetaDescription;
-            this.post.MetaKeyWord = post.seo.MetaKeyWords;
-            this.post.Thumbnails = post.Thumbnails;
-            this.post.Category = post.category.id;
-            this.post.Type = post.Type;
-            this.post.Status = post.Status;
-            this.post.Storage = post.storage.id;
         });
     }
 
@@ -174,12 +177,15 @@ export class PostEditComponent implements OnInit {
         const newHtml = this.editorService.GetDataForSave();
         const contentAfterprocess = this.editorService.ProcessInputContent(newHtml/*this.editorContainer.mediumEditor.getContent()*/);
         this.editPostForm.controls['content'].setValue(contentAfterprocess);
-        this.videoService.update(this.editPostForm.value).subscribe(res => {
+        this.videoService.updatePost(this.editPostForm.value).subscribe(res => {
             console.log(res);
             if (res.success === true) {
                 this.router.navigate(['posts', res.data.id, 'edit']);
             }
         }, (errorRes: HttpErrorResponse) => {
+            console.log(errorRes);
+            console.log(errorRes.error.message);
+            console.log(this.notificationService.showError(errorRes.error.message, 'Error'));
             this.notificationService.showError(errorRes.error.message, 'Error');
             if (errorRes.status === 401) {
             }

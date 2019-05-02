@@ -259,6 +259,14 @@ export class VideoService {
             });
     }
 
+    updatePost(post: IVideoForm) {
+        return this.httpClient.put<any>(`${environment.api_url}/post/${post.id}`, post)
+            .do(data => {
+                return data;
+            });
+    }
+
+
     /* change video to editor */
     changeVideoToEditor(id: number) {
         return this.httpClient.post<any>(`${environment.api_url}` + '/video/to/editor', {id: id})

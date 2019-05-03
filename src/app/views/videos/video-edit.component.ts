@@ -70,22 +70,24 @@ export class VideoEditComponent implements OnInit, OnDestroy {
 
     /* Get detail video by id */
     getDetailVideo() {
-        this.videoService.getDetailVideoById(this.id).then(video => {
-            this.video.id = video.id;
-            this.video.content = video.content.Content;
-            this.video.category_id = video.category.id;
-            this.video.title = video.Title;
-            this.video.description = video.Description;
-            this.video.publish_at = video.element.PublishAt;
-            this.video.source = video.Source;
-            this.video.seo_title = video.seo.MetaTitle;
-            this.video.seo_description = video.seo.MetaDescription;
-            this.video.seo_keywords = video.seo.MetaKeyWords;
-            this.video.thumbnails = video.Thumbnails;
-            this.video.status = video.Status;
-            this.video.type = video.Type;
-            this.storageThumbnails = video.storage ? video.storage.thumbnails : video.multi_thumb.thumbnails;
-            this.video.storage_id = video.storage ? video.storage.id : 0;
+        this.videoService.getDetailVideoById(this.id).then(result => {
+            if (result.success === true) {
+                this.video.id = result.data.id;
+                this.video.content = result.data.content.Content;
+                this.video.category_id = result.data.category.id;
+                this.video.title = result.data.Title;
+                this.video.description = result.data.Description;
+                this.video.publish_at = result.data.element.PublishAt;
+                this.video.source = result.data.Source;
+                this.video.seo_title = result.data.seo.MetaTitle;
+                this.video.seo_description = result.data.seo.MetaDescription;
+                this.video.seo_keywords = result.data.seo.MetaKeyWords;
+                this.video.thumbnails = result.data.Thumbnails;
+                this.video.status = result.data.Status;
+                this.video.type = result.data.Type;
+                this.storageThumbnails = result.data.storage ? result.data.storage.thumbnails : result.data.multi_thumb.thumbnails;
+                this.video.storage_id = result.data.storage ? result.data.storage.id : 0;
+            }
         });
     }
 

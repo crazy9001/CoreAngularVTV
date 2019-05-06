@@ -10,6 +10,7 @@ import {EditorContainerComponent} from '../components/editor-container.component
 import {EditorService} from '../../services/editor.service';
 import {PlayerService} from '../../services/player.service';
 import {NotificationService} from '../../services/notification.service';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
 declare var $;
 
@@ -34,7 +35,8 @@ export class PostCreateComponent implements OnInit {
         private editorService: EditorService,
         private router: Router,
         private playerService: PlayerService,
-        private notificationService: NotificationService
+        private notificationService: NotificationService,
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
     ) {
     }
 
@@ -70,11 +72,13 @@ export class PostCreateComponent implements OnInit {
     }
 
     onSubmit() {
+        this.ng4LoadingSpinnerService.show();
         const newHtml = this.editorService.GetDataForSave();
         const contentAfterprocess = this.editorService.ProcessInputContent(newHtml/*this.editorContainer.mediumEditor.getContent()*/);
         this.createPostForm.controls['content'].setValue(contentAfterprocess);
         this.videoService.createPost(this.createPostForm.value).subscribe(res => {
             if (res.success === true) {
+                this.ng4LoadingSpinnerService.hide();
                 this.router.navigate(['posts', res.data.id, 'edit']);
             }
         }, (errorRes: HttpErrorResponse) => {
@@ -103,8 +107,8 @@ export class PostCreateComponent implements OnInit {
     }
 
     OutputIframe(data) {
-        let html = '<div class="VCSortableInPreviewMode" type="Iframe" contenteditable="false">' +
-            '<div>' +
+        let html = '<div class="VCSortableInPreviewMode embed-responsive embed-responsive-16by9"  type="Iframe" contenteditable="false">' +
+            '<div class="embed-responsive-item">' +
              data +
             '</div><div></div>' +
             '</div>';

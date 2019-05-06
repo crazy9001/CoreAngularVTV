@@ -1878,3 +1878,52 @@ input.hasDatepicker {
 .toast-error {
   background-color: rgb(189, 54, 47) !important;
 }
+.CMSTabsetMediaVideo .tab-content {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  height: 100%;
+  padding: 20px 0 0 20px;
+  width: 96%;
+
+  border: none;
+}
+.CMSTabsetMediaVideo .nav-tabs{
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  width: 70px;
+  border-right: 1px solid #dadde1;
+  border-bottom: none;
+}
+.CMSTabsetMediaVideo .nav-tabs a {
+  border: none;
+  border-radius: unset;
+  text-align: center;
+}
+.CMSTabsetMediaVideo .nav-tabs li {
+  width: 100%;
+}
+.CMSTabsetMediaVideo .nav-tabs i{
+  transition: all .2s ease-in-out;
+  font-size: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  line-height: 40px;
+  background: #F3F3F3;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.CMSTabsetMediaVideo .nav-tabs li.active i{
+  background: #6A709E;
+  color: #fff;
+}
+.embed-responsive{
+  overflow: unset !important;
+}

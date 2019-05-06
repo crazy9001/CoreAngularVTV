@@ -2746,7 +2746,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 
 .media-frame-router, .media-frame-title {
   z-index: 200;
-  left: 70px;
+  left: 0px;
   position: absolute;
   right: 0
 }
@@ -2765,7 +2765,7 @@ html:lang(he-il) .rtl #wpadminbar * {
 .media-frame-content {
   position: absolute;
   top: 55px;
-  left: 70px;
+  left: 0px;
   right: 0;
   bottom: 61px;
   height: auto;
@@ -19484,4 +19484,12 @@ body.locale-he-il, body.locale-he-il .press-this a.wp-switch-editor {
 
 .thumbnail-video {
   width: 100%;
+}
+.CMSTabsetMediaVideo{
+  background-color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  padding: 0;
+  border-radius: 0;
 }

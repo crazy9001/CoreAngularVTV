@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="tile box-primary">
+            <div class="t-header with-border">
+                <button aria-pressed="true" class="btn btn-square btn-primary active" style="float: right" type="button">
+                    <i class="fa fa-plus fa-lg"></i> Thêm mới
+                </button>
+                <div class="clearfix"></div>
+            </div>
+            <div class="t-body">
+
+                <div class="dd" *ngIf="listCategories">
+                    <ol class="dd-list">
+                        <li *ngFor="let category of listCategories" class="dd-item" data-id="{{ category.Id }}">
+                            <div class="dd-handle">{{ category.Name | titlecase }}</div>
+                            <div *ngIf="(category.children).length">
+                                <app-children-category [category]="category.children"></app-children-category>
+                            </div>
+                        </li>
+                        <!--<li class="dd-item" data-id="2">
+                            <div class="dd-handle">Item 2</div>
+                        </li>
+                        <li class="dd-item" data-id="3">
+                            <div class="dd-handle">Item 3</div>
+                            <ol class="dd-list">
+                                <li class="dd-item" data-id="4">
+                                    <div class="dd-handle">Item 4</div>
+                                </li>
+                            </ol>
+                        </li>-->
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!-- /.box -->
+    </div>
+</div>

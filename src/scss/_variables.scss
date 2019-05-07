@@ -1927,3 +1927,24 @@ input.hasDatepicker {
 .embed-responsive{
   overflow: unset !important;
 }
+
+.dd-handle {
+  height: 40px;
+  border-radius: 0px;
+  padding: 10px 25px;
+  font-weight: bold;
+}
+.dd {
+  max-width: 100%;
+  padding: 20px;
+  padding-top: 0px;
+}
+
+.tile {
+  background-color: #fff;
+  margin-bottom: 30px;
+  position: relative;
+}
+.t-header:not(.th-alt) {
+  padding: 20px 23px;
+}

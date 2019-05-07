@@ -1,0 +1,8 @@
+<ol class="dd-list">
+    <li class="dd-item" *ngFor="let category of _category" data-id="{{ category.id }}">
+        <div class="dd-handle">{{ category.Name | titlecase }}</div>
+        <div *ngIf="(category.children).length">
+            <app-children-category [category]="category.children"></app-children-category>
+        </div>
+    </li>
+</ol>

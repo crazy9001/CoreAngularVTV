@@ -107,9 +107,10 @@ export class VideoCreateComponent implements OnInit {
     }
 
     eventReceiveImageInsert(event) {
+        console.log(event);
         if (event) {
             this.customThumb = event.thumbnails[0];
-            this.createVideoForm.controls['thumbnails'].setValue(event.thumbnails[0]);
+            this.createVideoForm.controls['thumbnails'].setValue(event.path);
         }
 
     }

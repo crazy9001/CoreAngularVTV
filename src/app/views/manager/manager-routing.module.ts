@@ -4,6 +4,7 @@ import {ProgramComponent} from './program.component';
 import {MenuComponent} from './menu.component';
 import {ProgramCreateComponent} from './program-create.component';
 import { UsersComponent } from './users.component';
+import {VideoCategoryComponent} from './video-category.component';
 
 const routes: Routes = [{
     path: '',
@@ -39,6 +40,13 @@ const routes: Routes = [{
             component: MenuComponent,
             data: {
                 title: 'Quản lý menu'
+            }
+        },
+        {
+            path: 'category',
+            component: VideoCategoryComponent,
+            data: {
+                title: 'Chuyên mục'
             }
         },
         {

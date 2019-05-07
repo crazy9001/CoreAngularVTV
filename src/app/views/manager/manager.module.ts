@@ -20,6 +20,8 @@ import {PerfectScrollbarConfigInterface} from 'ngx-perfect-scrollbar';
 import {MediaModule} from '../media/media.module';
 import {ModalEditProgramComponent} from '../modals/modal-edit-program.component';
 import {ModalUserPermissionComponent} from '../modals/modal-user-permission.component';
+import { VideoCategoryComponent } from './video-category.component';
+import {ComponentsModule} from '../components/components.module';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -36,7 +38,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ModalAdduserComponent,
         ModalAddProgramComponent,
         ModalEditProgramComponent,
-        ModalUserPermissionComponent
+        ModalUserPermissionComponent,
+        VideoCategoryComponent
     ]
     ,
     imports: [
@@ -49,7 +52,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         TabsModule,
         DropzoneModule,
         PerfectScrollbarModule,
-        MediaModule
+        MediaModule,
+        ComponentsModule
     ],
     providers: [
         {

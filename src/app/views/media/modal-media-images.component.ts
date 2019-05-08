@@ -3,6 +3,7 @@ import {MediaPaginateModel} from '../../model/media-paginate.model';
 import {MediaService} from '../../services/media.service';
 import {environment} from '../../../environments/environment.prod';
 import {ModalDirective} from 'ngx-bootstrap';
+import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
 
 @Component({
     selector: 'app-modal-media-images',
@@ -20,12 +21,14 @@ export class ModalMediaImagesComponent implements OnInit {
         acceptedFiles: 'image/*',
     };
     constructor(
-        private mediaService: MediaService
+        private mediaService: MediaService,
+        private ng4LoadingSpinnerService: Ng4LoadingSpinnerService,
     ) {
     }
 
     ngOnInit() {
         this.environment = environment;
+        this.loadMediaImages();
     }
 
     loadMediaImages() {

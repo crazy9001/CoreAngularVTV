@@ -11,6 +11,7 @@ import { AvatarComponent } from './avatar.component';
 import { SeoInformationComponent } from './seo-information.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { ChildrenCategoryComponent } from './children-category.component';
+import {RouterModule} from '@angular/router';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -24,6 +25,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ReactiveFormsModule,
         MediaModule,
         PerfectScrollbarModule,
+        RouterModule
     ],
     exports: [
         EditorToolbarComponent,

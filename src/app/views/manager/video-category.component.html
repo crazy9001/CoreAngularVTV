@@ -2,17 +2,19 @@
     <div class="col-md-12">
         <div class="tile box-primary">
             <div class="t-header with-border">
-                <button aria-pressed="true" class="btn btn-square btn-primary active" style="float: right" type="button">
+                <a [routerLink]="['/manager/category/create']" aria-pressed="true" class="btn btn-primary active" style="float: right">
                     <i class="fa fa-plus fa-lg"></i> Thêm mới
-                </button>
+                </a>
                 <div class="clearfix"></div>
             </div>
             <div class="t-body">
 
                 <div class="dd" *ngIf="listCategories">
                     <ol class="dd-list">
-                        <li *ngFor="let category of listCategories" class="dd-item" data-id="{{ category.Id }}">
-                            <div class="dd-handle">{{ category.Name | titlecase }}</div>
+                        <li *ngFor="let category of listCategories" class="dd-item" data-id="{{ category.id }}">
+                            <div class="dd-handle">
+                                <a [routerLink]="['/manager/category/' + category.id + '/edit']">{{ category.Name | titlecase }}</a>
+                            </div>
                             <div *ngIf="(category.children).length">
                                 <app-children-category [category]="category.children"></app-children-category>
                             </div>

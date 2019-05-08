@@ -19,12 +19,6 @@
                     <tabset [vertical]="true" class="CMSTabsetMediaVideo">
                         <tab>
                             <ng-template tabHeading>
-                                <i class="fa fa-upload fa-lg"></i>
-                            </ng-template>
-                            <div class="dropzone" [dropzone]="configDropzone" (success)="onUploadSuccess($event)"></div>
-                        </tab>
-                        <tab>
-                            <ng-template tabHeading>
                                 <div (click)="reloadMediaVideo()">
                                     <i class="fa fa-video-camera fa-lg"></i>
                                 </div>
@@ -100,6 +94,12 @@
                                     <app-media-video-detail *ngIf="loadDetail" [video]="selected" [playVideo]="playVideo"></app-media-video-detail>
                                 </div>
                             </div>
+                        </tab>
+                        <tab>
+                            <ng-template tabHeading>
+                                <i class="fa fa-upload fa-lg"></i>
+                            </ng-template>
+                            <div class="dropzone" [dropzone]="configDropzone" (success)="onUploadSuccess($event)"></div>
                         </tab>
                         <tab>
                             <ng-template tabHeading>

@@ -5,6 +5,8 @@ import {MenuComponent} from './menu.component';
 import {ProgramCreateComponent} from './program-create.component';
 import { UsersComponent } from './users.component';
 import {VideoCategoryComponent} from './video-category.component';
+import {CreateVideoCategoryComponent} from './create-video-category.component';
+import {EditVideoCategoryComponent} from './edit-video-category.component';
 
 const routes: Routes = [{
     path: '',
@@ -47,6 +49,20 @@ const routes: Routes = [{
             component: VideoCategoryComponent,
             data: {
                 title: 'Chuyên mục'
+            }
+        },
+        {
+            path: 'category/create',
+            component: CreateVideoCategoryComponent,
+            data: {
+                title: 'Tạo chuyên mục'
+            }
+        },
+        {
+            path: 'category/:id/edit',
+            component: EditVideoCategoryComponent,
+            data: {
+                title: 'Sửa chuyên mục'
             }
         },
         {

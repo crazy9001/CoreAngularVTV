@@ -22,6 +22,8 @@ import {ModalEditProgramComponent} from '../modals/modal-edit-program.component'
 import {ModalUserPermissionComponent} from '../modals/modal-user-permission.component';
 import { VideoCategoryComponent } from './video-category.component';
 import {ComponentsModule} from '../components/components.module';
+import { CreateVideoCategoryComponent } from './create-video-category.component';
+import { EditVideoCategoryComponent } from './edit-video-category.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     suppressScrollX: true
@@ -39,7 +41,9 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         ModalAddProgramComponent,
         ModalEditProgramComponent,
         ModalUserPermissionComponent,
-        VideoCategoryComponent
+        VideoCategoryComponent,
+        CreateVideoCategoryComponent,
+        EditVideoCategoryComponent
     ]
     ,
     imports: [

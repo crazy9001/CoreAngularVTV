@@ -1,6 +1,9 @@
 <ol class="dd-list">
     <li class="dd-item" *ngFor="let category of _category" data-id="{{ category.id }}">
-        <div class="dd-handle">{{ category.Name | titlecase }}</div>
+        <div class="dd-handle">
+            <a [routerLink]="['/manager/category/' + category.id + '/edit']">{{ category.name | titlecase }}</a>
+        </div>
+
         <div *ngIf="(category.children).length">
             <app-children-category [category]="category.children"></app-children-category>
         </div>

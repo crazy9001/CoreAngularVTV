@@ -4584,7 +4584,7 @@ html:lang(he-il) .rtl #wpadminbar * {
   border-bottom: none !important;
 }
 .tab-content tab, .tab-pane {
-  height: calc(100vh - 215px) !important;
+  height: 100%;
   padding: 0 !important;
 }
 #docs-list, #plugin-information .section, #template textarea, .code, .ltr, code {

@@ -27,6 +27,7 @@ export class ModalMediaVideoComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.loadMedia();
     }
 
     show() {

@@ -1,0 +1,119 @@
+<form [formGroup]="editCategoryForm">
+    <input
+            type="hidden"
+            formControlName="id"
+            [(ngModel)]="category.id"
+            required class="form-control">
+    <div class="row">
+
+        <div class="col-md-8">
+
+            <div class="tile">
+                <div class="t-header th-alt bg-2d3446">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span class="th-title">Thông tin hiển thị</span>
+                </div>
+                <div class="t-body tb-padding">
+                    <div class="form-group">
+                        <label>Tiêu đề </label>
+                        <input id="IMS_FormEdit_Name" value="" type="text"
+                               [ngClass]="{'is-invalid': editCategoryForm.controls['name'].invalid && (editCategoryForm.controls['name'].dirty || editCategoryForm.controls['name'].touched) }"
+                               class="form-control" formControlName="name"
+                               [(ngModel)]="category.name"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả</label>
+                        <textarea class="form-control"
+                                  id="IMS_FormEdit_Title"
+                                  formControlName="description"
+                                  placeholder=""
+                                  type="text"
+                                  [(ngModel)]="category.description"
+                        ></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tile">
+                <div class="t-header th-alt bg-2d3446">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span class="th-title">Thông tin SEO</span>
+                </div>
+                <div class="t-body tb-padding">
+                    <div class="form-group">
+                        <label>Tiêu đề SEO</label>
+                        <input id="IMS_FormEdit_MetaTitle" value="" type="text"
+                               class="form-control" formControlName="seo_title"
+                               [(ngModel)]="category.seo_title"
+                        >
+                    </div>
+                    <div class="form-group">
+                        <label>Mô tả SEO</label>
+                        <textarea formControlName="seo_description" id="IMS_FormEdit_MetaDescription" type="text"
+                                  class="form-control IMS_Textarea" placeholder=""
+                                  [(ngModel)]="category.seo_description"
+                        >
+
+                        </textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Từ khóa</label>
+                        <input formControlName="seo_keywords" type="text" value="" class="form-control"
+                               id="IMS_FormEdit_KeywordFocus"
+                               placeholder=""
+                               [(ngModel)]="category.seo_keywords"
+                        >
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="tile">
+                <div class="t-header th-alt bg-2d3446">
+                    <i class="fa fa-info-circle fa-lg" aria-hidden="true"></i>
+                    <span class="th-title">Các tùy chọn</span>
+                </div>
+                <div class="t-body tb-padding">
+                    <div class="form-group">
+                        <label>Danh mục cha</label>
+                        <select id="select1" formControlName="parent_id" class="form-control">
+                            <option [ngValue]="0" [selected]="category.parent_id == 0">Danh mục cha</option>
+                            <option *ngFor="let category of categories"
+                                    [ngValue]="category.id"
+                                    [selected]="category.id == category.parent_id"
+                            >
+                                {{ category?.Name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Ảnh đại diện</label>
+                        <div class="card-body CMSVideoUploadLoading" *ngIf="category.content">
+                            <img [src]="environment.storage_url + category.content">
+                            <input class="hidden" id="IMS_FormEdit_AvatarField" formControlName="content" type="text"
+                                   [(ngModel)]="category.content">
+                        </div>
+                        <button class="btn btn-square btn-block btn-dark" type="button" (click)="mediaImageModal.show()"
+                                style="margin-top: 10px">Chèn ảnh
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row text-center">
+    <div class="col-md-12">
+        <button type="button" href="" class="btn btn-square btn-danger">
+            <i class="fa fa-reply fa-lg" aria-hidden="true"></i> Quay lại
+        </button>
+
+        <button class="btn btn-square btn-primary" type="submit" (click)="onSubmit()">
+            <i class="fa fa-download fa-lg" aria-hidden="true"></i> Cập nhật
+        </button>
+    </div>
+</div>
+<app-modal-media-images #mediaImageModal
+                        (messageEventInsertImage)="eventReceiveImageInsert($event)"></app-modal-media-images>

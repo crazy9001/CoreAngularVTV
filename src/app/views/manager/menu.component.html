@@ -62,7 +62,7 @@
                             <select id="CMSCategoryMenu" formControlName="category" class="form-control">
                                 <option [ngValue]="null">Chọn giá trị...</option>
                                 <option *ngFor="let category of categories" [ngValue]="category.id">
-                                    {{ category?.name }}
+                                    {{ category?.Name }}
                                 </option>
                             </select>
                         </div>

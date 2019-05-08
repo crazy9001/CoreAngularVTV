@@ -1885,7 +1885,6 @@ input.hasDatepicker {
   flex-grow: 0;
   flex-shrink: 0;
   height: 100%;
-  padding: 20px 0 0 20px;
   width: 96%;
 
   border: none;
@@ -1934,6 +1933,12 @@ input.hasDatepicker {
   padding: 10px 25px;
   font-weight: bold;
 }
+.dd-handle a {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  text-decoration: none;
+}
 .dd {
   max-width: 100%;
   padding: 20px;
@@ -1947,4 +1952,35 @@ input.hasDatepicker {
 }
 .t-header:not(.th-alt) {
   padding: 20px 23px;
+}
+.tb-padding {
+  padding: 20px 23px 30px;
+}
+.t-header.th-alt {
+  padding: 10px 15px 9px;
+}
+.bg-2d3446 {
+  background-color: #2d3446 !important;
+}
+.t-header.th-alt .actions > a, .t-header.th-alt[class*=bg-] .th-title {
+  color: #fff;
+}
+.t-header .th-title {
+  line-height: 100%;
+}
+.t-header span {
+  font-size: 16px;
+}
+.text-center {
+  text-align: center;
+}
+.t-header i {
+  font-size: 16px;
+  color: #fff;
+}
+.form-control {
+  border-radius: 0 !important;
+}
+.CMSVideoUploadLoading img {
+  width: 100%;
 }

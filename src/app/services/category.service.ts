@@ -13,6 +13,12 @@ export class CategoryService {
     ) {
     }
 
+    createVideoCategory(category: any) {
+        return this.httpClient.post<any>(`${environment.api_url}/video/category`, category)
+            .do(data => {
+                return data;
+            });
+    }
     getVideoCategoryByUser() {
         return this.httpClient.get(`${environment.api_url}` + '/video/user/category')
             .toPromise()
@@ -60,6 +66,22 @@ export class CategoryService {
 
     createCategory(program: IProgram) {
         return this.httpClient.post<any>(`${environment.api_url}/program/category `, program)
+            .do(data => {
+                return data;
+            });
+    }
+
+    getDetailVideoCategory(id: number) {
+        return this.httpClient.get(`${environment.api_url}` + '/video/category/' + id)
+            .toPromise()
+            .then((response) => {
+                return response;
+            })
+            .catch(this.handleError);
+    }
+
+    updateVideoCategory(category: any) {
+        return this.httpClient.put<any>(`${environment.api_url}/video/category/${category.id}`, category)
             .do(data => {
                 return data;
             });
